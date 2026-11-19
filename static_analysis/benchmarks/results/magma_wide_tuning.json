@@ -1,0 +1,750 @@
+[
+ {
+  "lib": "libpng",
+  "bug": "PNG001",
+  "flagged": true,
+  "via": "own",
+  "rank": 298,
+  "rank_pct": 21.8,
+  "line": true,
+  "targets": [
+   "pngrutil.c:3157-3210"
+  ]
+ },
+ {
+  "lib": "libpng",
+  "bug": "PNG002",
+  "flagged": true,
+  "via": "own",
+  "rank": 403,
+  "rank_pct": 29.5,
+  "line": true,
+  "targets": [
+   "png.c:4526-4589",
+   "png.c:4591-4608",
+   "pngerror.c:935-965"
+  ]
+ },
+ {
+  "lib": "libpng",
+  "bug": "PNG003",
+  "flagged": true,
+  "via": "own",
+  "rank": 270,
+  "rank_pct": 19.7,
+  "line": false,
+  "targets": [
+   "pngrutil.c:911-1102",
+   "pngset.c:571-643"
+  ]
+ },
+ {
+  "lib": "libpng",
+  "bug": "PNG004",
+  "flagged": true,
+  "via": "own",
+  "rank": 24,
+  "rank_pct": 1.7,
+  "line": true,
+  "targets": [
+   "pngrutil.c:3219-3716"
+  ]
+ },
+ {
+  "lib": "libpng",
+  "bug": "PNG005",
+  "flagged": true,
+  "via": "own",
+  "rank": 38,
+  "rank_pct": 2.7,
+  "line": true,
+  "targets": [
+   "png.c:2549-2705",
+   "pngrutil.c:4426-4733"
+  ]
+ },
+ {
+  "lib": "libpng",
+  "bug": "PNG006",
+  "flagged": true,
+  "via": "own",
+  "rank": 10,
+  "rank_pct": 0.7,
+  "line": false,
+  "targets": [
+   "png.c:470-681",
+   "pngrutil.c:2043-2102"
+  ]
+ },
+ {
+  "lib": "libpng",
+  "bug": "PNG007",
+  "flagged": true,
+  "via": "own",
+  "rank": 106,
+  "rank_pct": 7.7,
+  "line": true,
+  "targets": [
+   "pngrtran.c:1939-2147",
+   "pngset.c:571-643"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND001",
+  "flagged": true,
+  "via": "own",
+  "rank": 84,
+  "rank_pct": 5.7,
+  "line": true,
+  "targets": [
+   "src/paf.c:157-277"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND002",
+  "flagged": true,
+  "via": "own",
+  "rank": 50,
+  "rank_pct": 3.4,
+  "line": true,
+  "targets": [
+   "src/sd2.c:369-512"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND004",
+  "flagged": true,
+  "via": "own",
+  "rank": 345,
+  "rank_pct": 23.6,
+  "line": true,
+  "targets": [
+   "src/file_io.c:384-431"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND005",
+  "flagged": true,
+  "via": "own",
+  "rank": 425,
+  "rank_pct": 29.1,
+  "line": true,
+  "targets": [
+   "src/aiff.c:1757-1794"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND006",
+  "flagged": true,
+  "via": "own",
+  "rank": 11,
+  "rank_pct": 0.7,
+  "line": false,
+  "targets": [
+   "src/flac.c:165-336"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND007",
+  "flagged": true,
+  "via": "own",
+  "rank": 757,
+  "rank_pct": 52.0,
+  "line": true,
+  "targets": [
+   "src/flac.c:442-542"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND010",
+  "flagged": true,
+  "via": "own",
+  "rank": 6,
+  "rank_pct": 0.3,
+  "line": true,
+  "targets": [
+   "src/common.c:562-850"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND012",
+  "flagged": true,
+  "via": "own",
+  "rank": 6,
+  "rank_pct": 0.3,
+  "line": true,
+  "targets": [
+   "src/common.c:562-850"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND013",
+  "flagged": true,
+  "via": "own",
+  "rank": 6,
+  "rank_pct": 0.3,
+  "line": true,
+  "targets": [
+   "src/common.c:562-850"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND014",
+  "flagged": true,
+  "via": "own",
+  "rank": 378,
+  "rank_pct": 25.9,
+  "line": true,
+  "targets": [
+   "src/alaw.c:357-375"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND015",
+  "flagged": true,
+  "via": "own",
+  "rank": 376,
+  "rank_pct": 25.8,
+  "line": true,
+  "targets": [
+   "src/alaw.c:327-345"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND016",
+  "flagged": true,
+  "via": "own",
+  "rank": 381,
+  "rank_pct": 26.1,
+  "line": false,
+  "targets": [
+   "src/double64.c:90-262"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND017",
+  "flagged": true,
+  "via": "own",
+  "rank": 21,
+  "rank_pct": 1.4,
+  "line": false,
+  "targets": [
+   "src/wavlike.c:123-480"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND020",
+  "flagged": true,
+  "via": "own",
+  "rank": 21,
+  "rank_pct": 1.4,
+  "line": true,
+  "targets": [
+   "src/wavlike.c:123-480"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND022",
+  "flagged": true,
+  "via": "own",
+  "rank": 406,
+  "rank_pct": 27.8,
+  "line": true,
+  "targets": [
+   "src/ulaw.c:858-876"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND023",
+  "flagged": true,
+  "via": "own",
+  "rank": 404,
+  "rank_pct": 27.7,
+  "line": true,
+  "targets": [
+   "src/ulaw.c:828-846"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND024",
+  "flagged": true,
+  "via": "own",
+  "rank": 757,
+  "rank_pct": 52.0,
+  "line": false,
+  "targets": [
+   "src/flac.c:442-542"
+  ]
+ },
+ {
+  "lib": "libsndfile",
+  "bug": "SND025",
+  "flagged": true,
+  "via": "own",
+  "rank": 125,
+  "rank_pct": 8.5,
+  "line": true,
+  "targets": [
+   "src/wav.c:1059-1203"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF001",
+  "flagged": true,
+  "via": "own",
+  "rank": 103,
+  "rank_pct": 6.7,
+  "line": true,
+  "targets": [
+   "libtiff/tif_predict.c:280-339",
+   "libtiff/tif_predict.c:353-379",
+   "libtiff/tif_predict.c:393-419",
+   "libtiff/tif_predict.c:425-471",
+   "libtiff/tif_predict.c:499-532",
+   "libtiff/tif_predict.c:536-591",
+   "libtiff/tif_predict.c:595-623",
+   "libtiff/tif_predict.c:640-668",
+   "libtiff/tif_predict.c:688-732",
+   "libtiff/tif_predict.c:750-804"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF002",
+  "flagged": true,
+  "via": "own",
+  "rank": 181,
+  "rank_pct": 11.7,
+  "line": false,
+  "targets": [
+   "libtiff/tif_pixarlog.c:751-899"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF003",
+  "flagged": true,
+  "via": "own",
+  "rank": 435,
+  "rank_pct": 28.3,
+  "line": true,
+  "targets": [
+   "libtiff/tif_read.c:465-504"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF004",
+  "flagged": true,
+  "via": "calls",
+  "rank": 1053,
+  "rank_pct": 68.7,
+  "line": false,
+  "targets": [
+   "libtiff/tif_ojpeg.c:787-818"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF005",
+  "flagged": true,
+  "via": "own",
+  "rank": 776,
+  "rank_pct": 50.6,
+  "line": true,
+  "targets": [
+   "libtiff/tif_luv.c:1554-1583"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF006",
+  "flagged": true,
+  "via": "own",
+  "rank": 907,
+  "rank_pct": 59.1,
+  "line": true,
+  "targets": [
+   "libtiff/tif_pixarlog.c:1254-1287"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF007",
+  "flagged": true,
+  "via": "own",
+  "rank": 205,
+  "rank_pct": 13.3,
+  "line": true,
+  "targets": [
+   "libtiff/tif_dirread.c:5835-5905",
+   "libtiff/tif_dirread.c:5914-5993"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF008",
+  "flagged": true,
+  "via": "own",
+  "rank": 171,
+  "rank_pct": 11.1,
+  "line": true,
+  "targets": [
+   "libtiff/tif_next.c:46-161"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF009",
+  "flagged": true,
+  "via": "own",
+  "rank": 194,
+  "rank_pct": 12.6,
+  "line": true,
+  "targets": [
+   "libtiff/tif_dirwrite.c:2079-2144"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF010",
+  "flagged": true,
+  "via": "own",
+  "rank": 63,
+  "rank_pct": 4.0,
+  "line": true,
+  "targets": [
+   "libtiff/tif_lzw.c:587-791"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF011",
+  "flagged": true,
+  "via": "own",
+  "rank": 93,
+  "rank_pct": 6.0,
+  "line": true,
+  "targets": [
+   "libtiff/tif_print.c:234-667"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF012",
+  "flagged": true,
+  "via": "own",
+  "rank": 14,
+  "rank_pct": 0.8,
+  "line": true,
+  "targets": [
+   "libtiff/tif_dir.c:175-797",
+   "libtiff/tif_dir.c:90-143"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF013",
+  "flagged": true,
+  "via": "own",
+  "rank": 429,
+  "rank_pct": 27.9,
+  "line": true,
+  "targets": [
+   "libtiff/tif_jbig.c:49-132"
+  ]
+ },
+ {
+  "lib": "libtiff",
+  "bug": "TIF014",
+  "flagged": true,
+  "via": "own",
+  "rank": 418,
+  "rank_pct": 27.2,
+  "line": false,
+  "targets": [
+   "libtiff/tif_dirread.c:5914-5993"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML001",
+  "flagged": true,
+  "via": "own",
+  "rank": 43,
+  "rank_pct": 0.7,
+  "line": true,
+  "targets": [
+   "valid.c:1296-1410"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML002",
+  "flagged": true,
+  "via": "own",
+  "rank": 1538,
+  "rank_pct": 25.6,
+  "line": false,
+  "targets": [
+   "valid.c:4624-4836"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML003",
+  "flagged": true,
+  "via": "own",
+  "rank": 594,
+  "rank_pct": 9.9,
+  "line": true,
+  "targets": [
+   "parser.c:7935-8081"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML004",
+  "flagged": true,
+  "via": "own",
+  "rank": 789,
+  "rank_pct": 13.1,
+  "line": true,
+  "targets": [
+   "xzlib.c:529-646"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML005",
+  "flagged": true,
+  "via": "own",
+  "rank": 463,
+  "rank_pct": 7.7,
+  "line": true,
+  "targets": [
+   "xmlmemory.c:161-229",
+   "xmlmemory.c:242-310",
+   "xmlmemory.c:338-422",
+   "xmlmemory.c:521-580"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML006",
+  "flagged": true,
+  "via": "own",
+  "rank": 43,
+  "rank_pct": 0.7,
+  "line": true,
+  "targets": [
+   "valid.c:1296-1410"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML007",
+  "flagged": true,
+  "via": "own",
+  "rank": 29,
+  "rank_pct": 0.5,
+  "line": true,
+  "targets": [
+   "HTMLparser.c:5461-6246",
+   "parser.c:12606-12634"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML008",
+  "flagged": true,
+  "via": "own",
+  "rank": 52,
+  "rank_pct": 0.9,
+  "line": true,
+  "targets": [
+   "parser.c:4900-5070"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML009",
+  "flagged": true,
+  "via": "own",
+  "rank": 417,
+  "rank_pct": 6.9,
+  "line": true,
+  "targets": [
+   "parser.c:10401-10511"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML010",
+  "flagged": true,
+  "via": "own",
+  "rank": 28,
+  "rank_pct": 0.5,
+  "line": true,
+  "targets": [
+   "parser.c:2645-2833"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML011",
+  "flagged": true,
+  "via": "own",
+  "rank": 374,
+  "rank_pct": 6.2,
+  "line": true,
+  "targets": [
+   "xmlstring.c:450-481",
+   "xmlstring.c:495-530"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML012",
+  "flagged": true,
+  "via": "own",
+  "rank": 415,
+  "rank_pct": 6.9,
+  "line": true,
+  "targets": [
+   "parser.c:3399-3469"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML013",
+  "flagged": true,
+  "via": "own",
+  "rank": 1366,
+  "rank_pct": 22.8,
+  "line": true,
+  "targets": [
+   "HTMLparser.c:2974-3025",
+   "HTMLparser.c:3038-3092"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML014",
+  "flagged": true,
+  "via": "own",
+  "rank": 1151,
+  "rank_pct": 19.2,
+  "line": true,
+  "targets": [
+   "HTMLparser.c:2631-2671"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML015",
+  "flagged": true,
+  "via": "own",
+  "rank": 584,
+  "rank_pct": 9.7,
+  "line": true,
+  "targets": [
+   "HTMLparser.c:2673-2726"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML016",
+  "flagged": true,
+  "via": "own",
+  "rank": 1107,
+  "rank_pct": 18.5,
+  "line": true,
+  "targets": [
+   "xmlregexp.c:5065-5158"
+  ]
+ },
+ {
+  "lib": "libxml2",
+  "bug": "XML017",
+  "flagged": true,
+  "via": "own",
+  "rank": 3154,
+  "rank_pct": 52.6,
+  "line": false,
+  "targets": [
+   "parser.c:8386-8451"
+  ]
+ },
+ {
+  "lib": "lua",
+  "bug": "LUA001",
+  "flagged": true,
+  "via": "own",
+  "rank": 347,
+  "rank_pct": 27.0,
+  "line": true,
+  "targets": [
+   "ldebug.c:188-205",
+   "ldebug.c:208-233"
+  ]
+ },
+ {
+  "lib": "lua",
+  "bug": "LUA002",
+  "flagged": true,
+  "via": "own",
+  "rank": 186,
+  "rank_pct": 14.5,
+  "line": true,
+  "targets": [
+   "ldebug.c:842-866"
+  ]
+ },
+ {
+  "lib": "lua",
+  "bug": "LUA003",
+  "flagged": true,
+  "via": "calls",
+  "rank": 919,
+  "rank_pct": 71.7,
+  "line": false,
+  "targets": [
+   "liolib.c:290-304"
+  ]
+ },
+ {
+  "lib": "lua",
+  "bug": "LUA004",
+  "flagged": true,
+  "via": "own",
+  "rank": 113,
+  "rank_pct": 8.8,
+  "line": true,
+  "targets": [
+   "ldebug.c:131-146",
+   "ldebug.c:881-943",
+   "ldo.c:365-391",
+   "lstate.c:249-268",
+   "lvm.c:1818-1830"
+  ]
+ }
+]

@@ -51,7 +51,11 @@ in that script, not a separate tool you run by hand.
 
 ## Repository layout
 
- _TBD_
+| folder | what it is |
+|---|---|
+| [`static_analysis/`](static_analysis/) | Stage 1, the static analyzer (Semgrep + CodeQL): library ──► `findings.json`. How to run it and read its output: [static_analysis/README.md](static_analysis/README.md) |
+
+ _Other stages: TBD_
 
 ## Requirements
 

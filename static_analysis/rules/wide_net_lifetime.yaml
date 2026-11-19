@@ -1,0 +1,27 @@
+# Wide-net tier, part 3: object lifetime ends that the C-style `free(...)` names miss -- C++
+# `delete` expressions and calls whose name says they release, remove or destroy something
+# (`queue.DeleteItem(p)`, `list->remove(x)`, `obj->Release()`). A use-after-free needs one of
+# these; the other pointer that still refers to the object is what the LLM checks.
+rules:
+  - id: wide-delete
+    languages: [cpp]
+    severity: INFO
+    message: object released with delete
+    metadata: {cwe: ["CWE-416"], wide: free}
+    pattern-either:
+      - pattern: delete $X;
+      - pattern: delete[] $X;
+
+  - id: wide-release-call
+    languages: [c, cpp]
+    severity: INFO
+    message: $M() releases or removes an object
+    metadata: {cwe: ["CWE-416"], wide: free}
+    patterns:
+      - pattern-either:
+          - pattern: $O.$M(...)
+          - pattern: $O->$M(...)
+          - pattern: $M(...)
+      - metavariable-regex:
+          metavariable: $M
+          regex: (?i)^\w*(free|delete|destroy|release|remove|erase|dispose|unref|dealloc|discard)\w*$

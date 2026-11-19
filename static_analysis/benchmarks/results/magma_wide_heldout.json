@@ -1,0 +1,940 @@
+[
+ {
+  "lib": "openssl",
+  "bug": "SSL001",
+  "flagged": true,
+  "via": "own",
+  "rank": 597,
+  "rank_pct": 4.3,
+  "line": true,
+  "targets": [
+   "crypto/asn1/a_int.c:97-189",
+   "crypto/asn1/a_type.c:63-116",
+   "crypto/asn1/tasn_dec.c:831-968",
+   "crypto/asn1/tasn_enc.c:516-638"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL002",
+  "flagged": true,
+  "via": "own",
+  "rank": 5960,
+  "rank_pct": 43.2,
+  "line": false,
+  "targets": [
+   "ssl/statem/statem.c:505-523"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL003",
+  "flagged": true,
+  "via": "own",
+  "rank": 234,
+  "rank_pct": 1.7,
+  "line": true,
+  "targets": [
+   "crypto/asn1/a_d2i_fp.c:109-266"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL004",
+  "flagged": true,
+  "via": "own",
+  "rank": 62,
+  "rank_pct": 0.4,
+  "line": false,
+  "targets": [
+   "crypto/x509/x509_obj.c:25-200"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL005",
+  "flagged": true,
+  "via": "own",
+  "rank": 1979,
+  "rank_pct": 14.3,
+  "line": false,
+  "targets": [
+   "ssl/statem/extensions_srvr.c:301-419"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL006",
+  "flagged": true,
+  "via": "own",
+  "rank": 171,
+  "rank_pct": 1.2,
+  "line": true,
+  "targets": [
+   "crypto/evp/encode.c:162-226"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL007",
+  "flagged": true,
+  "via": "own",
+  "rank": 344,
+  "rank_pct": 2.5,
+  "line": true,
+  "targets": [
+   "crypto/mdc2/mdc2dgst.c:45-82"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL008",
+  "flagged": true,
+  "via": "own",
+  "rank": 717,
+  "rank_pct": 5.2,
+  "line": false,
+  "targets": [
+   "ssl/statem/statem_clnt.c:2901-2967",
+   "ssl/statem/statem_clnt.c:2969-3016"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL009",
+  "flagged": true,
+  "via": "own",
+  "rank": 3191,
+  "rank_pct": 23.1,
+  "line": true,
+  "targets": [
+   "crypto/x509/v3_addr.c:86-113"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL010",
+  "flagged": true,
+  "via": "calls",
+  "rank": 8122,
+  "rank_pct": 58.9,
+  "line": false,
+  "targets": [
+   "crypto/bn/bn_local.h:664-680"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL011",
+  "flagged": true,
+  "via": "own",
+  "rank": 346,
+  "rank_pct": 2.5,
+  "line": false,
+  "targets": [
+   "crypto/pkcs7/pk7_doit.c:397-688"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL012",
+  "flagged": true,
+  "via": "own",
+  "rank": 3207,
+  "rank_pct": 23.2,
+  "line": false,
+  "targets": [
+   "crypto/x509/x509_req.c:22-66"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL013",
+  "flagged": true,
+  "via": "calls",
+  "rank": 8061,
+  "rank_pct": 58.4,
+  "line": false,
+  "targets": [
+   "crypto/rsa/rsa_ameth.c:611-633"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL014",
+  "flagged": true,
+  "via": "calls",
+  "rank": 8306,
+  "rank_pct": 60.2,
+  "line": false,
+  "targets": [
+   "crypto/asn1/a_type.c:63-116"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL015",
+  "flagged": true,
+  "via": "own",
+  "rank": 346,
+  "rank_pct": 2.5,
+  "line": false,
+  "targets": [
+   "crypto/pkcs7/pk7_doit.c:203-383",
+   "crypto/pkcs7/pk7_doit.c:397-688",
+   "crypto/pkcs7/pk7_doit.c:740-923",
+   "crypto/pkcs7/pk7_doit.c:979-1037"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL016",
+  "flagged": true,
+  "via": "own",
+  "rank": 204,
+  "rank_pct": 1.5,
+  "line": true,
+  "targets": [
+   "crypto/bn/bn_gf2m.c:561-735"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL017",
+  "flagged": true,
+  "via": "own",
+  "rank": 4460,
+  "rank_pct": 32.3,
+  "line": false,
+  "targets": [
+   "crypto/x509/x509_vfy.c:1058-1121"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL018",
+  "flagged": true,
+  "via": "own",
+  "rank": 2850,
+  "rank_pct": 20.7,
+  "line": true,
+  "targets": [
+   "ssl/statem/statem_dtls.c:439-486"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL019",
+  "flagged": true,
+  "via": "own",
+  "rank": 97,
+  "rank_pct": 0.7,
+  "line": true,
+  "targets": [
+   "ssl/record/rec_layer_s3.c:1265-1794"
+  ]
+ },
+ {
+  "lib": "openssl",
+  "bug": "SSL020",
+  "flagged": true,
+  "via": "own",
+  "rank": 177,
+  "rank_pct": 1.3,
+  "line": true,
+  "targets": [
+   "ssl/t1_lib.c:1774-2040"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP001",
+  "flagged": true,
+  "via": "own",
+  "rank": 414,
+  "rank_pct": 2.3,
+  "line": true,
+  "targets": [
+   "ext/phar/phar.c:2016-2165"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP002",
+  "flagged": true,
+  "via": "own",
+  "rank": 589,
+  "rank_pct": 3.3,
+  "line": false,
+  "targets": [
+   "ext/exif/exif.c:4093-4329"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP003",
+  "flagged": true,
+  "via": "own",
+  "rank": 2695,
+  "rank_pct": 15.0,
+  "line": false,
+  "targets": [
+   "ext/exif/exif.c:3974-4088"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP004",
+  "flagged": true,
+  "via": "own",
+  "rank": 3095,
+  "rank_pct": 17.3,
+  "line": false,
+  "targets": [
+   "ext/exif/exif.c:3152-3270"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP005",
+  "flagged": true,
+  "via": "own",
+  "rank": 1277,
+  "rank_pct": 7.1,
+  "line": true,
+  "targets": [
+   "ext/iconv/iconv.c:1186-1744"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP006",
+  "flagged": true,
+  "via": "own",
+  "rank": 2695,
+  "rank_pct": 15.0,
+  "line": false,
+  "targets": [
+   "ext/exif/exif.c:3974-4088"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP007",
+  "flagged": true,
+  "via": "own",
+  "rank": 18,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "ext/phar/phar.c:730-1364"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP008",
+  "flagged": true,
+  "via": "own",
+  "rank": 150,
+  "rank_pct": 0.8,
+  "line": true,
+  "targets": [
+   "ext/standard/dns.c:460-827"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP009",
+  "flagged": true,
+  "via": "own",
+  "rank": 3095,
+  "rank_pct": 17.3,
+  "line": true,
+  "targets": [
+   "ext/exif/exif.c:3152-3270"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP010",
+  "flagged": true,
+  "via": "own",
+  "rank": 1500,
+  "rank_pct": 8.4,
+  "line": true,
+  "targets": [
+   "ext/exif/exif.c:3974-4088",
+   "ext/exif/exif.c:4762-4850"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP011",
+  "flagged": true,
+  "via": "own",
+  "rank": 6326,
+  "rank_pct": 35.3,
+  "line": true,
+  "targets": [
+   "ext/exif/exif.c:2055-2088"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP012",
+  "flagged": true,
+  "via": "own",
+  "rank": 20,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "ext/standard/http_fopen_wrapper.c:117-970"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP013",
+  "flagged": true,
+  "via": "own",
+  "rank": 5355,
+  "rank_pct": 29.9,
+  "line": false,
+  "targets": [
+   "ext/intl/msgformat/msgformat_parse.c:76-142"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP014",
+  "flagged": true,
+  "via": "own",
+  "rank": 918,
+  "rank_pct": 5.1,
+  "line": false,
+  "targets": [
+   "ext/intl/locale/locale_methods.c:457-590"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP015",
+  "flagged": true,
+  "via": "own",
+  "rank": 18,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "ext/phar/phar.c:730-1364"
+  ]
+ },
+ {
+  "lib": "php",
+  "bug": "PHP016",
+  "flagged": true,
+  "via": "own",
+  "rank": 45,
+  "rank_pct": 0.2,
+  "line": true,
+  "targets": [
+   "ext/phar/util.c:1476-1792",
+   "ext/phar/zip.c:196-777"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF001",
+  "flagged": true,
+  "via": "own",
+  "rank": 22,
+  "rank_pct": 0.2,
+  "line": true,
+  "targets": [
+   "poppler/SplashOutputDev.cc:4198-4409"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF002",
+  "flagged": true,
+  "via": "own",
+  "rank": 309,
+  "rank_pct": 3.6,
+  "line": false,
+  "targets": [
+   "poppler/JPEG2000Stream.cc:240-334"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF003",
+  "flagged": true,
+  "via": "own",
+  "rank": 131,
+  "rank_pct": 1.5,
+  "line": false,
+  "targets": [
+   "poppler/GfxState.h:1211-1211",
+   "utils/HtmlOutputDev.cc:1316-1446",
+   "utils/ImageOutputDev.cc:349-516"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF004",
+  "flagged": true,
+  "via": "own",
+  "rank": 116,
+  "rank_pct": 1.3,
+  "line": true,
+  "targets": [
+   "splash/SplashXPathScanner.cc:429-519"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF005",
+  "flagged": true,
+  "via": "own",
+  "rank": 309,
+  "rank_pct": 3.6,
+  "line": true,
+  "targets": [
+   "poppler/JPEG2000Stream.cc:240-334"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF006",
+  "flagged": true,
+  "via": "own",
+  "rank": 129,
+  "rank_pct": 1.5,
+  "line": true,
+  "targets": [
+   "splash/Splash.cc:5655-5787"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF007",
+  "flagged": true,
+  "via": "own",
+  "rank": 83,
+  "rank_pct": 1.0,
+  "line": true,
+  "targets": [
+   "poppler/Stream.cc:654-711"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF008",
+  "flagged": true,
+  "via": "own",
+  "rank": 34,
+  "rank_pct": 0.4,
+  "line": true,
+  "targets": [
+   "poppler/GfxState.cc:4646-4862"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF009",
+  "flagged": true,
+  "via": "own",
+  "rank": 1045,
+  "rank_pct": 12.3,
+  "line": true,
+  "targets": [
+   "poppler/Parser.cc:221-345"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF010",
+  "flagged": true,
+  "via": "own",
+  "rank": 353,
+  "rank_pct": 4.1,
+  "line": false,
+  "targets": [
+   "poppler/SplashOutputDev.cc:2448-2578"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF011",
+  "flagged": true,
+  "via": "own",
+  "rank": 890,
+  "rank_pct": 10.4,
+  "line": true,
+  "targets": [
+   "poppler/XRef.cc:1669-1717"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF012",
+  "flagged": true,
+  "via": "own",
+  "rank": 1045,
+  "rank_pct": 12.3,
+  "line": false,
+  "targets": [
+   "poppler/Parser.cc:221-345"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF013",
+  "flagged": true,
+  "via": "calls",
+  "rank": 3560,
+  "rank_pct": 41.8,
+  "line": true,
+  "targets": [
+   "poppler/FileSpec.cc:116-162"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF014",
+  "flagged": true,
+  "via": "own",
+  "rank": 890,
+  "rank_pct": 10.4,
+  "line": true,
+  "targets": [
+   "poppler/XRef.cc:1669-1717"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF015",
+  "flagged": true,
+  "via": "calls",
+  "rank": 3483,
+  "rank_pct": 40.9,
+  "line": false,
+  "targets": [
+   "poppler/FileSpec.cc:98-114"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF016",
+  "flagged": true,
+  "via": "own",
+  "rank": 1337,
+  "rank_pct": 15.7,
+  "line": true,
+  "targets": [
+   "poppler/Parser.cc:82-219"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF017",
+  "flagged": true,
+  "via": "own",
+  "rank": 10,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "fofi/FoFiTrueType.cc:1101-1436"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF018",
+  "flagged": true,
+  "via": "own",
+  "rank": 2010,
+  "rank_pct": 23.6,
+  "line": true,
+  "targets": [
+   "poppler/Annot.cc:6027-6093"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF019",
+  "flagged": true,
+  "via": "own",
+  "rank": 242,
+  "rank_pct": 2.8,
+  "line": true,
+  "targets": [
+   "poppler/JBIG2Stream.cc:762-960"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF020",
+  "flagged": true,
+  "via": "own",
+  "rank": 11,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "fofi/FoFiType1C.cc:1118-1767"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF021",
+  "flagged": true,
+  "via": "own",
+  "rank": 882,
+  "rank_pct": 10.3,
+  "line": true,
+  "targets": [
+   "poppler/Stream.cc:575-618"
+  ]
+ },
+ {
+  "lib": "poppler",
+  "bug": "PDF022",
+  "flagged": true,
+  "via": "own",
+  "rank": 741,
+  "rank_pct": 8.7,
+  "line": true,
+  "targets": [
+   "poppler/GfxState.cc:2661-2686",
+   "poppler/GfxState.cc:2688-2721",
+   "poppler/GfxState.cc:2723-2769"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL001",
+  "flagged": true,
+  "via": "own",
+  "rank": 377,
+  "rank_pct": 4.3,
+  "line": true,
+  "targets": [
+   "ext/fts5/fts5_hash.c:440-489"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL002",
+  "flagged": true,
+  "via": "own",
+  "rank": 431,
+  "rank_pct": 4.9,
+  "line": false,
+  "targets": [
+   "src/select.c:5395-5702"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL003",
+  "flagged": true,
+  "via": "own",
+  "rank": 201,
+  "rank_pct": 2.3,
+  "line": false,
+  "targets": [
+   "src/select.c:3996-4417"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL004",
+  "flagged": true,
+  "via": "own",
+  "rank": 67,
+  "rank_pct": 0.8,
+  "line": true,
+  "targets": [
+   "ext/misc/zipfile.c:1532-1734",
+   "ext/misc/zipfile.c:1950-2127"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL005",
+  "flagged": true,
+  "via": "own",
+  "rank": 80,
+  "rank_pct": 0.9,
+  "line": true,
+  "targets": [
+   "ext/misc/zipfile.c:1532-1734"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL006",
+  "flagged": true,
+  "via": "own",
+  "rank": 49,
+  "rank_pct": 0.5,
+  "line": false,
+  "targets": [
+   "src/select.c:6232-7431"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL007",
+  "flagged": true,
+  "via": "own",
+  "rank": 552,
+  "rank_pct": 6.3,
+  "line": true,
+  "targets": [
+   "src/build.c:2416-2714"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL009",
+  "flagged": true,
+  "via": "calls",
+  "rank": 5990,
+  "rank_pct": 68.2,
+  "line": false,
+  "targets": [
+   "src/vdbemem.c:1235-1271"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL010",
+  "flagged": true,
+  "via": "own",
+  "rank": 216,
+  "rank_pct": 2.4,
+  "line": false,
+  "targets": [
+   "src/whereexpr.c:1031-1443"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL011",
+  "flagged": true,
+  "via": "own",
+  "rank": 906,
+  "rank_pct": 10.3,
+  "line": true,
+  "targets": [
+   "ext/rtree/rtree.c:3644-3687"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL012",
+  "flagged": true,
+  "via": "own",
+  "rank": 7,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "src/pragma.c:380-2290"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL013",
+  "flagged": true,
+  "via": "own",
+  "rank": 103,
+  "rank_pct": 1.2,
+  "line": true,
+  "targets": [
+   "src/where.c:2473-2868"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL014",
+  "flagged": true,
+  "via": "own",
+  "rank": 316,
+  "rank_pct": 3.6,
+  "line": false,
+  "targets": [
+   "src/select.c:2673-3021"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL015",
+  "flagged": true,
+  "via": "own",
+  "rank": 5327,
+  "rank_pct": 60.6,
+  "line": true,
+  "targets": [
+   "src/resolve.c:188-222"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL016",
+  "flagged": true,
+  "via": "own",
+  "rank": 1,
+  "rank_pct": 0.0,
+  "line": true,
+  "targets": [
+   "src/vdbe.c:679-8313"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL017",
+  "flagged": true,
+  "via": "calls",
+  "rank": 7273,
+  "rank_pct": 82.8,
+  "line": false,
+  "targets": [
+   "src/expr.c:5622-5716"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL018",
+  "flagged": true,
+  "via": "calls",
+  "rank": 6174,
+  "rank_pct": 70.3,
+  "line": false,
+  "targets": [
+   "src/expr.c:94-116"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL019",
+  "flagged": true,
+  "via": "own",
+  "rank": 8,
+  "rank_pct": 0.1,
+  "line": true,
+  "targets": [
+   "src/printf.c:213-921"
+  ]
+ },
+ {
+  "lib": "sqlite3",
+  "bug": "SQL020",
+  "flagged": true,
+  "via": "own",
+  "rank": 3454,
+  "rank_pct": 39.3,
+  "line": true,
+  "targets": [
+   "src/window.c:891-928"
+  ]
+ }
+]

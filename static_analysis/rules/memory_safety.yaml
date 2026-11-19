@@ -1,0 +1,1137 @@
+# Local Semgrep ruleset — memory-safety candidates for C/C++.
+#
+# Goal: maximize RECALL of memory bugs that AddressSanitizer can confirm. Precision is the
+# LLM stage's job. Each rule is still checked for noise on real libraries (benchmark.py --noise)
+# so the LLM's triage budget isn't flooded by something that fires on every line.
+#
+# severity = triage tier for the LLM stage:
+#   ERROR   high-signal: usually a real bug when reachable with attacker data
+#   WARNING bug-prone API/idiom: needs a size/bounds argument checked by the triager
+#   INFO    broad audit pattern: low precision, kept because it's the only rule catching its class
+#
+# Rules are written against the bug SHAPE, never against Juliet identifiers (data, source, ...).
+# Semgrep here is intraprocedural: bugs whose source and sink sit in different functions are
+# left to the CodeQL backend.
+#
+# Semgrep gotcha: metavariable-regex is anchored at the START of the value (re.match), so
+# "(alloc|new)" does NOT match "malloc" — write "\w*alloc".
+rules:
+
+  # ======================================================================= spatial: copies
+  - id: unbounded-string-copy
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      $F() copies until the source terminator without a destination bound; it overflows
+      whenever the source is longer than the destination.
+    metadata:
+      cwe: ["CWE-120: Buffer Copy without Checking Size of Input"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern: $F($DST, $SRC)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(strcpy|wcscpy|strcat|wcscat|stpcpy|wcpcpy|lstrcpy[AW]?|lstrcat[AW]?|_mbscpy|_mbscat|_tcscpy|_tcscat|StrCpy[AW]?|StrCat[AW]?)$
+
+  - id: inherently-dangerous-input
+    languages: [c, cpp]
+    severity: ERROR
+    message: $F() reads input with no destination bound.
+    metadata:
+      cwe: ["CWE-242: Use of Inherently Dangerous Function"]
+      bug_class: buffer-overflow
+    pattern-either:
+      - patterns:
+          - pattern: $F(...)
+          - metavariable-regex:
+              metavariable: $F
+              regex: ^(gets|_getws|getws)$
+      - patterns:
+          - pattern-either:
+              - pattern: $F("$FMT", ...)
+              - pattern: $F($S, "$FMT", ...)
+          - metavariable-regex:
+              metavariable: $F
+              regex: ^(scanf|wscanf|fscanf|fwscanf|sscanf|swscanf|vscanf|vfscanf|vsscanf)$
+          - metavariable-regex:
+              metavariable: $FMT
+              regex: .*%l?[s\[]   # %s / %[ with no field width
+
+  - id: memory-copy-size-unverified
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $F() size argument must be bounded by BOTH the destination capacity and the source
+      length; verify it on every path (constant sizes overflow small or attacker-sized buffers too).
+    metadata:
+      cwe: ["CWE-120: Buffer Copy without Checking Size of Input"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern: $F($DST, $SRC, $N)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(memcpy|memmove|wmemcpy|wmemmove|bcopy|CopyMemory|RtlCopyMemory|MoveMemory|RtlMoveMemory|__builtin_memcpy|__builtin_memmove)$
+
+  - id: memory-set-size-unverified
+    languages: [c, cpp]
+    severity: INFO
+    message: $F() length is computed at run time; it must not exceed the destination capacity.
+    metadata:
+      cwe: ["CWE-787: Out-of-bounds Write"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern: $F($DST, $C, $N)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(memset|wmemset|__builtin_memset)$
+      # constant lengths (literals, sizeof, literal*sizeof) are not attacker-influenced
+      - metavariable-regex:
+          metavariable: $N
+          regex: ^(?![\d\s()*+\-/]*(sizeof\s*\(?[^()]*\)?)?[\d\s()*+\-/]*$)
+
+  - id: bounded-string-op-size-unverified
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $F() is only as safe as its size argument: it must reflect the space left in the
+      destination (and strn*cat needs room for the terminator), not the source length.
+    metadata:
+      cwe: ["CWE-120: Buffer Copy without Checking Size of Input"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern: $F($DST, $SRC, $N)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(strncpy|wcsncpy|strncat|wcsncat|strlcpy|strlcat|wcslcpy|wcslcat|stpncpy|wcpncpy|_mbsncpy|_mbsncat|_tcsncpy|_tcsncat|lstrcpyn[AW]?|StrNCpy[AW]?|StrNCat[AW]?)$
+      # the correct idioms for the byte-sized variants (sizeof() is bytes, so these exclusions
+      # deliberately do NOT apply to wcs* where sizeof(dst) - 1 is itself a bug)
+      - pattern-not: strncpy($DST, $SRC, sizeof($DST) - 1)
+      - pattern-not: stpncpy($DST, $SRC, sizeof($DST) - 1)
+      - pattern-not: strlcpy($DST, $SRC, sizeof($DST))
+      - pattern-not: strlcat($DST, $SRC, sizeof($DST))
+
+  - id: unbounded-sprintf
+    languages: [c, cpp]
+    severity: ERROR
+    message: $F() writes formatted output with no destination bound.
+    metadata:
+      cwe: ["CWE-787: Out-of-bounds Write"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern: $F($DST, $FMT, ...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(sprintf|vsprintf|wsprintf[AW]?|wvsprintf[AW]?|_stprintf|_vstprintf)$
+
+  - id: snprintf-size-unverified
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $F() size argument is not sizeof(destination); verify it is <= the space left in the
+      destination.
+    metadata:
+      cwe: ["CWE-787: Out-of-bounds Write"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern: $F($DST, $N, ...)
+      - pattern-not: $F($DST, sizeof($DST), ...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: (?i)^(_?v?snw?printf(_s)?|v?swprintf|_sntprintf|_vsntprintf)$
+
+  # ======================================================================= format string
+
+  - id: format-string-not-literal
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      The format argument of $F() is not a string literal; if it carries external data,
+      %n / %s directives read and write arbitrary memory.
+    metadata:
+      cwe: ["CWE-134: Use of Externally-Controlled Format String"]
+      bug_class: format-string
+    patterns:
+      - pattern-either:
+          - patterns:
+              - pattern: $F($FMT, ...)
+              - metavariable-regex:
+                  metavariable: $F
+                  regex: ^(printf|wprintf|vprintf|vwprintf|_tprintf|_vtprintf)$
+          - patterns:
+              - pattern: $F($A, $FMT, ...)
+              - metavariable-regex:
+                  metavariable: $F
+                  regex: ^(fprintf|fwprintf|vfprintf|vfwprintf|sprintf|vsprintf|swprintf_old|dprintf|vdprintf|syslog|vsyslog|asprintf|vasprintf|_ftprintf|_vftprintf|wsprintf[AW]?|wvsprintf[AW]?|err|errx|verr|verrx)$
+          - patterns:
+              - pattern: $F($A, $B, $FMT, ...)
+              - metavariable-regex:
+                  metavariable: $F
+                  regex: (?i)^(_?v?snw?printf(_s)?|v?swprintf|_sntprintf|_vsntprintf)$
+      # literals (incl. L"..." and "..." PRIu64 concatenations) are safe
+      - metavariable-regex:
+          metavariable: $FMT
+          regex: ^(?!\s*[LuU8]*")
+
+  # ======================================================================= spatial: indexing
+
+  - id: array-index-missing-upper-bound
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      Index $I is only checked against a lower bound before indexing $BUF; nothing stops it
+      from running past the end.
+    metadata:
+      cwe: ["CWE-129: Improper Validation of Array Index"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern-either:
+          - pattern-inside: if (<... $I >= 0 ...>) { ... }
+          - pattern-inside: if (<... $I > -1 ...>) { ... }
+          - pattern-inside: if (<... 0 <= $I ...>) { ... }
+      - pattern-not-inside: if (<... $I < $N ...>) { ... }
+      - pattern-not-inside: if (<... $I <= $N ...>) { ... }
+      - pattern-not-inside: if (<... $N > $I ...>) { ... }
+      - pattern-not-inside: if (<... $N >= $I ...>) { ... }
+      - pattern: $BUF[$I]
+
+  - id: array-index-missing-lower-bound
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      Signed index $I is only checked against an upper bound before indexing $BUF; a
+      negative value reads/writes before the start of the buffer.
+    metadata:
+      cwe: ["CWE-129: Improper Validation of Array Index"]
+      bug_class: buffer-underflow
+    patterns:
+      - pattern-either:
+          - pattern-inside: if (<... $I < $N ...>) { ... }
+          - pattern-inside: if (<... $I <= $N ...>) { ... }
+      - pattern-not-inside: if (<... $I >= 0 ...>) { ... }
+      - pattern-not-inside: if (<... $I > -1 ...>) { ... }
+      - pattern-not-inside: if (<... 0 <= $I ...>) { ... }
+      - pattern-either:
+          - pattern: $BUF[(int $I)]
+          - pattern: $BUF[(long $I)]
+          - pattern: $BUF[(short $I)]
+          - pattern: $BUF[(signed char $I)]
+          - pattern: $BUF[(char $I)]
+          - pattern: $BUF[(ssize_t $I)]
+          - pattern: $BUF[(int64_t $I)]
+          - pattern: $BUF[(int32_t $I)]
+
+  - id: element-copy-loop
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      Element-by-element copy into $DST: the loop bound must be checked against $DST's
+      capacity as well as $SRC's length.
+    metadata:
+      cwe: ["CWE-787: Out-of-bounds Write"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern-either:
+          - pattern-inside: for (...; ...; ...) { ... }
+          - pattern-inside: while (...) { ... }
+          - pattern-inside: do { ... } while (...);
+      - pattern: $DST[$I] = $SRC[$I]
+
+  # ======================================================================= alloc size
+
+  - id: alloc-multiplied-size-then-indexed
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $P is allocated with a multiplied size ($N * ...) and then filled in a loop bounded by
+      $N; if the multiplication wraps, the allocation is small and the loop overruns it.
+    metadata:
+      cwe: ["CWE-680: Integer Overflow to Buffer Overflow"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              $P = <... $ALLOC(<... $N * $M ...>) ...>;
+              ...
+          - pattern-inside: |
+              $T $P = <... $ALLOC(<... $N * $M ...>) ...>;
+              ...
+      - pattern-inside: for (...; <... $N ...>; ...) { ... }
+      - pattern: $P[$I] = $E
+      - metavariable-regex:
+          metavariable: $ALLOC
+          regex: (?i)\w*alloc
+
+  - id: alloc-size-unbounded-arithmetic
+    languages: [c, cpp]
+    severity: INFO
+    message: >-
+      Allocation size is computed from $N with no visible upper bound; an attacker-controlled
+      $N can wrap the size or exhaust memory.
+    metadata:
+      cwe: ["CWE-789: Memory Allocation with Excessive Size Value"]
+      bug_class: bad-alloc-size
+    patterns:
+      - pattern-either:
+          - pattern: $ALLOC(<... $N * $M ...>)
+          - pattern: $ALLOC(<... $N + $M ...>)
+      - metavariable-regex:
+          metavariable: $ALLOC
+          regex: (?i)^\w*(malloc|calloc|realloc|alloca)$
+      - metavariable-regex:
+          metavariable: $N
+          regex: ^[a-z_]\w*$
+      - pattern-not-inside: if (<... $N < $X ...>) { ... }
+      - pattern-not-inside: if (<... $N <= $X ...>) { ... }
+
+  # ======================================================================= NULL
+
+  - id: unchecked-alloc-result-deref
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $P can be NULL here: it comes from an allocation / open call that can fail and is used
+      without a NULL check.
+    metadata:
+      cwe: ["CWE-690: Unchecked Return Value to NULL Pointer Dereference"]
+      bug_class: null-deref
+    mode: taint
+    options:
+      taint_assume_safe_functions: true
+    pattern-sources:
+      - patterns:
+          - pattern: $ALLOC(...)
+          - metavariable-regex:
+              metavariable: $ALLOC
+              regex: (?i)^(\w*(malloc|calloc|realloc|alloc)|strdup|strndup|wcsdup|_strdup|fopen|_wfopen|fdopen|tmpfile|getenv)$
+          # this allocation's result is checked right after it (the taint engine can't see checks
+          # inside if-conditions, so they're handled here and at the sink)
+          - pattern-not-inside: |
+              $P = <... $ALLOC(...) ...>;
+              if (<... $P ...>) $S;
+          - pattern-not-inside: |
+              $P = <... $ALLOC(...) ...>;
+              if (<... $P ...>) { ... }
+          - pattern-not-inside: |
+              $P = <... $ALLOC(...) ...>;
+              if (<... $P ...>) { ... } else { ... }
+          - pattern-not-inside: |
+              $P = <... $ALLOC(...) ...>;
+              assert(<... $P ...>);
+          - pattern-not-inside: |
+              $T $P = <... $ALLOC(...) ...>;
+              if (<... $P ...>) $S;
+          - pattern-not-inside: |
+              $T $P = <... $ALLOC(...) ...>;
+              if (<... $P ...>) { ... }
+          - pattern-not-inside: |
+              $T $P = <... $ALLOC(...) ...>;
+              if (<... $P ...>) { ... } else { ... }
+          - pattern-not-inside: |
+              $T $P = <... $ALLOC(...) ...>;
+              assert(<... $P ...>);
+          - pattern-not-inside: if (<... $ALLOC(...) ...>) $S;
+          - pattern-not-inside: if (<... $ALLOC(...) ...>) { ... }
+          - pattern-not-inside: if (<... $ALLOC(...) ...>) { ... } else { ... }
+    pattern-sanitizers:
+      # filled in through an out-parameter, or asserted non-NULL
+      - by-side-effect: true
+        patterns:
+          - pattern-either:
+              - pattern: $F(..., &$P, ...)
+              - pattern: assert(<... $P ...>)
+          # a variable or field (init(&p), init(&s->p)); not &p[0], which fills nothing in
+          - metavariable-regex: {metavariable: $P, regex: '^[A-Za-z_]\w*((->|\.)\w+)*$'}
+          - focus-metavariable: $P
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: "*$P"
+              - pattern: $P[$I]
+              - pattern: $P->$FLD
+              - patterns:
+                  - pattern: $FN($P, ...)
+                  - metavariable-regex:
+                      metavariable: $FN
+                      regex: ^(str\w+|wcs\w+|mem\w+|f(close|printf|scanf|seek|tell|flush|getc|eof|error|gets|puts|read|write|putc)|[sv]?w?printf|w?scanf)$
+          # checked before / around the use. (Semgrep's taint engine does not apply sanitizers
+          # that sit inside an if-condition, so checks are excluded at the sink instead.)
+          - pattern-not-inside: |
+              if (<... $P ...>) $S;
+              ...
+          - pattern-not-inside: |
+              if (<... $P ...>) { ... }
+              ...
+          - pattern-not-inside: |
+              if (<... $P ...>) { ... } else { ... }
+              ...
+          - pattern-not-inside: if (<... $P ...>) $S;
+          - pattern-not-inside: if (<... $P ...>) { ... }
+          - pattern-not-inside: if (<... $P ...>) { ... } else { ... }
+          - pattern-not-inside: while (<... $P ...>) { ... }
+          - pattern-not-inside: "<... $P ...> ? $A : $B"
+          - pattern-not-inside: "<... $P ...> && $X"
+          - pattern-not-inside: "<... $P ...> || $X"
+          - pattern-not-inside: sizeof(...)
+          - focus-metavariable: $P
+
+  - id: null-assigned-then-dereferenced
+    languages: [c, cpp]
+    severity: ERROR
+    message: $P can still be NULL here (it was set to NULL earlier and not checked or reassigned).
+    metadata:
+      cwe: ["CWE-476: NULL Pointer Dereference"]
+      bug_class: null-deref
+    mode: taint
+    options:
+      taint_assume_safe_functions: true
+    pattern-sources:
+      # the variable itself is the source (a bare NULL source can't be sanitized)
+      - by-side-effect: true
+        patterns:
+          - pattern-either:
+              - pattern: $P = NULL
+              - pattern: $T $P = NULL;
+              - pattern: $P = nullptr
+              - pattern: $T $P = nullptr;
+          - focus-metavariable: $P
+          - metavariable-regex: {metavariable: $P, regex: ^\w+$}
+          # "start at NULL, fill in later": a later assignment in the same sequence (possibly
+          # nested in an if/loop that Semgrep can't tell always runs). Alternatives in sibling
+          # branches (if (c) p = NULL; else p = &x;) don't match, so those stay reported.
+          - pattern-not-inside: |
+              $P = NULL;
+              ...
+              $P = $E;
+          - pattern-not-inside: |
+              $T $P = NULL;
+              ...
+              $P = $E;
+    pattern-sanitizers:
+      # filled in through an out-parameter, or asserted non-NULL
+      - by-side-effect: true
+        patterns:
+          - pattern-either:
+              - pattern: $F(..., &$P, ...)
+              - pattern: assert(<... $P ...>)
+          # a variable or field (init(&p), init(&s->p)); not &p[0], which fills nothing in
+          - metavariable-regex: {metavariable: $P, regex: '^[A-Za-z_]\w*((->|\.)\w+)*$'}
+          - focus-metavariable: $P
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: "*$P"
+              - pattern: $P[$I]
+              - pattern: $P->$FLD
+          # checked before / around the use. (Semgrep's taint engine does not apply sanitizers
+          # that sit inside an if-condition, so checks are excluded at the sink instead.)
+          - pattern-not-inside: |
+              if (<... $P ...>) $S;
+              ...
+          - pattern-not-inside: |
+              if (<... $P ...>) { ... }
+              ...
+          - pattern-not-inside: |
+              if (<... $P ...>) { ... } else { ... }
+              ...
+          - pattern-not-inside: if (<... $P ...>) $S;
+          - pattern-not-inside: if (<... $P ...>) { ... }
+          - pattern-not-inside: if (<... $P ...>) { ... } else { ... }
+          - pattern-not-inside: while (<... $P ...>) { ... }
+          - pattern-not-inside: "<... $P ...> ? $A : $B"
+          - pattern-not-inside: "<... $P ...> && $X"
+          - pattern-not-inside: "<... $P ...> || $X"
+          - pattern-not-inside: sizeof(...)
+          - focus-metavariable: $P
+
+  - id: null-check-not-short-circuit
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      The NULL check on $P uses a non-short-circuit operator, so $P is dereferenced even when
+      it is NULL. Use && / ||.
+    metadata:
+      cwe: ["CWE-476: NULL Pointer Dereference"]
+      bug_class: null-deref
+    pattern-either:
+      - pattern: ($P != NULL) & <... $P->$F ...>
+      - pattern: ($P != NULL) & <... *$P ...>
+      - pattern: ($P == NULL) | <... $P->$F ...>
+      - pattern: ($P == NULL) | <... *$P ...>
+
+  # ======================================================================= temporal
+  # Sources are plain identifiers only: Semgrep's field-sensitive taint makes free(s->buf)
+  # taint every later use of `s`, which floods real code. Field-level UAFs go to CodeQL.
+
+  - id: use-after-free
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      $X is used (or freed again) after free() in the same function, with no reassignment
+      in between.
+    metadata:
+      cwe: ["CWE-416: Use After Free"]
+      bug_class: use-after-free
+    options:
+      taint_assume_safe_functions: true
+    mode: taint
+    pattern-sources:
+      - by-side-effect: only
+        patterns:
+          - pattern-either:
+              - pattern: free($X)
+              - pattern: g_free($X)
+              - pattern: realloc($X, ...)
+          - metavariable-regex:
+              metavariable: $X
+              regex: ^\w+$
+          - focus-metavariable: $X
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: $F(...)
+              - pattern: return $E;
+      # dereferences: check the pointer itself. (Semgrep tracks fields separately, so after
+      # `d->a = 1; free(d);` it would still consider d->a clean.)
+      - patterns:
+          - pattern-either:
+              - pattern: "*$E"
+              - pattern: $E[$I]
+              - pattern: $E->$FLD
+          - focus-metavariable: $E
+
+  - id: use-after-delete
+    languages: [cpp]
+    severity: ERROR
+    message: >-
+      $X is used (or deleted again) after delete in the same function, with no reassignment
+      in between.
+    metadata:
+      cwe: ["CWE-416: Use After Free"]
+      bug_class: use-after-free
+    options:
+      taint_assume_safe_functions: true
+    mode: taint
+    pattern-sources:
+      - by-side-effect: only
+        patterns:
+          - pattern-either:
+              - pattern: delete $X
+              - pattern: delete [] $X
+          - metavariable-regex:
+              metavariable: $X
+              regex: ^\w+$
+          - focus-metavariable: $X
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: $F(...)
+              - pattern: delete $E
+              - pattern: delete [] $E
+              - pattern: return $E;
+      # dereferences: check the pointer itself. (Semgrep tracks fields separately, so after
+      # `d->a = 1; free(d);` it would still consider d->a clean.)
+      - patterns:
+          - pattern-either:
+              - pattern: "*$E"
+              - pattern: $E[$I]
+              - pattern: $E->$FLD
+          - focus-metavariable: $E
+
+  # Reported at the FIRST release so the finding points at where the lifetime ends.
+
+  - id: double-free
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      $P is freed here and freed again later in the same function, with no reassignment in between and no return on this path.
+    metadata: {cwe: ["CWE-415: Double Free"], bug_class: double-free}
+    # Reported at the FIRST release. The statement holding it ($S1: a block, if/else, switch,
+    # loop, or the call itself) is followed, anywhere later in the function, by another release
+    # of $P. ($S1 is matched twice so the second release must be of the same $P.)
+    # `free` is spelled out rather than a metavariable + regex: a bare metavariable call matches
+    # every one-argument call, and the sequence patterns pair each with every earlier statement
+    # (44 s on libpng's pngrutil.c -- enough to hit Semgrep's per-file timeout and skip the file).
+    patterns:
+      - pattern-inside: |
+          $RET $FUNC(...) { ... }
+      - pattern-either:
+          - pattern-inside: |
+              $S1;
+              ...
+              free($P);
+          - pattern-inside: |
+              $S1;
+              ...
+              $LBL: free($P);
+      - pattern-inside: $S1;
+      - pattern: free($P);
+      # released then reset / path that leaves the function / reassigned in between.
+      # (goto is NOT excluded: `free(p); goto out; ... out: free(p);` is the classic error-path double free)
+      - pattern-not-inside: |
+          free($P);
+          ...
+          $P = $E;
+      - pattern-not-inside: |
+          free($P);
+          ...
+          return ...;
+      - pattern-not-inside: |
+          free($P);
+          ...
+          exit(...);
+      - pattern-not-inside: |
+          free($P);
+          ...
+          _exit(...);
+      - pattern-not-inside: |
+          free($P);
+          ...
+          _Exit(...);
+      - pattern-not-inside: |
+          free($P);
+          ...
+          abort();
+      - pattern-not-inside: |
+          free($P);
+          ...
+          longjmp(...);
+      - pattern-not-inside: |
+          free($P);
+          ...
+          siglongjmp(...);
+      # reassigned between a release nested in an if/else and the next one. (Anchored on the
+      # if: a bare `$S1; ... $P = $E; ... free($P);` tries every statement x assignment pair and
+      # took 49 s on one libpng file; it changed nothing on Juliet.)
+      - pattern-not-inside: |
+          if (...) { ... free($P); ... }
+          ...
+          $P = $E;
+          ...
+          free($P);
+      - pattern-not-inside: |
+          if (...) { ... } else { ... free($P); ... }
+          ...
+          $P = $E;
+          ...
+          free($P);
+
+  - id: double-delete
+    languages: [cpp]
+    severity: ERROR
+    message: >-
+      $P is deleted here and deleted again later in the same function, with no reassignment in between and no return on this path.
+    metadata: {cwe: ["CWE-415: Double Free"], bug_class: double-free}
+    # Reported at the FIRST release. The statement holding it ($S1: a block, if/else, switch,
+    # loop, or the call itself) is followed, anywhere later in the function, by another release
+    # of $P. ($S1 is matched twice so the second release must be of the same $P.)
+    patterns:
+      - pattern-inside: |
+          $RET $FUNC(...) { ... }
+      - pattern-either:
+          - pattern-inside: |
+              $S1;
+              ...
+              delete $P;
+          - pattern-inside: |
+              $S1;
+              ...
+              $LBL: delete $P;
+          - pattern-inside: |
+              $S1;
+              ...
+              delete [] $P;
+          - pattern-inside: |
+              $S1;
+              ...
+              $LBL: delete [] $P;
+      - pattern-inside: $S1;
+      - pattern-either:
+          - pattern: delete $P;
+          - pattern: delete [] $P;
+      # released then reset / path that leaves the function / reassigned in between.
+      # (goto is NOT excluded: `free(p); goto out; ... out: free(p);` is the classic error-path double free)
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          $P = $E;
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          return ...;
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          exit(...);
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          _exit(...);
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          _Exit(...);
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          abort();
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          longjmp(...);
+      - pattern-not-inside: |
+          delete $P;
+          ...
+          siglongjmp(...);
+      # reassigned between a release nested in an if/else and the next one. (Anchored on the
+      # if: a bare `$S1; ... $P = $E; ... delete $P;` tries every statement x assignment pair and
+      # took 49 s on one libpng file; it changed nothing on Juliet.)
+      - pattern-not-inside: |
+          if (...) { ... delete $P; ... }
+          ...
+          $P = $E;
+          ...
+          delete $P;
+      - pattern-not-inside: |
+          if (...) { ... } else { ... delete $P; ... }
+          ...
+          $P = $E;
+          ...
+          delete $P;
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          $P = $E;
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          return ...;
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          exit(...);
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          _exit(...);
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          _Exit(...);
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          abort();
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          longjmp(...);
+      - pattern-not-inside: |
+          delete [] $P;
+          ...
+          siglongjmp(...);
+      - pattern-not-inside: |
+          if (...) { ... delete [] $P; ... }
+          ...
+          $P = $E;
+          ...
+          delete [] $P;
+      - pattern-not-inside: |
+          if (...) { ... } else { ... delete [] $P; ... }
+          ...
+          $P = $E;
+          ...
+          delete [] $P;
+
+  - id: free-of-non-heap-memory
+    languages: [c, cpp]
+    severity: ERROR
+    message: A pointer to stack / static memory (array, alloca, or address-of) reaches free().
+    metadata:
+      cwe: ["CWE-590: Free of Memory not on the Heap"]
+      bug_class: invalid-free
+    options:
+      taint_assume_safe_functions: true
+    mode: taint
+    pattern-sources:
+      # Every mention of an alloca'd variable is a source (like arrays below): Semgrep treats
+      # an element write such as buf[n] = '\0' as overwriting the taint of buf itself.
+      # (Separate entries: a regex on $ALLOCA would also gate the &$V alternative.)
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  $TY $B = <... $ALLOCA(...) ...>;
+                  ...
+              - pattern-inside: |
+                  $B = <... $ALLOCA(...) ...>;
+                  ...
+          - metavariable-regex:
+              metavariable: $ALLOCA
+              regex: (?i)^(_?alloca|__builtin_alloca)$
+          - pattern: $B
+      - pattern: "&$V"
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  $T $A[$N];
+                  ...
+              - pattern-inside: |
+                  $T $A[$N] = $INIT;
+                  ...
+              - pattern-inside: |
+                  static $T $A[$N];
+                  ...
+          - pattern: $A
+    pattern-sinks:
+      - patterns:
+          - pattern: free($P)
+          - focus-metavariable: $P
+
+  - id: free-of-non-heap-memory-cpp
+    languages: [cpp]
+    severity: ERROR
+    message: A pointer to stack / static memory reaches delete.
+    metadata:
+      cwe: ["CWE-590: Free of Memory not on the Heap"]
+      bug_class: invalid-free
+    options:
+      taint_assume_safe_functions: true
+    mode: taint
+    pattern-sources:
+      # Every mention of an alloca'd variable is a source (like arrays below): Semgrep treats
+      # an element write such as buf[n] = '\0' as overwriting the taint of buf itself.
+      # (Separate entries: a regex on $ALLOCA would also gate the &$V alternative.)
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  $TY $B = <... $ALLOCA(...) ...>;
+                  ...
+              - pattern-inside: |
+                  $B = <... $ALLOCA(...) ...>;
+                  ...
+          - metavariable-regex:
+              metavariable: $ALLOCA
+              regex: (?i)^(_?alloca|__builtin_alloca)$
+          - pattern: $B
+      - pattern: "&$V"
+      # objects built with placement new live in someone else's storage: never delete them
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  $TY $B = new ($BUF) $T;
+                  ...
+              - pattern-inside: |
+                  $B = new ($BUF) $T;
+                  ...
+          - pattern: $B
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  $T $A[$N];
+                  ...
+              - pattern-inside: |
+                  $T $A[$N] = $INIT;
+                  ...
+              - pattern-inside: |
+                  static $T $A[$N];
+                  ...
+          - pattern: $A
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: delete $P
+              - pattern: delete [] $P
+          - focus-metavariable: $P
+
+  # Reported at the pointer increment (the point where the block start is lost).
+
+  - id: free-of-advanced-pointer
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      $P is advanced with pointer arithmetic and later passed to free(); free() needs the
+      original start of the block.
+    metadata:
+      cwe: ["CWE-761: Free of Pointer not at Start of Buffer"]
+      bug_class: invalid-free
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              for (...) { ... }
+              ...
+              free($P);
+          - pattern-inside: |
+              while (...) { ... }
+              ...
+              free($P);
+          # loop behind a goto label (label: for (...) {...})
+          - pattern-inside: |
+              $L: for (...) { ... }
+              ...
+              free($P);
+          - pattern-inside: |
+              $L: while (...) { ... }
+              ...
+              free($P);
+          - pattern-inside: |
+              $P++;
+              ...
+              free($P);
+          - pattern-inside: |
+              $P += $N;
+              ...
+              free($P);
+          - pattern-inside: |
+              $P = $P + $N;
+              ...
+              free($P);
+      - pattern-either:
+          - pattern: $P++
+          - pattern: ++$P
+          - pattern: $P += $N
+          - pattern: $P = $P + $N
+
+  # ======================================================================= more spatial
+
+  - id: string-not-terminated-after-copy
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $D is filled by a length-bounded copy that does not write a terminator, then used as a
+      string by $USE(); the read runs past the end of $D.
+    metadata:
+      cwe: ["CWE-170: Improper Null Termination", "CWE-126: Buffer Over-read"]
+      bug_class: buffer-overread
+    patterns:
+      - pattern-either:
+          - patterns:
+              - pattern-inside: |
+                  $CPY($D, $S, $N);
+                  ...
+              - metavariable-regex:
+                  metavariable: $CPY
+                  regex: ^(strncpy|wcsncpy|memcpy|memmove|wmemcpy|wmemmove)$
+              - pattern-not-inside: |
+                  $CPY($D, $S, $N);
+                  ...
+                  $D[$K] = $Z;
+                  ...
+          - patterns:
+              - pattern-inside: |
+                  for (...) { ... $D[$I] = $S[$I]; ... }
+                  ...
+              - pattern-not-inside: |
+                  for (...) { ... $D[$I] = $S[$I]; ... }
+                  ...
+                  $D[$K] = $Z;
+                  ...
+      - pattern: $USE(..., $D, ...)
+      - metavariable-regex:
+          metavariable: $USE
+          regex: (?i)^(\w*print\w*|\w*puts|str(len|cpy|cat|dup|cmp|chr|rchr|str|tol|toul)|wcs\w+|ato\w)$
+
+  - id: alloc-sizeof-pointer
+    languages: [c, cpp]
+    severity: ERROR
+    message: >-
+      $P is allocated with sizeof($P) — the size of the pointer, not of what it points to —
+      so accesses through $P can run past the allocation.
+    metadata:
+      cwe: ["CWE-467: Use of sizeof() on a Pointer Type", "CWE-122: Heap-based Buffer Overflow"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              $P = <... $ALLOC(sizeof($P)) ...>;
+              ...
+          - pattern-inside: |
+              $TY $P = <... $ALLOC(sizeof($P)) ...>;
+              ...
+          # behind a goto label
+          - pattern-inside: |
+              $L: $P = <... $ALLOC(sizeof($P)) ...>;
+              ...
+      - pattern-either:
+          - pattern: "*$P"
+          - pattern: $P->$F
+          - pattern: $P[$I]
+          - pattern: $FN(..., $P, ...)
+      - pattern-not-inside: free($P)
+      - pattern-not-inside: $X = <... $ALLOC(...) ...>
+
+  - id: new-array-size-unbounded
+    languages: [cpp]
+    severity: INFO
+    message: >-
+      Array size $N is not bounded before new[]; an attacker-controlled $N exhausts memory.
+    metadata:
+      cwe: ["CWE-789: Memory Allocation with Excessive Size Value"]
+      bug_class: bad-alloc-size
+    patterns:
+      - pattern: new $T[$N]
+      - metavariable-regex:
+          metavariable: $N
+          regex: ^[a-z_]\w*$
+      - pattern-not-inside: if (<... $N < $X ...>) { ... }
+      - pattern-not-inside: if (<... $N <= $X ...>) { ... }
+
+  - id: placement-new-member-write
+    languages: [cpp]
+    severity: WARNING
+    message: >-
+      $P is constructed with placement new in $BUF; if $BUF is smaller than the object,
+      writes through $P overflow it.
+    metadata:
+      cwe: ["CWE-787: Out-of-bounds Write"]
+      bug_class: buffer-overflow
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              $T *$P = new ($BUF) $T2;
+              ...
+          - pattern-inside: |
+              $P = new ($BUF) $T2;
+              ...
+      - pattern: $P->$F = $E
+
+  # ======================================================================= more NULL
+  # Only `if` WITHOUT else: Semgrep's `if (C) { ... }` also matches else-bodies, where the
+  # pointer is known non-NULL.
+
+  - id: deref-in-null-branch
+    languages: [c, cpp]
+    severity: ERROR
+    message: $P is dereferenced inside the branch where it is known to be NULL.
+    metadata:
+      cwe: ["CWE-476: NULL Pointer Dereference"]
+      bug_class: null-deref
+    patterns:
+      - pattern-either:
+          - pattern-inside: if ($P == NULL) { ... }
+          - pattern-inside: if (NULL == $P) { ... }
+          - pattern-inside: if (!$P) { ... }
+      - pattern-not-inside: if ($P == NULL) { ... } else { ... }
+      - pattern-not-inside: if (NULL == $P) { ... } else { ... }
+      - pattern-not-inside: if (!$P) { ... } else { ... }
+      # re-pointed inside the branch (an assignment BEFORE the if is fine: p = NULL; if (!p) *p)
+      - pattern-not-inside: if ($P == NULL) { ... $P = $E; ... }
+      - pattern-not-inside: if (NULL == $P) { ... $P = $E; ... }
+      - pattern-not-inside: if (!$P) { ... $P = $E; ... }
+      - pattern-not-inside: sizeof(...)
+      - pattern-either:
+          - pattern: "*$P"
+          - pattern: $P->$F
+          - pattern: $P[$I]
+
+  # Reported at the check: a NULL test AFTER a dereference means either the check is dead or
+  # the earlier dereference can crash.
+
+  - id: null-check-after-deref
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      $P is tested against NULL after it was already dereferenced; if NULL is possible here,
+      the earlier dereference crashes.
+    metadata:
+      cwe: ["CWE-476: NULL Pointer Dereference"]
+      bug_class: null-deref
+    patterns:
+      - pattern-either:
+          - patterns:
+              - pattern-inside: |
+                  $L = <... *$P ...>;
+                  ...
+              - pattern-not-inside: |
+                  $L = <... *$P ...>;
+                  ...
+                  $P = $E;
+                  ...
+          - patterns:
+              - pattern-inside: |
+                  *$P = $R;
+                  ...
+              - pattern-not-inside: |
+                  *$P = $R;
+                  ...
+                  $P = $E;
+                  ...
+          - patterns:
+              - pattern-inside: |
+                  $L = <... $P->$F ...>;
+                  ...
+              - pattern-not-inside: |
+                  $L = <... $P->$F ...>;
+                  ...
+                  $P = $E;
+                  ...
+          - patterns:
+              - pattern-inside: |
+                  $P->$F = $R;
+                  ...
+              - pattern-not-inside: |
+                  $P->$F = $R;
+                  ...
+                  $P = $E;
+                  ...
+          - patterns:
+              - pattern-inside: |
+                  $FN(..., <... *$P ...>, ...);
+                  ...
+              - pattern-not-inside: |
+                  $FN(..., <... *$P ...>, ...);
+                  ...
+                  $P = $E;
+                  ...
+          - patterns:
+              - pattern-inside: |
+                  $FN(..., <... $P->$F ...>, ...);
+                  ...
+              - pattern-not-inside: |
+                  $FN(..., <... $P->$F ...>, ...);
+                  ...
+                  $P = $E;
+                  ...
+      - pattern-not-inside: |
+          $P = <... $P ...>;
+          ...
+      - pattern-either:
+          - pattern: if (<... $P != NULL ...>) { ... }
+          - pattern: if (<... $P == NULL ...>) { ... }
+          - pattern: if (<... !$P ...>) { ... }
+          - pattern: if ($P) { ... }
+
+  - id: alloc-size-missing-lower-bound
+    languages: [c, cpp]
+    severity: WARNING
+    message: >-
+      Signed size $N is only checked against an upper bound before $ALLOC(); a negative value
+      converts to a huge size_t (allocation failure / wrap, or an overflow in the code that
+      then uses the buffer).
+    metadata:
+      cwe: ["CWE-195: Signed to Unsigned Conversion Error", "CWE-194: Unexpected Sign Extension"]
+      bug_class: bad-alloc-size
+    patterns:
+      - pattern-either:
+          - pattern-inside: if (<... $N < $MAX ...>) { ... }
+          - pattern-inside: if (<... $N <= $MAX ...>) { ... }
+          - pattern-inside: if (<... $MAX > $N ...>) { ... }
+          - pattern-inside: if (<... $MAX >= $N ...>) { ... }
+      - pattern-not-inside: if (<... $N >= 0 ...>) { ... }
+      - pattern-not-inside: if (<... $N > 0 ...>) { ... }
+      - pattern-not-inside: if (<... $N > -1 ...>) { ... }
+      - pattern-not-inside: if (<... 0 <= $N ...>) { ... }
+      - pattern-not-inside: if (<... 0 < $N ...>) { ... }
+      - pattern-either:
+              - pattern: $ALLOC(<... (int $N) ...>)
+              - pattern: $ALLOC(<... (long $N) ...>)
+              - pattern: $ALLOC(<... (short $N) ...>)
+              - pattern: $ALLOC(<... (signed char $N) ...>)
+              - pattern: $ALLOC(<... (char $N) ...>)
+              - pattern: $ALLOC(<... (ssize_t $N) ...>)
+              - pattern: $ALLOC(<... (int64_t $N) ...>)
+              - pattern: $ALLOC(<... (int32_t $N) ...>)
+              - pattern: $ALLOC(<... (int16_t $N) ...>)
+              - pattern: $ALLOC(<... (int8_t $N) ...>)
+      - metavariable-regex:
+          metavariable: $ALLOC
+          regex: (?i)^\w*(malloc|calloc|realloc|alloca)$
+

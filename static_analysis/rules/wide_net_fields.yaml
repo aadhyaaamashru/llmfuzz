@@ -1,0 +1,16 @@
+# Wide-net tier, part 4: fixed offsets into a buffer held in a struct -- how protocol and file
+# parsers read headers (`packet->payload[13]`, `hdr->data[4]`). Safe only if the length was
+# checked first; out of bounds on a short packet/file. Index 0 is left out (too common).
+rules:
+  - id: wide-field-fixed-offset
+    languages: [c, cpp]
+    severity: INFO
+    message: struct-held buffer read at a fixed offset (out of bounds if the buffer is shorter)
+    metadata: {cwe: ["CWE-125"], wide: read}
+    patterns:
+      - pattern-either:
+          - pattern: $S->$F[$N]
+          - pattern: $S.$F[$N]
+      - metavariable-regex:
+          metavariable: $N
+          regex: ^(0[xX][0-9a-fA-F]*[1-9a-fA-F][0-9a-fA-F]*|[1-9][0-9]*)[uUlL]*$

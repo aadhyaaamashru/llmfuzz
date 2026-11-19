@@ -1,0 +1,192 @@
+# Wide-net prototype: every memory operation whose size/index/pointer isn't a constant,
+# regardless of nearby checks. Precision is deliberately ignored; ranking happens per function.
+rules:
+  - id: wide-copy-variable-size
+    languages: [c, cpp]
+    severity: INFO
+    message: $F() with a non-constant size
+    metadata: {cwe: ["CWE-787"], wide: copy}
+    patterns:
+      - pattern-either:
+          - pattern: $F($D, $S, $N)
+          - pattern: $F($D, $S, $N, ...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(memcpy|memmove|memset|memcmp|bcopy|wmemcpy|wmemmove|wmemset|strncpy|strncat|strncmp|strlcpy|strlcat|stpncpy|wcsncpy|wcsncat|fread|read|recv|pread|__builtin_memcpy|__builtin_memmove|__builtin_memset|\w*_memcpy|\w*_memmove|\w*_memset|\w*Memcpy|\w*Memmove|\w*Memset|\w*memcpy\w*|\w*strncpy\w*)$
+      - metavariable-pattern:
+          metavariable: $N
+          patterns:
+            - pattern-not: sizeof(...)
+            - pattern-not: sizeof $X
+      - metavariable-regex:
+          metavariable: $N
+          regex: (?s).*(^|[^0-9A-Za-z_])[a-z_][A-Za-z0-9_]*
+
+  - id: wide-unbounded-string
+    languages: [c, cpp]
+    severity: INFO
+    message: $F() copies/formats without a destination bound
+    metadata: {cwe: ["CWE-120"], wide: copy}
+    patterns:
+      - pattern: $F(...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(strcpy|strcat|sprintf|vsprintf|wcscpy|wcscat|stpcpy|gets|strlen|strchr|strrchr|strstr|strdup)$
+
+  - id: wide-index-write
+    languages: [c, cpp]
+    severity: INFO
+    message: write through a non-constant index
+    metadata: {cwe: ["CWE-787"], wide: write}
+    patterns:
+      - pattern-either:
+          - pattern: $A[$I] = $V
+          - pattern: $A[$I] += $V
+          - pattern: $A[$I] -= $V
+          - pattern: $A[$I] |= $V
+          - pattern: $A[$I] &= $V
+          - pattern: $A[$I]++
+          - pattern: ++$A[$I]
+          - pattern: $A[$I]--
+      - metavariable-regex:
+          metavariable: $I
+          regex: (?s).*(^|[^0-9A-Za-z_])[a-z_][A-Za-z0-9_]*
+
+  - id: wide-index-read
+    languages: [c, cpp]
+    severity: INFO
+    message: read through a non-constant index
+    metadata: {cwe: ["CWE-125"], wide: read}
+    patterns:
+      - pattern: $A[$I]
+      - metavariable-regex:
+          metavariable: $I
+          regex: (?s).*(^|[^0-9A-Za-z_])[a-z_][A-Za-z0-9_]*
+
+  - id: wide-pointer-arith-deref
+    languages: [c, cpp]
+    severity: INFO
+    message: dereference of pointer arithmetic
+    metadata: {cwe: ["CWE-125"], wide: ptr}
+    pattern-either:
+      - pattern: "*($P + $N)"
+      - pattern: "*($P - $N)"
+      - pattern: "*$P++ = $V"
+      - pattern: "*++$P"
+      - pattern: "*$P++"
+      - pattern: "*$P--"
+      - pattern: "$P += $N"
+      - pattern: "$P -= $N"
+
+  - id: wide-computed-alloc
+    languages: [c, cpp]
+    severity: INFO
+    message: allocation size computed with arithmetic
+    metadata: {cwe: ["CWE-131"], wide: alloc}
+    patterns:
+      - pattern-either:
+          - pattern: $F(..., $A * $B, ...)
+          - pattern: $F(..., $A + $B, ...)
+          - pattern: $F(..., $A - $B, ...)
+          - pattern: $F(..., $A << $B, ...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(\w*[Mm]alloc\w*|\w*[Cc]alloc\w*|\w*[Rr]ealloc\w*|alloca|\w*_alloc|\w*Alloc)$
+
+  - id: wide-free
+    languages: [c, cpp]
+    severity: INFO
+    message: memory released here
+    metadata: {cwe: ["CWE-416"], wide: free}
+    patterns:
+      - pattern: $F($P, ...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(free|\w*_free|\w*Free|\w*_destroy|\w*_release|delete|realloc|\w*_realloc|\w*Realloc)$
+
+  - id: wide-length-decode
+    languages: [c, cpp]
+    severity: INFO
+    message: value assembled from input bytes
+    metadata: {cwe: ["CWE-190"], wide: decode}
+    pattern-either:
+      - pattern: $A[$I] << $N
+      - pattern: ($T) $A[$I] << $N
+      - pattern: "*$P << $N"
+      - pattern: ($T) *$P << $N
+
+  - id: wide-size-field-store
+    languages: [c, cpp]
+    severity: INFO
+    message: size/count field set here (validate before use)
+    metadata: {cwe: ["CWE-20"], wide: field}
+    patterns:
+      - pattern-either:
+          - pattern: $S->$F = $E
+          - pattern: $S.$F = $E
+      - metavariable-regex:
+          metavariable: $F
+          regex: (?i)^\w*(len|length|size|sz|count|cnt|num|nb|channels|width|height|depth|bits|bps|samples|stride|offset|off|cap|capacity|total|nelem|elem|items|entries|rows|cols|columns|frames|blocks|planes|components|bytes|extent|limit|max|dim|avail|used|pos|index|idx|nr|level)\w*$
+
+  - id: wide-size-arith
+    languages: [c, cpp]
+    severity: INFO
+    message: size/offset computed with arithmetic
+    metadata: {cwe: ["CWE-190"], wide: arith}
+    patterns:
+      - pattern-either:
+          - pattern: $X = $A * $B
+          - pattern: $X = $A - $B
+          - pattern: $X = $A + $B
+          - pattern: $X = $A << $B
+          - pattern: $X *= $B
+          - pattern: $X = ($A + $B) / $C
+          - pattern: $X = ($A + $B - $C) / $D
+      - metavariable-regex:
+          metavariable: $A
+          regex: (?s).*(^|[^0-9A-Za-z_])[a-z_][A-Za-z0-9_]*
+
+  - id: wide-divide-by-variable
+    languages: [c, cpp]
+    severity: INFO
+    message: division/modulo by a non-constant
+    metadata: {cwe: ["CWE-369"], wide: div}
+    patterns:
+      - pattern-either:
+          - pattern: $A / $B
+          - pattern: $A % $B
+          - pattern: $A /= $B
+          - pattern: $A %= $B
+      - metavariable-regex:
+          metavariable: $B
+          regex: (?s).*(^|[^0-9A-Za-z_])[a-z_][A-Za-z0-9_]*
+      - metavariable-pattern:
+          metavariable: $B
+          patterns:
+            - pattern-not: sizeof(...)
+            - pattern-not: sizeof $Y
+
+  - id: wide-check-arith
+    languages: [c, cpp]
+    severity: INFO
+    message: bounds check computed with arithmetic (the sum/product can wrap and pass the check)
+    metadata: {cwe: ["CWE-190"], wide: checkarith}
+    patterns:
+      - pattern-either:
+          - pattern: $A + $B > $C
+          - pattern: $A + $B >= $C
+          - pattern: $A + $B < $C
+          - pattern: $A + $B <= $C
+          - pattern: $C > $A + $B
+          - pattern: $C >= $A + $B
+          - pattern: $C < $A + $B
+          - pattern: $C <= $A + $B
+          - pattern: $A * $B > $C
+          - pattern: $A * $B >= $C
+          - pattern: $C < $A * $B
+          - pattern: $C <= $A * $B
+          - pattern: $A - $B < $C
+          - pattern: $A - $B > $C
+      - metavariable-regex:
+          metavariable: $B
+          regex: (?s).*(^|[^0-9A-Za-z_])[a-z_][A-Za-z0-9_]*

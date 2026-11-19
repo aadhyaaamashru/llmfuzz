@@ -1,0 +1,8942 @@
+{
+ "bugs": [
+  {
+   "id": 42534713,
+   "project": "FreeRDP",
+   "crash_type": "Heap-use-after-free READ 2",
+   "fix": "c909253b119aec974108607cd10601fa3eeec6d5",
+   "vulnerable": "c2e899b6dfb14986b2e54b542067fd97892d0678",
+   "fix_files": [
+    "libfreerdp/core/info.c"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "libfreerdp/core/info.c",
+     "lo": 1064,
+     "hi": 1065
+    },
+    {
+     "file": "libfreerdp/core/info.c",
+     "lo": 1071,
+     "hi": 1073
+    }
+   ],
+   "crash": {
+    "function": "rdp_info_read_string",
+    "file": "libfreerdp/core/info.c",
+    "line": 1065
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libfreerdp/core/info.c:1045-1085"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 21.9
+   },
+   "library": {
+    "functions": 11416,
+    "kloc": 507.4,
+    "functions_flagged": 7559,
+    "functions_flagged_own": 4325,
+    "wide_hits": 17377,
+    "precise_hits_in_bug_files": 5
+   },
+   "seconds": 1433
+  },
+  {
+   "id": 42535986,
+   "project": "FreeRDP",
+   "crash_type": "Heap-buffer-overflow WRITE 2",
+   "fix": "f422ea2e56e96cadec4e1e53a9e9185e7dc871f6",
+   "vulnerable": "cbd2f5e65f42fa4030be9dbf51d459043a5b4a59",
+   "fix_files": [
+    "libfreerdp/core/gcc.c"
+   ],
+   "fix_lines": 7,
+   "regions": [
+    {
+     "file": "libfreerdp/core/gcc.c",
+     "lo": 1934,
+     "hi": 1935
+    }
+   ],
+   "crash": {
+    "function": "gcc_read_server_network_data",
+    "file": "libfreerdp/core/gcc.c",
+    "line": 1927
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libfreerdp/core/gcc.c:1907-1946"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 21.5
+   },
+   "library": {
+    "functions": 11808,
+    "kloc": 514.2,
+    "functions_flagged": 7761,
+    "functions_flagged_own": 4396,
+    "wide_hits": 17542,
+    "precise_hits_in_bug_files": 19
+   },
+   "seconds": 191
+  },
+  {
+   "id": 42516713,
+   "project": "MapServer",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "bf41b35362b3f6b8fbb0eb54d92ba01ead9b418e",
+   "vulnerable": "ae65a28202c50fc134b98b3137e1735665a270e1",
+   "fix_files": [
+    "mapfile.c"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "mapfile.c",
+     "lo": 1197,
+     "hi": 1198
+    }
+   ],
+   "crash": {
+    "function": "loadProjection",
+    "file": "mapfile.c",
+    "line": 1198
+   },
+   "crash_function_found": true,
+   "targets": [
+    "mapfile.c:1162-1208"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "calls",
+    "rank_pct": 44.4
+   },
+   "library": {
+    "functions": 8288,
+    "kloc": 342.8,
+    "functions_flagged": 5142,
+    "functions_flagged_own": 2787,
+    "wide_hits": 22219,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 531
+  },
+  {
+   "id": 42523066,
+   "project": "MapServer",
+   "crash_type": "Heap-use-after-free READ 4",
+   "fix": "fd70c993309172750d729cbe6e64418b6198dab5",
+   "vulnerable": "8d9978d185fa021e3ea5b7ce1af3e1840b3102cb",
+   "fix_files": [
+    "maplexer.c"
+   ],
+   "fix_lines": 8,
+   "regions": [
+    {
+     "file": "maplexer.c",
+     "lo": 4421,
+     "hi": 4424
+    },
+    {
+     "file": "maplexer.c",
+     "lo": 4431,
+     "hi": 4432
+    }
+   ],
+   "crash": {
+    "function": "msyy_load_buffer_state",
+    "file": "maplexer.c",
+    "line": 5025
+   },
+   "crash_function_found": false,
+   "targets": [],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 8291,
+    "kloc": 343.1,
+    "functions_flagged": 5146,
+    "functions_flagged_own": 2787,
+    "wide_hits": 22228,
+    "precise_hits_in_bug_files": 14
+   },
+   "seconds": 381
+  },
+  {
+   "id": 42530090,
+   "project": "PcapPlusPlus",
+   "crash_type": "Heap-buffer-overflow WRITE 2",
+   "fix": "a0ecc6dad71f445c95936697c7ee15997d5761b2",
+   "vulnerable": "98143666674d8d50ffed878d8d91c48c9567706c",
+   "fix_files": [
+    "Packet++/header/GreLayer.h",
+    "Packet++/src/IPv4Layer.cpp",
+    "Packet++/src/IPv6Layer.cpp"
+   ],
+   "fix_lines": 28,
+   "regions": [
+    {
+     "file": "Packet++/header/GreLayer.h",
+     "lo": 278,
+     "hi": 279
+    },
+    {
+     "file": "Packet++/header/GreLayer.h",
+     "lo": 352,
+     "hi": 353
+    },
+    {
+     "file": "Packet++/src/IPv4Layer.cpp",
+     "lo": 292,
+     "hi": 292
+    },
+    {
+     "file": "Packet++/src/IPv4Layer.cpp",
+     "lo": 294,
+     "hi": 294
+    },
+    {
+     "file": "Packet++/src/IPv6Layer.cpp",
+     "lo": 244,
+     "hi": 244
+    },
+    {
+     "file": "Packet++/src/IPv6Layer.cpp",
+     "lo": 246,
+     "hi": 246
+    }
+   ],
+   "crash": {
+    "function": "computeCalculateFields",
+    "file": "Packet++/src/GreLayer.cpp",
+    "line": 542
+   },
+   "crash_function_found": true,
+   "targets": [
+    "Packet++/src/GreLayer.cpp:538-543",
+    "Packet++/src/IPv4Layer.cpp:240-345",
+    "Packet++/src/IPv6Layer.cpp:194-280"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 12.9
+   },
+   "library": {
+    "functions": 3708,
+    "kloc": 133.8,
+    "functions_flagged": 1639,
+    "functions_flagged_own": 814,
+    "wide_hits": 2803,
+    "precise_hits_in_bug_files": 18
+   },
+   "seconds": 160
+  },
+  {
+   "id": 42525202,
+   "project": "PcapPlusPlus",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "6986e81f6fa441a56c4effe2bf2f177ca892255e",
+   "vulnerable": "843765f594a3d0c494c2c64e5c2b786f02122ccc",
+   "fix_files": [
+    "Common++/header/GeneralUtils.h",
+    "Packet++/header/NflogLayer.h"
+   ],
+   "fix_lines": 32,
+   "regions": [
+    {
+     "file": "Common++/header/GeneralUtils.h",
+     "lo": 52,
+     "hi": 53
+    },
+    {
+     "file": "Packet++/header/NflogLayer.h",
+     "lo": 5,
+     "hi": 6
+    },
+    {
+     "file": "Packet++/header/NflogLayer.h",
+     "lo": 104,
+     "hi": 104
+    },
+    {
+     "file": "Packet++/header/NflogLayer.h",
+     "lo": 112,
+     "hi": 120
+    }
+   ],
+   "crash": {
+    "function": "IDnsResource",
+    "file": "Packet++/src/DnsResource.cpp",
+    "line": 16
+   },
+   "crash_function_found": true,
+   "targets": [
+    "Packet++/header/NflogLayer.h:104-104",
+    "Packet++/header/NflogLayer.h:110-121",
+    "Packet++/src/DnsResource.cpp:12-19"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 16.3
+   },
+   "library": {
+    "functions": 3660,
+    "kloc": 132.1,
+    "functions_flagged": 1636,
+    "functions_flagged_own": 815,
+    "wide_hits": 2816,
+    "precise_hits_in_bug_files": 13
+   },
+   "seconds": 45
+  },
+  {
+   "id": 42541241,
+   "project": "bloaty",
+   "crash_type": "Global-buffer-overflow READ 8",
+   "fix": "3028ca5e4ab5ad883d3b6246ba587d6c71d89766",
+   "vulnerable": "c92ce3db7f5609514b663e3527ea301af8f236c4",
+   "fix_files": [
+    "src/webassembly.cc"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/webassembly.cc",
+     "lo": 105,
+     "hi": 105
+    }
+   ],
+   "crash": {
+    "function": "Read",
+    "file": "src/webassembly.cc",
+    "line": 126
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/webassembly.cc:110-134"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 13.4
+   },
+   "library": {
+    "functions": 507,
+    "kloc": 15.0,
+    "functions_flagged": 263,
+    "functions_flagged_own": 122,
+    "wide_hits": 281,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 72
+  },
+  {
+   "id": 42524112,
+   "project": "bloaty",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "18384d6c6cbb666d08d08c0dabc4a0d1b7623f6f",
+   "vulnerable": "a950a61921c3aaaf31e27fad1727a1ddf528df1e",
+   "fix_files": [
+    "src/disassemble.cc"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "src/disassemble.cc",
+     "lo": 48,
+     "hi": 49
+    }
+   ],
+   "crash": {
+    "function": "DisassembleFindReferences",
+    "file": "src/disassemble.cc",
+    "line": 78
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/disassemble.cc:48-93"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 7.4
+   },
+   "library": {
+    "functions": 474,
+    "kloc": 14.4,
+    "functions_flagged": 243,
+    "functions_flagged_own": 113,
+    "wide_hits": 265,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 34
+  },
+  {
+   "id": 42482401,
+   "project": "c-ares",
+   "crash_type": "Heap-double-free",
+   "fix": "910df394fc40d90dda233b27bf122e50357943e6",
+   "vulnerable": "61f06d2a58e61a48f570a614a3974b8c6d1f06e4",
+   "fix_files": [
+    "ares_parse_soa_reply.c"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "ares_parse_soa_reply.c",
+     "lo": 88,
+     "hi": 88
+    }
+   ],
+   "crash": {
+    "function": "ares_parse_soa_reply",
+    "file": "ares_parse_soa_reply.c",
+    "line": 91
+   },
+   "crash_function_found": true,
+   "targets": [
+    "ares_parse_soa_reply.c:43-181"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.3
+   },
+   "library": {
+    "functions": 269,
+    "kloc": 30.4,
+    "functions_flagged": 190,
+    "functions_flagged_own": 157,
+    "wide_hits": 1011,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 57
+  },
+  {
+   "id": 42476049,
+   "project": "c-ares",
+   "crash_type": "Stack-buffer-overflow WRITE 4",
+   "fix": "b949cc3ddfbeb1b3fba571fb53b186b645e66e9c",
+   "vulnerable": "5dd3629bc93449840c36dd635ea6cce606b8c366",
+   "fix_files": [
+    "ares_parse_a_reply.c",
+    "ares_parse_aaaa_reply.c"
+   ],
+   "fix_lines": 17,
+   "regions": [
+    {
+     "file": "ares_parse_a_reply.c",
+     "lo": 74,
+     "hi": 74
+    },
+    {
+     "file": "ares_parse_a_reply.c",
+     "lo": 165,
+     "hi": 165
+    },
+    {
+     "file": "ares_parse_a_reply.c",
+     "lo": 179,
+     "hi": 180
+    },
+    {
+     "file": "ares_parse_aaaa_reply.c",
+     "lo": 76,
+     "hi": 76
+    },
+    {
+     "file": "ares_parse_aaaa_reply.c",
+     "lo": 167,
+     "hi": 167
+    },
+    {
+     "file": "ares_parse_aaaa_reply.c",
+     "lo": 181,
+     "hi": 182
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "ares_parse_a_reply.c:50-207",
+    "ares_parse_aaaa_reply.c:52-209"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.7
+   },
+   "library": {
+    "functions": 267,
+    "kloc": 30.3,
+    "functions_flagged": 188,
+    "functions_flagged_own": 157,
+    "wide_hits": 995,
+    "precise_hits_in_bug_files": 14
+   },
+   "seconds": 22
+  },
+  {
+   "id": 42478821,
+   "project": "curl",
+   "crash_type": "Heap-use-after-free READ 1",
+   "fix": "02c6b984cb7a2e01f290544a53a24d30fc7ab32e",
+   "vulnerable": "13ecc0725f723ce7068c114610f6d1418945705a",
+   "fix_files": [
+    "lib/urlapi.c"
+   ],
+   "fix_lines": 71,
+   "regions": [
+    {
+     "file": "lib/urlapi.c",
+     "lo": 66,
+     "hi": 67
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 84,
+     "hi": 85
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 861,
+     "hi": 861
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 865,
+     "hi": 865
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 866,
+     "hi": 867
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 869,
+     "hi": 869
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 870,
+     "hi": 871
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 873,
+     "hi": 873
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 875,
+     "hi": 881
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 884,
+     "hi": 894
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 897,
+     "hi": 898
+    },
+    {
+     "file": "lib/urlapi.c",
+     "lo": 929,
+     "hi": 941
+    }
+   ],
+   "crash": {
+    "function": "seturl",
+    "file": "lib/urlapi.c",
+    "line": 934
+   },
+   "crash_function_found": true,
+   "targets": [
+    "lib/urlapi.c:659-944",
+    "lib/urlapi.c:72-85"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.3
+   },
+   "library": {
+    "functions": 2385,
+    "kloc": 158.8,
+    "functions_flagged": 1565,
+    "functions_flagged_own": 1046,
+    "wide_hits": 6341,
+    "precise_hits_in_bug_files": 18
+   },
+   "seconds": 195
+  },
+  {
+   "id": 42519094,
+   "project": "curl",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "cb5accab9ee3abdee777b59b463b5e0ca05a490a",
+   "vulnerable": "25c40c9af97782c9d475e765d50eaac071fd7d91",
+   "fix_files": [
+    "lib/curl_fnmatch.c"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "lib/curl_fnmatch.c",
+     "lo": 8,
+     "hi": 8
+    },
+    {
+     "file": "lib/curl_fnmatch.c",
+     "lo": 379,
+     "hi": 379
+    }
+   ],
+   "crash": {
+    "function": "loop",
+    "file": "lib/curl_fnmatch.c",
+    "line": 389
+   },
+   "crash_function_found": true,
+   "targets": [
+    "lib/curl_fnmatch.c:304-405"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 13.9
+   },
+   "library": {
+    "functions": 2112,
+    "kloc": 147.0,
+    "functions_flagged": 1389,
+    "functions_flagged_own": 944,
+    "wide_hits": 5721,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 136
+  },
+  {
+   "id": 42497241,
+   "project": "espeak-ng",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "9decedb8c229e1a4219baceaab7a3d656e889e31",
+   "vulnerable": "9de65fcb96f7150e899a882460ab8caa57c6efac",
+   "fix_files": [
+    "src/libespeak-ng/readclause.c"
+   ],
+   "fix_lines": 12,
+   "regions": [
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 342,
+     "hi": 342
+    },
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 656,
+     "hi": 656
+    },
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 666,
+     "hi": 666
+    },
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 674,
+     "hi": 674
+    },
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 800,
+     "hi": 800
+    },
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 817,
+     "hi": 817
+    }
+   ],
+   "crash": {
+    "function": "string_decoder_getc_utf_8",
+    "file": "src/libespeak-ng/encoding.c",
+    "line": 539
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/libespeak-ng/encoding.c:536-584",
+    "src/libespeak-ng/readclause.c:304-405",
+    "src/libespeak-ng/readclause.c:467-986"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.4
+   },
+   "library": {
+    "functions": 668,
+    "kloc": 54.3,
+    "functions_flagged": 455,
+    "functions_flagged_own": 346,
+    "wide_hits": 3928,
+    "precise_hits_in_bug_files": 23
+   },
+   "seconds": 114
+  },
+  {
+   "id": 42496980,
+   "project": "espeak-ng",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "f6d092a9c13d864ede78c493f64a7d32cde41f09",
+   "vulnerable": "0a3fd5ecd9249140afa913ecafe42c5b07fe54d1",
+   "fix_files": [
+    "src/libespeak-ng/readclause.c"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/libespeak-ng/readclause.c",
+     "lo": 617,
+     "hi": 617
+    }
+   ],
+   "crash": {
+    "function": "string_decoder_getc_utf_8",
+    "file": "src/libespeak-ng/encoding.c",
+    "line": 539
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/libespeak-ng/encoding.c:536-584",
+    "src/libespeak-ng/readclause.c:462-973"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.5
+   },
+   "library": {
+    "functions": 662,
+    "kloc": 55.0,
+    "functions_flagged": 458,
+    "functions_flagged_own": 351,
+    "wide_hits": 3940,
+    "precise_hits_in_bug_files": 22
+   },
+   "seconds": 60
+  },
+  {
+   "id": 42509966,
+   "project": "exiv2",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "d16ca65b01188d28afbe5a52b1495ac0270dd95a",
+   "vulnerable": "3b9fcb4b3d497e733d55de923388dccc61750970",
+   "fix_files": [
+    "src/jp2image_int.cpp",
+    "unitTests/test_jp2image_int.cpp"
+   ],
+   "fix_lines": 7,
+   "regions": [
+    {
+     "file": "src/jp2image_int.cpp",
+     "lo": 14,
+     "hi": 14
+    },
+    {
+     "file": "unitTests/test_jp2image_int.cpp",
+     "lo": 60,
+     "hi": 61
+    }
+   ],
+   "crash": {
+    "function": "getULong",
+    "file": "src/types.cpp",
+    "line": 288
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/jp2image_int.cpp:12-31",
+    "src/types.cpp:274-279",
+    "unitTests/test_jp2image_int.cpp:61-78"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.1
+   },
+   "library": {
+    "functions": 3565,
+    "kloc": 109.8,
+    "functions_flagged": 2310,
+    "functions_flagged_own": 670,
+    "wide_hits": 2726,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 123
+  },
+  {
+   "id": 42515117,
+   "project": "exiv2",
+   "crash_type": "Heap-buffer-overflow READ 5",
+   "fix": "337fe1854ff17f169032e993789a24bbb53579c4",
+   "vulnerable": "7a92e1bd0f8a1435eed7743e3aeadcb73f63182d",
+   "fix_files": [
+    "src/quicktimevideo.cpp"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/quicktimevideo.cpp",
+     "lo": 671,
+     "hi": 671
+    },
+    {
+     "file": "src/quicktimevideo.cpp",
+     "lo": 688,
+     "hi": 688
+    }
+   ],
+   "crash": {
+    "function": "toString<unsigned char*>",
+    "file": "include/exiv2/types.hpp",
+    "line": 472
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/exiv2/types.hpp:469-474",
+    "src/quicktimevideo.cpp:659-674",
+    "src/quicktimevideo.cpp:676-691"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.1
+   },
+   "library": {
+    "functions": 3487,
+    "kloc": 111.4,
+    "functions_flagged": 2297,
+    "functions_flagged_own": 664,
+    "wide_hits": 2995,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 77
+  },
+  {
+   "id": 42505804,
+   "project": "flatbuffers",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "4264daadd2487cd3e63cf83f5dca3f0ccc53af64",
+   "vulnerable": "3cbc120a08edf6db9ab8f5c2c44f8a40be70d6bc",
+   "fix_files": [
+    "include/flatbuffers/flexbuffers.h"
+   ],
+   "fix_lines": 56,
+   "regions": [
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1565,
+     "hi": 1565
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1567,
+     "hi": 1567
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1622,
+     "hi": 1624
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1699,
+     "hi": 1705
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1712,
+     "hi": 1712
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1724,
+     "hi": 1737
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1739,
+     "hi": 1739
+    },
+    {
+     "file": "include/flatbuffers/flexbuffers.h",
+     "lo": 1760,
+     "hi": 1761
+    }
+   ],
+   "crash": {
+    "function": "EscapeString",
+    "file": "include/flatbuffers/util.h",
+    "line": 580
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/flatbuffers/flexbuffers.h:1699-1701",
+    "include/flatbuffers/flexbuffers.h:1703-1706",
+    "include/flatbuffers/flexbuffers.h:1708-1741",
+    "include/flatbuffers/flexbuffers.h:1759-1765",
+    "include/flatbuffers/util.h:575-643"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.0
+   },
+   "library": {
+    "functions": 2519,
+    "kloc": 49.4,
+    "functions_flagged": 1362,
+    "functions_flagged_own": 718,
+    "wide_hits": 6276,
+    "precise_hits_in_bug_files": 4
+   },
+   "seconds": 121
+  },
+  {
+   "id": 42483053,
+   "project": "fmt",
+   "crash_type": "Heap-buffer-overflow READ 2",
+   "fix": "c9a57b9a81868188470c611e09accc189383e4ad",
+   "vulnerable": "f46f5ecaf0157749a6ac8c876cac98198b9f4489",
+   "fix_files": [
+    "include/fmt/core.h",
+    "include/fmt/format.h"
+   ],
+   "fix_lines": 28,
+   "regions": [
+    {
+     "file": "include/fmt/core.h",
+     "lo": 808,
+     "hi": 808
+    },
+    {
+     "file": "include/fmt/core.h",
+     "lo": 1666,
+     "hi": 1666
+    },
+    {
+     "file": "include/fmt/core.h",
+     "lo": 1671,
+     "hi": 1671
+    },
+    {
+     "file": "include/fmt/core.h",
+     "lo": 1686,
+     "hi": 1686
+    },
+    {
+     "file": "include/fmt/core.h",
+     "lo": 1748,
+     "hi": 1750
+    },
+    {
+     "file": "include/fmt/core.h",
+     "lo": 1842,
+     "hi": 1843
+    },
+    {
+     "file": "include/fmt/format.h",
+     "lo": 3510,
+     "hi": 3510
+    },
+    {
+     "file": "include/fmt/format.h",
+     "lo": 3579,
+     "hi": 3580
+    },
+    {
+     "file": "include/fmt/format.h",
+     "lo": 3583,
+     "hi": 3584
+    }
+   ],
+   "crash": {
+    "function": "basic_string_view",
+    "file": "include/fmt/core.h",
+    "line": 375
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/fmt/core.h:1671-1671",
+    "include/fmt/core.h:1686-1687",
+    "include/fmt/core.h:1748-1752",
+    "include/fmt/core.h:1837-1844",
+    "include/fmt/core.h:379-380",
+    "include/fmt/core.h:804-810",
+    "include/fmt/format.h:3578-3581",
+    "include/fmt/format.h:3582-3585"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.4
+   },
+   "library": {
+    "functions": 1021,
+    "kloc": 11.4,
+    "functions_flagged": 322,
+    "functions_flagged_own": 126,
+    "wide_hits": 357,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 36
+  },
+  {
+   "id": 42508631,
+   "project": "fmt",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "86477f7ecc1606e15abae1ff784e6b0c55d99619",
+   "vulnerable": "0742606f199d9839123d36c5cb65c548f5f46f6e",
+   "fix_files": [
+    "include/fmt/format.h"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "include/fmt/format.h",
+     "lo": 2103,
+     "hi": 2104
+    },
+    {
+     "file": "include/fmt/format.h",
+     "lo": 2105,
+     "hi": 2105
+    }
+   ],
+   "crash": {
+    "function": "digit_grouping<char> >",
+    "file": "include/fmt/format.h",
+    "line": 2089
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/fmt/format.h:2040-2146"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.2
+   },
+   "library": {
+    "functions": 1244,
+    "kloc": 15.5,
+    "functions_flagged": 423,
+    "functions_flagged_own": 173,
+    "wide_hits": 458,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 46
+  },
+  {
+   "id": 42496064,
+   "project": "geos",
+   "crash_type": "Stack-use-after-scope READ 8",
+   "fix": "f593230f5907260096202ef0302abe99b81c0bf7",
+   "vulnerable": "5f4af4116e39ec9f859d8a64adc74cd4f4ffb349",
+   "fix_files": [
+    "src/operation/overlayng/OverlayNG.cpp"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/operation/overlayng/OverlayNG.cpp",
+     "lo": 213,
+     "hi": 214
+    },
+    {
+     "file": "src/operation/overlayng/OverlayNG.cpp",
+     "lo": 218,
+     "hi": 218
+    }
+   ],
+   "crash": {
+    "function": "isClippedCompletely",
+    "file": "src/operation/overlayng/EdgeNodingBuilder.cpp",
+    "line": 287
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/operation/overlayng/EdgeNodingBuilder.cpp:283-288",
+    "src/operation/overlayng/OverlayNG.cpp:206-268"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "calls",
+    "rank_pct": 32.9
+   },
+   "library": {
+    "functions": 6386,
+    "kloc": 186.5,
+    "functions_flagged": 4258,
+    "functions_flagged_own": 836,
+    "wide_hits": 2622,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 183
+  },
+  {
+   "id": 42532863,
+   "project": "geos",
+   "crash_type": "Heap-buffer-overflow READ {*}",
+   "fix": "3db005a65baf5fb53a3d2078c30dd7d365115b5e",
+   "vulnerable": "d84cf1aec56c9948f4f22dfbbbd331f61c32b132",
+   "fix_files": [
+    "include/geos/algorithm/LineIntersector.h"
+   ],
+   "fix_lines": 16,
+   "regions": [
+    {
+     "file": "include/geos/algorithm/LineIntersector.h",
+     "lo": 592,
+     "hi": 593
+    }
+   ],
+   "crash": {
+    "function": "Coordinate>",
+    "file": "include/geos/algorithm/LineIntersector.h",
+    "line": 604
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/geos/algorithm/LineIntersector.h:53-635",
+    "include/geos/algorithm/LineIntersector.h:586-596"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "calls",
+    "rank_pct": 20.3
+   },
+   "library": {
+    "functions": 7803,
+    "kloc": 208.8,
+    "functions_flagged": 5176,
+    "functions_flagged_own": 961,
+    "wide_hits": 2867,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 170
+  },
+  {
+   "id": 425730091,
+   "project": "glaze",
+   "crash_type": "Stack-buffer-overflow READ 1",
+   "fix": "70090dc32140a39236d24cce525c2c50d9b5bd2a",
+   "vulnerable": "2edbe2627697d07bf001b8cfa48f314fb6dbc47e",
+   "fix_files": [
+    "include/glaze/util/atoi.hpp"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "include/glaze/util/atoi.hpp",
+     "lo": 775,
+     "hi": 775
+    }
+   ],
+   "crash": {
+    "function": "atoi<unsigned long, char const>",
+    "file": "include/glaze/util/atoi.hpp",
+    "line": 394
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/glaze/util/atoi.hpp:367-449"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.8
+   },
+   "library": {
+    "functions": 1997,
+    "kloc": 55.8,
+    "functions_flagged": 737,
+    "functions_flagged_own": 434,
+    "wide_hits": 1882,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 91
+  },
+  {
+   "id": 425725152,
+   "project": "glaze",
+   "crash_type": "Stack-buffer-overflow READ 1",
+   "fix": "70090dc32140a39236d24cce525c2c50d9b5bd2a",
+   "vulnerable": "2edbe2627697d07bf001b8cfa48f314fb6dbc47e",
+   "fix_files": [
+    "include/glaze/util/atoi.hpp"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "include/glaze/util/atoi.hpp",
+     "lo": 775,
+     "hi": 775
+    }
+   ],
+   "crash": {
+    "function": "atoi<unsigned long, char const>",
+    "file": "include/glaze/util/atoi.hpp",
+    "line": 394
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/glaze/util/atoi.hpp:367-449"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.8
+   },
+   "library": {
+    "functions": 1997,
+    "kloc": 55.8,
+    "functions_flagged": 737,
+    "functions_flagged_own": 434,
+    "wide_hits": 1882,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 1
+  },
+  {
+   "id": 42485332,
+   "project": "glib",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "f9d165add1342ecae6cdde1b95e9ce63320768dd",
+   "vulnerable": "67ba5bfe601f858f8ae3266142008dc90fbbe1b5",
+   "fix_files": [
+    "glib/guri.c"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "glib/guri.c",
+     "lo": 256,
+     "hi": 256
+    },
+    {
+     "file": "glib/guri.c",
+     "lo": 259,
+     "hi": 259
+    }
+   ],
+   "crash": {
+    "function": "uri_decoder",
+    "file": "glib/guri.c",
+    "line": 256
+   },
+   "crash_function_found": true,
+   "targets": [
+    "glib/guri.c:235-309"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.5
+   },
+   "library": {
+    "functions": 10347,
+    "kloc": 565.4,
+    "functions_flagged": 7571,
+    "functions_flagged_own": 3307,
+    "wide_hits": 13767,
+    "precise_hits_in_bug_files": 13
+   },
+   "seconds": 413
+  },
+  {
+   "id": 42519197,
+   "project": "glib",
+   "crash_type": "Heap-buffer-overflow READ 2",
+   "fix": "78da5faccb3e065116b75b3ff87ff55381da6c76",
+   "vulnerable": "5e378c775a79b61f307f2b780652745b528b4105",
+   "fix_files": [
+    "glib/gvariant-serialiser.c"
+   ],
+   "fix_lines": 12,
+   "regions": [
+    {
+     "file": "glib/gvariant-serialiser.c",
+     "lo": 987,
+     "hi": 987
+    },
+    {
+     "file": "glib/gvariant-serialiser.c",
+     "lo": 998,
+     "hi": 998
+    },
+    {
+     "file": "glib/gvariant-serialiser.c",
+     "lo": 1009,
+     "hi": 1009
+    },
+    {
+     "file": "glib/gvariant-serialiser.c",
+     "lo": 1013,
+     "hi": 1014
+    }
+   ],
+   "crash": {
+    "function": "gvs_read_unaligned_le",
+    "file": "glib/gvariant-serialiser.c",
+    "line": 598
+   },
+   "crash_function_found": true,
+   "targets": [
+    "glib/gvariant-serialiser.c:586-601",
+    "glib/gvariant-serialiser.c:975-1018"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 14.1
+   },
+   "library": {
+    "functions": 10710,
+    "kloc": 560.5,
+    "functions_flagged": 7835,
+    "functions_flagged_own": 3375,
+    "wide_hits": 12793,
+    "precise_hits_in_bug_files": 7
+   },
+   "seconds": 394
+  },
+  {
+   "id": 42521498,
+   "project": "glog",
+   "crash_type": "Dynamic-stack-buffer-overflow READ 1",
+   "fix": "319a0dfba4ac4e9b2d6830574afaf06debc8435a",
+   "vulnerable": "e567cfc44212aa946c5c1740911aefe5aad882e1",
+   "fix_files": [
+    "src/demangle.cc"
+   ],
+   "fix_lines": 9,
+   "regions": [
+    {
+     "file": "src/demangle.cc",
+     "lo": 38,
+     "hi": 39
+    },
+    {
+     "file": "src/demangle.cc",
+     "lo": 224,
+     "hi": 225
+    },
+    {
+     "file": "src/demangle.cc",
+     "lo": 669,
+     "hi": 670
+    }
+   ],
+   "crash": {
+    "function": "ParseOneCharToken",
+    "file": "src/demangle.cc",
+    "line": 211
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/demangle.cc:162-168",
+    "src/demangle.cc:224-237",
+    "src/demangle.cc:660-672"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 11.2
+   },
+   "library": {
+    "functions": 554,
+    "kloc": 13.6,
+    "functions_flagged": 211,
+    "functions_flagged_own": 83,
+    "wide_hits": 250,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 28
+  },
+  {
+   "id": 42524166,
+   "project": "glog",
+   "crash_type": "UNKNOWN READ",
+   "fix": "7ba2f7bc02cdbab9314f3804c698ec78e20c441e",
+   "vulnerable": "27bf2b2fd396dae160b0449224bc227eb3edbc31",
+   "fix_files": [
+    "src/demangle.cc"
+   ],
+   "fix_lines": 17,
+   "regions": [
+    {
+     "file": "src/demangle.cc",
+     "lo": 39,
+     "hi": 40
+    },
+    {
+     "file": "src/demangle.cc",
+     "lo": 594,
+     "hi": 595
+    },
+    {
+     "file": "src/demangle.cc",
+     "lo": 597,
+     "hi": 597
+    }
+   ],
+   "crash": {
+    "function": "ParseOneCharToken",
+    "file": "src/demangle.cc",
+    "line": 162
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/demangle.cc:161-167",
+    "src/demangle.cc:588-610"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.7
+   },
+   "library": {
+    "functions": 553,
+    "kloc": 13.6,
+    "functions_flagged": 211,
+    "functions_flagged_own": 83,
+    "wide_hits": 248,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 16
+  },
+  {
+   "id": 42488015,
+   "project": "h2o",
+   "crash_type": "Null-dereference READ",
+   "fix": "56204921b666cfb237f0579a603a946756a1559b",
+   "vulnerable": "b808e2809377cf8ca34a491f3f9280c7a1815ce3",
+   "fix_files": [
+    "lib/core/proxy.c",
+    "lib/http2/connection.c"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "lib/core/proxy.c",
+     "lo": 590,
+     "hi": 591
+    },
+    {
+     "file": "lib/http2/connection.c",
+     "lo": 620,
+     "hi": 620
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "lib/core/proxy.c:587-592",
+    "lib/http2/connection.c:595-654"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 34.5
+   },
+   "library": {
+    "functions": 5262,
+    "kloc": 211.3,
+    "functions_flagged": 4324,
+    "functions_flagged_own": 2427,
+    "wide_hits": 12526,
+    "precise_hits_in_bug_files": 52
+   },
+   "seconds": 268
+  },
+  {
+   "id": 42472316,
+   "project": "h2o",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "55438dbf9c5be844d1c06e707ef26813bb9f7d92",
+   "vulnerable": "b33e9a9fbcad4c97348dff1874c71e41d7c1357a",
+   "fix_files": [
+    "include/h2o/http2_scheduler.h",
+    "lib/http2/connection.c",
+    "lib/http2/scheduler.c"
+   ],
+   "fix_lines": 13,
+   "regions": [
+    {
+     "file": "include/h2o/http2_scheduler.h",
+     "lo": 110,
+     "hi": 111
+    },
+    {
+     "file": "lib/http2/connection.c",
+     "lo": 268,
+     "hi": 269
+    },
+    {
+     "file": "lib/http2/scheduler.c",
+     "lo": 343,
+     "hi": 344
+    }
+   ],
+   "crash": {
+    "function": "h2o_http2_stream_has_pending_data",
+    "file": "include/h2o/http2_internal.h",
+    "line": 381
+   },
+   "crash_function_found": true,
+   "targets": [
+    "include/h2o/http2_internal.h:379-382",
+    "lib/http2/connection.c:252-269",
+    "lib/http2/scheduler.c:344-350"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 21.6
+   },
+   "library": {
+    "functions": 6166,
+    "kloc": 216.3,
+    "functions_flagged": 5102,
+    "functions_flagged_own": 2874,
+    "wide_hits": 14594,
+    "precise_hits_in_bug_files": 20
+   },
+   "seconds": 210
+  },
+  {
+   "id": 372515086,
+   "project": "h3",
+   "crash_type": "Heap-buffer-overflow WRITE 8",
+   "fix": "a99f03e4d7b30169eb835db9844aba3a7c2e2827",
+   "vulnerable": "09d96cdf1ad092029b0a459f708800b757c0b019",
+   "fix_files": [
+    "src/h3lib/lib/polyfill.c"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "src/h3lib/lib/polyfill.c",
+     "lo": 511,
+     "hi": 511
+    }
+   ],
+   "crash": {
+    "function": "polygonToCellsExperimental",
+    "file": "src/h3lib/lib/polyfill.c",
+    "line": 720
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/h3lib/lib/polyfill.c:408-589",
+    "src/h3lib/lib/polyfill.c:696-723"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 17.2
+   },
+   "library": {
+    "functions": 931,
+    "kloc": 29.8,
+    "functions_flagged": 787,
+    "functions_flagged_own": 352,
+    "wide_hits": 1240,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 36
+  },
+  {
+   "id": 42515760,
+   "project": "h3",
+   "crash_type": "Global-buffer-overflow READ 4",
+   "fix": "fce1c53844ca21dcc14f3acabeaf2e12d47e5568",
+   "vulnerable": "cbd294ac7327ce262103bb10756ccec4edeccc90",
+   "fix_files": [
+    "src/apps/testapps/testCellToLocalIj.c",
+    "src/h3lib/lib/coordijk.c",
+    "src/h3lib/lib/localij.c"
+   ],
+   "fix_lines": 23,
+   "regions": [
+    {
+     "file": "src/apps/testapps/testCellToLocalIj.c",
+     "lo": 274,
+     "hi": 275
+    },
+    {
+     "file": "src/h3lib/lib/coordijk.c",
+     "lo": 248,
+     "hi": 248
+    },
+    {
+     "file": "src/h3lib/lib/coordijk.c",
+     "lo": 250,
+     "hi": 252
+    },
+    {
+     "file": "src/h3lib/lib/localij.c",
+     "lo": 320,
+     "hi": 321
+    },
+    {
+     "file": "src/h3lib/lib/localij.c",
+     "lo": 325,
+     "hi": 325
+    }
+   ],
+   "crash": {
+    "function": "_getBaseCellNeighbor",
+    "file": "src/h3lib/lib/baseCells.c",
+    "line": 901
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/apps/testapps/testCellToLocalIj.c:259-274",
+    "src/apps/testapps/testCellToLocalIj.c:36-275",
+    "src/h3lib/lib/baseCells.c:900-902",
+    "src/h3lib/lib/localij.c:302-503"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.0
+   },
+   "library": {
+    "functions": 687,
+    "kloc": 21.7,
+    "functions_flagged": 564,
+    "functions_flagged_own": 237,
+    "wide_hits": 797,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 20
+  },
+  {
+   "id": 42485152,
+   "project": "haproxy",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "08488f66b6028761d8eb60a3bddb9aa080a2af4a",
+   "vulnerable": "c184d875586a0ff383d1f654b8004fbb383e4649",
+   "fix_files": [
+    "src/cfgparse.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/cfgparse.c",
+     "lo": 1919,
+     "hi": 1919
+    }
+   ],
+   "crash": {
+    "function": "readcfgfile",
+    "file": "src/cfgparse.c",
+    "line": 1909
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/cfgparse.c:1843-2104"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.0
+   },
+   "library": {
+    "functions": 4881,
+    "kloc": 236.6,
+    "functions_flagged": 3592,
+    "functions_flagged_own": 2246,
+    "wide_hits": 12185,
+    "precise_hits_in_bug_files": 86
+   },
+   "seconds": 223
+  },
+  {
+   "id": 417113588,
+   "project": "haproxy",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "ebb19fb367e301869dd9a3ee7ea03e9c975ede0b",
+   "vulnerable": "3fdb039a99cdee543f4bbbfc983a51eb18f7f1f0",
+   "fix_files": [
+    "src/cfgparse.c"
+   ],
+   "fix_lines": 11,
+   "regions": [
+    {
+     "file": "src/cfgparse.c",
+     "lo": 1984,
+     "hi": 1984
+    },
+    {
+     "file": "src/cfgparse.c",
+     "lo": 2070,
+     "hi": 2070
+    },
+    {
+     "file": "src/cfgparse.c",
+     "lo": 2072,
+     "hi": 2073
+    }
+   ],
+   "crash": {
+    "function": "sanitize_for_printing",
+    "file": "src/tools.c",
+    "line": 6600
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/cfgparse.c:1875-2722",
+    "src/tools.c:6582-6617"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.1
+   },
+   "library": {
+    "functions": 8406,
+    "kloc": 397.9,
+    "functions_flagged": 6060,
+    "functions_flagged_own": 3673,
+    "wide_hits": 18397,
+    "precise_hits_in_bug_files": 106
+   },
+   "seconds": 400
+  },
+  {
+   "id": 42520210,
+   "project": "hdf5",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "10d4a6d0941240702b5e8d77d57184a88bb69e6c",
+   "vulnerable": "65eff22348634144cd5a6e77159c27eb895d54b4",
+   "fix_files": [
+    "src/H5Fsuper_cache.c",
+    "src/H5Gent.c",
+    "src/H5Gprivate.h"
+   ],
+   "fix_lines": 79,
+   "regions": [
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 435,
+     "hi": 436
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 442,
+     "hi": 443
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 446,
+     "hi": 447
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 453,
+     "hi": 454
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 468,
+     "hi": 469
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 474,
+     "hi": 475
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 485,
+     "hi": 486
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 497,
+     "hi": 498
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 501,
+     "hi": 501
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 503,
+     "hi": 503
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 507,
+     "hi": 508
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 521,
+     "hi": 521
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 547,
+     "hi": 547
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 551,
+     "hi": 552
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 556,
+     "hi": 557
+    },
+    {
+     "file": "src/H5Fsuper_cache.c",
+     "lo": 564,
+     "hi": 565
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 96,
+     "hi": 96
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 120,
+     "hi": 120
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 132,
+     "hi": 133
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 134,
+     "hi": 135
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 137,
+     "hi": 138
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 146,
+     "hi": 147
+    },
+    {
+     "file": "src/H5Gent.c",
+     "lo": 151,
+     "hi": 152
+    },
+    {
+     "file": "src/H5Gprivate.h",
+     "lo": 251,
+     "hi": 251
+    }
+   ],
+   "crash": {
+    "function": "H5F_addr_decode_len",
+    "file": "src/H5Fint.c",
+    "line": 2859
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/H5Fint.c:2868-2915",
+    "src/H5Fsuper_cache.c:411-589",
+    "src/H5Gent.c:119-165",
+    "src/H5Gent.c:79-102"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 9.4
+   },
+   "library": {
+    "functions": 9925,
+    "kloc": 722.7,
+    "functions_flagged": 7540,
+    "functions_flagged_own": 3690,
+    "wide_hits": 26428,
+    "precise_hits_in_bug_files": 15
+   },
+   "seconds": 799
+  },
+  {
+   "id": 42534286,
+   "project": "hdf5",
+   "crash_type": "Heap-buffer-overflow READ {*}",
+   "fix": "c0192e236122f483c71723d66dddee2cdc80ed5a",
+   "vulnerable": "ed082ac981a23eea56d7e15f1bc1fd2d6f9dd5bd",
+   "fix_files": [
+    "src/H5Ocache.c"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/H5Ocache.c",
+     "lo": 783,
+     "hi": 784
+    }
+   ],
+   "crash": {
+    "function": "H5MM_memcpy",
+    "file": "src/H5MM.c",
+    "line": 311
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/H5MM.c:241-260",
+    "src/H5Ocache.c:761-788"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 17.3
+   },
+   "library": {
+    "functions": 10572,
+    "kloc": 789.3,
+    "functions_flagged": 8067,
+    "functions_flagged_own": 3922,
+    "wide_hits": 30637,
+    "precise_hits_in_bug_files": 6
+   },
+   "seconds": 853
+  },
+  {
+   "id": 42516007,
+   "project": "hunspell",
+   "crash_type": "Stack-buffer-overflow READ 1",
+   "fix": "e7c38b0f85d65a6ad6af47753228f4b0df335c8e",
+   "vulnerable": "7d1c7d46c7a7fcd9987fc2691712b0696ab6646c",
+   "fix_files": [
+    "src/hunspell/affixmgr.cxx"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/hunspell/affixmgr.cxx",
+     "lo": 2125,
+     "hi": 2125
+    }
+   ],
+   "crash": {
+    "function": "compound_check",
+    "file": "src/hunspell/affixmgr.cxx",
+    "line": 2118
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/hunspell/affixmgr.cxx:1581-2188"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.4
+   },
+   "library": {
+    "functions": 495,
+    "kloc": 21.8,
+    "functions_flagged": 337,
+    "functions_flagged_own": 241,
+    "wide_hits": 1740,
+    "precise_hits_in_bug_files": 23
+   },
+   "seconds": 61
+  },
+  {
+   "id": 42517144,
+   "project": "hunspell",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "f384b7565bdb6b25a071ee5314a7e851e628ef00",
+   "vulnerable": "c6f50ec4112232ad64ca6b33e7cd09a12c1c8e67",
+   "fix_files": [
+    "src/hunspell/affixmgr.cxx"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/hunspell/affixmgr.cxx",
+     "lo": 2121,
+     "hi": 2121
+    }
+   ],
+   "crash": {
+    "function": "suffix_check",
+    "file": "src/hunspell/affixmgr.cxx",
+    "line": 2786
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/hunspell/affixmgr.cxx:1569-2175",
+    "src/hunspell/affixmgr.cxx:2713-2832"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.4
+   },
+   "library": {
+    "functions": 494,
+    "kloc": 21.8,
+    "functions_flagged": 333,
+    "functions_flagged_own": 221,
+    "wide_hits": 1607,
+    "precise_hits_in_bug_files": 24
+   },
+   "seconds": 49
+  },
+  {
+   "id": 42491511,
+   "project": "igraph",
+   "crash_type": "Heap-use-after-free READ 8",
+   "fix": "883bd139af3775d7f90f144c9038a6cb9a28f309",
+   "vulnerable": "7cd0a0b5ce70bacce2ace8c9f7f3316cbf27484c",
+   "fix_files": [
+    "src/io/gml.c"
+   ],
+   "fix_lines": 9,
+   "regions": [
+    {
+     "file": "src/io/gml.c",
+     "lo": 71,
+     "hi": 71
+    },
+    {
+     "file": "src/io/gml.c",
+     "lo": 88,
+     "hi": 88
+    },
+    {
+     "file": "src/io/gml.c",
+     "lo": 440,
+     "hi": 440
+    },
+    {
+     "file": "src/io/gml.c",
+     "lo": 482,
+     "hi": 482
+    }
+   ],
+   "crash": {
+    "function": "igraph_read_graph_gml",
+    "file": "src/io/gml.c",
+    "line": 462
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/io/gml.c:181-509",
+    "src/io/gml.c:71-89"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 7.1
+   },
+   "library": {
+    "functions": 5149,
+    "kloc": 350.8,
+    "functions_flagged": 3994,
+    "functions_flagged_own": 3012,
+    "wide_hits": 42580,
+    "precise_hits_in_bug_files": 9
+   },
+   "seconds": 435
+  },
+  {
+   "id": 42491546,
+   "project": "igraph",
+   "crash_type": "Heap-use-after-free READ 8",
+   "fix": "47eec2c3a87e0c129766046ad15b074eb60a1213",
+   "vulnerable": "4ea42140de9bfee13e00845f8e3a8078c1aced29",
+   "fix_files": [
+    "src/io/gml.c"
+   ],
+   "fix_lines": 1,
+   "regions": [
+    {
+     "file": "src/io/gml.c",
+     "lo": 225,
+     "hi": 225
+    }
+   ],
+   "crash": {
+    "function": "igraph_vector_ptr_size",
+    "file": "src/core/vector_ptr.c",
+    "line": 264
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/core/vector_ptr.c:261-265",
+    "src/io/gml.c:182-510"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 9.2
+   },
+   "library": {
+    "functions": 5149,
+    "kloc": 350.9,
+    "functions_flagged": 3994,
+    "functions_flagged_own": 3012,
+    "wide_hits": 42575,
+    "precise_hits_in_bug_files": 15
+   },
+   "seconds": 29
+  },
+  {
+   "id": 42493808,
+   "project": "irssi",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "a8144cd98fdb08c1d942195f65fbc604f7bd3055",
+   "vulnerable": "b47257048c6373aedf1506519b07acc1d9b0e942",
+   "fix_files": [
+    "src/irc/core/irc.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/irc/core/irc.c",
+     "lo": 435,
+     "hi": 436
+    }
+   ],
+   "crash": {
+    "function": "irc_parse_message_tags",
+    "file": "src/irc/core/irc.c",
+    "line": 437
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/irc/core/irc.c:427-444"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 3256,
+    "kloc": 86.1,
+    "functions_flagged": 2260,
+    "functions_flagged_own": 1461,
+    "wide_hits": 4021,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 87
+  },
+  {
+   "id": 42527533,
+   "project": "irssi",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "e32e9d63c67ab95ef0576154680a6c52334b97af",
+   "vulnerable": "02712942e033c467da1c473c34fb4d631e0a0d23",
+   "fix_files": [
+    "src/fe-common/core/themes.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/fe-common/core/themes.c",
+     "lo": 488,
+     "hi": 488
+    }
+   ],
+   "crash": {
+    "function": "theme_format_expand_abstract",
+    "file": "src/fe-common/core/themes.c",
+    "line": 475
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/fe-common/core/themes.c:410-508"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.0
+   },
+   "library": {
+    "functions": 3086,
+    "kloc": 80.4,
+    "functions_flagged": 2253,
+    "functions_flagged_own": 1411,
+    "wide_hits": 4019,
+    "precise_hits_in_bug_files": 8
+   },
+   "seconds": 85
+  },
+  {
+   "id": 42496870,
+   "project": "json",
+   "crash_type": "Heap-buffer-overflow READ 5",
+   "fix": "871cebaf84d4f896bc730a92937f8d02e09b0023",
+   "vulnerable": "8381cd6020c57db59cf359ba4384424b93e51018",
+   "fix_files": [
+    "src/json.hpp"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "src/json.hpp",
+     "lo": 6873,
+     "hi": 6874
+    }
+   ],
+   "crash": {
+    "function": "from_cbor_internal",
+    "file": "src/json.hpp",
+    "line": 7290
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/json.hpp:6861-6874",
+    "src/json.hpp:7146-7612"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 45,
+    "kloc": 12.3,
+    "functions_flagged": 0,
+    "functions_flagged_own": 0,
+    "wide_hits": 0,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 19
+  },
+  {
+   "id": 42497092,
+   "project": "json",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "f0edab2363ae7dd50ee04bfacdb56f47ed6e7fb7",
+   "vulnerable": "383a29a924af973e4cf9d5d2054a60f7d718f0d3",
+   "fix_files": [
+    "src/json.hpp"
+   ],
+   "fix_lines": 37,
+   "regions": [
+    {
+     "file": "src/json.hpp",
+     "lo": 6882,
+     "hi": 6902
+    },
+    {
+     "file": "src/json.hpp",
+     "lo": 6918,
+     "hi": 6919
+    },
+    {
+     "file": "src/json.hpp",
+     "lo": 7155,
+     "hi": 7156
+    },
+    {
+     "file": "src/json.hpp",
+     "lo": 7677,
+     "hi": 7681
+    },
+    {
+     "file": "src/json.hpp",
+     "lo": 7739,
+     "hi": 7743
+    }
+   ],
+   "crash": {
+    "function": "from_msgpack_internal",
+    "file": "src/json.hpp",
+    "line": 6916
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/json.hpp:6895-6901",
+    "src/json.hpp:6917-7138",
+    "src/json.hpp:7154-7623",
+    "src/json.hpp:7675-7684",
+    "src/json.hpp:7737-7746"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 45,
+    "kloc": 12.3,
+    "functions_flagged": 0,
+    "functions_flagged_own": 0,
+    "wide_hits": 0,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 16
+  },
+  {
+   "id": 42518489,
+   "project": "krb5",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "c5507dff5f5b2936937442b43f6c021b4f8a493d",
+   "vulnerable": "f368c75dd867965cd621d011a6770e940af4047d",
+   "fix_files": [
+    "src/include/k5-unicode.h",
+    "src/lib/krb5/krb/chpw.c",
+    "src/lib/krb5/unicode/ucstr.c"
+   ],
+   "fix_lines": 39,
+   "regions": [
+    {
+     "file": "src/include/k5-unicode.h",
+     "lo": 129,
+     "hi": 130
+    },
+    {
+     "file": "src/lib/krb5/krb/chpw.c",
+     "lo": 480,
+     "hi": 480
+    },
+    {
+     "file": "src/lib/krb5/krb/chpw.c",
+     "lo": 496,
+     "hi": 500
+    },
+    {
+     "file": "src/lib/krb5/unicode/ucstr.c",
+     "lo": 20,
+     "hi": 21
+    },
+    {
+     "file": "src/lib/krb5/unicode/ucstr.c",
+     "lo": 102,
+     "hi": 103
+    }
+   ],
+   "crash": {
+    "function": "krb5int_utf8_normalize",
+    "file": "src/lib/krb5/unicode/ucstr.c",
+    "line": 238
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lib/krb5/krb/chpw.c:475-511",
+    "src/lib/krb5/unicode/ucstr.c:106-306"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.3
+   },
+   "library": {
+    "functions": 7322,
+    "kloc": 399.9,
+    "functions_flagged": 5496,
+    "functions_flagged_own": 3762,
+    "wide_hits": 17237,
+    "precise_hits_in_bug_files": 9
+   },
+   "seconds": 303
+  },
+  {
+   "id": 42516345,
+   "project": "krb5",
+   "crash_type": "Use-after-poison READ 4",
+   "fix": "ea92d2f0fcceb54a70910fa32e9a0d7a5afc3583",
+   "vulnerable": "fa62bd33a0c0889c083999c0289ffa81a5d51e7b",
+   "fix_files": [
+    "src/lib/krb5/krb/pac.c",
+    "src/lib/krb5/krb/t_pac.c"
+   ],
+   "fix_lines": 27,
+   "regions": [
+    {
+     "file": "src/lib/krb5/krb/pac.c",
+     "lo": 30,
+     "hi": 31
+    },
+    {
+     "file": "src/lib/krb5/krb/pac.c",
+     "lo": 319,
+     "hi": 320
+    },
+    {
+     "file": "src/lib/krb5/krb/pac.c",
+     "lo": 352,
+     "hi": 353
+    },
+    {
+     "file": "src/lib/krb5/krb/t_pac.c",
+     "lo": 433,
+     "hi": 434
+    },
+    {
+     "file": "src/lib/krb5/krb/t_pac.c",
+     "lo": 830,
+     "hi": 831
+    }
+   ],
+   "crash": {
+    "function": "krb5_pac_parse",
+    "file": "src/lib/krb5/krb/pac.c",
+    "line": 343
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lib/krb5/krb/pac.c:294-371",
+    "src/lib/krb5/krb/t_pac.c:778-1102"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.0
+   },
+   "library": {
+    "functions": 7322,
+    "kloc": 399.8,
+    "functions_flagged": 5496,
+    "functions_flagged_own": 3762,
+    "wide_hits": 17238,
+    "precise_hits_in_bug_files": 84
+   },
+   "seconds": 26
+  },
+  {
+   "id": 42520983,
+   "project": "libavc",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "8739b7da75f305ab391eb36c613210c23243fe5b",
+   "vulnerable": "764ab7b702142762bfa9c4e93427c6e494ff7940",
+   "fix_files": [
+    "decoder/svc/isvcd_defs.h",
+    "decoder/svc/isvcd_parse_headers.c"
+   ],
+   "fix_lines": 19,
+   "regions": [
+    {
+     "file": "decoder/svc/isvcd_defs.h",
+     "lo": 51,
+     "hi": 52
+    },
+    {
+     "file": "decoder/svc/isvcd_parse_headers.c",
+     "lo": 567,
+     "hi": 569
+    },
+    {
+     "file": "decoder/svc/isvcd_parse_headers.c",
+     "lo": 1543,
+     "hi": 1545
+    }
+   ],
+   "crash": {
+    "function": "isvcd_interlyr_motion_scale",
+    "file": "decoder/svc/isvcd_mode_mv_resamp.c",
+    "line": 1355
+   },
+   "crash_function_found": true,
+   "targets": [
+    "decoder/svc/isvcd_mode_mv_resamp.c:1282-1391",
+    "decoder/svc/isvcd_parse_headers.c:1096-1665",
+    "decoder/svc/isvcd_parse_headers.c:126-883"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.8
+   },
+   "library": {
+    "functions": 2004,
+    "kloc": 341.4,
+    "functions_flagged": 1679,
+    "functions_flagged_own": 1576,
+    "wide_hits": 23964,
+    "precise_hits_in_bug_files": 25
+   },
+   "seconds": 278
+  },
+  {
+   "id": 42521509,
+   "project": "libavc",
+   "crash_type": "Heap-buffer-overflow WRITE 4",
+   "fix": "c0ca3b2979a6f0999c57549986f99334666e8ef7",
+   "vulnerable": "4900778d4c9f01faa81f6f26327b57ae3b60e3c2",
+   "fix_files": [
+    "decoder/svc/isvcd_nal_parse.c"
+   ],
+   "fix_lines": 19,
+   "regions": [
+    {
+     "file": "decoder/svc/isvcd_nal_parse.c",
+     "lo": 385,
+     "hi": 386
+    },
+    {
+     "file": "decoder/svc/isvcd_nal_parse.c",
+     "lo": 2043,
+     "hi": 2044
+    },
+    {
+     "file": "decoder/svc/isvcd_nal_parse.c",
+     "lo": 2048,
+     "hi": 2049
+    },
+    {
+     "file": "decoder/svc/isvcd_nal_parse.c",
+     "lo": 2331,
+     "hi": 2332
+    },
+    {
+     "file": "decoder/svc/isvcd_nal_parse.c",
+     "lo": 2336,
+     "hi": 2337
+    }
+   ],
+   "crash": {
+    "function": "isvcd_nal_byte_swap_emulation",
+    "file": "decoder/svc/isvcd_nal.c",
+    "line": 617
+   },
+   "crash_function_found": true,
+   "targets": [
+    "decoder/svc/isvcd_nal.c:561-622",
+    "decoder/svc/isvcd_nal_parse.c:1739-2121",
+    "decoder/svc/isvcd_nal_parse.c:2154-2419",
+    "decoder/svc/isvcd_nal_parse.c:360-409"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 24.1
+   },
+   "library": {
+    "functions": 2013,
+    "kloc": 343.1,
+    "functions_flagged": 1686,
+    "functions_flagged_own": 1583,
+    "wide_hits": 24054,
+    "precise_hits_in_bug_files": 3
+   },
+   "seconds": 76
+  },
+  {
+   "id": 42487660,
+   "project": "libavif",
+   "crash_type": "Heap-use-after-free READ 4",
+   "fix": "468ded88b6ee5ccc4ce1ed029a7d310e5764947c",
+   "vulnerable": "b86bc3c8296f7d37cacf674ee031851cd513b8e4",
+   "fix_files": [
+    "include/avif/internal.h",
+    "src/read.c"
+   ],
+   "fix_lines": 19,
+   "regions": [
+    {
+     "file": "include/avif/internal.h",
+     "lo": 23,
+     "hi": 24
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2033,
+     "hi": 2034
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2051,
+     "hi": 2051
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2069,
+     "hi": 2070
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2071,
+     "hi": 2071
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2073,
+     "hi": 2073
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2075,
+     "hi": 2075
+    }
+   ],
+   "crash": {
+    "function": "avifFileTypeIsCompatible",
+    "file": "src/read.c",
+    "line": 2091
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/read.c:2029-2081",
+    "src/read.c:2085-2098"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 39.9
+   },
+   "library": {
+    "functions": 296,
+    "kloc": 12.7,
+    "functions_flagged": 238,
+    "functions_flagged_own": 168,
+    "wide_hits": 1097,
+    "precise_hits_in_bug_files": 26
+   },
+   "seconds": 23
+  },
+  {
+   "id": 42487652,
+   "project": "libavif",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "b86bc3c8296f7d37cacf674ee031851cd513b8e4",
+   "vulnerable": "3c7cfd95cac1680c5722805ef30f71a247473567",
+   "fix_files": [
+    "include/avif/internal.h",
+    "src/read.c",
+    "src/stream.c"
+   ],
+   "fix_lines": 13,
+   "regions": [
+    {
+     "file": "include/avif/internal.h",
+     "lo": 222,
+     "hi": 223
+    },
+    {
+     "file": "src/read.c",
+     "lo": 2051,
+     "hi": 2051
+    },
+    {
+     "file": "src/stream.c",
+     "lo": 146,
+     "hi": 146
+    },
+    {
+     "file": "src/stream.c",
+     "lo": 170,
+     "hi": 171
+    }
+   ],
+   "crash": {
+    "function": "avifROStreamRead",
+    "file": "src/stream.c",
+    "line": 61
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/read.c:2029-2081",
+    "src/stream.c:146-169",
+    "src/stream.c:171-182",
+    "src/stream.c:55-64"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 21.4
+   },
+   "library": {
+    "functions": 295,
+    "kloc": 12.7,
+    "functions_flagged": 237,
+    "functions_flagged_own": 168,
+    "wide_hits": 1097,
+    "precise_hits_in_bug_files": 37
+   },
+   "seconds": 13
+  },
+  {
+   "id": 42503663,
+   "project": "libbpf",
+   "crash_type": "UNKNOWN READ",
+   "fix": "36cc591ac8a7b390249c4f3afcef21b8c9c6c76f",
+   "vulnerable": "3acf7c289abf636bc74e078002c843b110cb69f5",
+   "fix_files": [
+    "src/libbpf.c"
+   ],
+   "fix_lines": 24,
+   "regions": [
+    {
+     "file": "src/libbpf.c",
+     "lo": 3308,
+     "hi": 3309
+    },
+    {
+     "file": "src/libbpf.c",
+     "lo": 4028,
+     "hi": 4028
+    },
+    {
+     "file": "src/libbpf.c",
+     "lo": 4038,
+     "hi": 4039
+    },
+    {
+     "file": "src/libbpf.c",
+     "lo": 4058,
+     "hi": 4058
+    },
+    {
+     "file": "src/libbpf.c",
+     "lo": 4060,
+     "hi": 4061
+    },
+    {
+     "file": "src/libbpf.c",
+     "lo": 4067,
+     "hi": 4067
+    }
+   ],
+   "crash": {
+    "function": "bpf_object__section_to_libbpf_map_type",
+    "file": "src/libbpf.c",
+    "line": 3811
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/libbpf.c:3181-3342",
+    "src/libbpf.c:3822-3838",
+    "src/libbpf.c:4024-4110"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.4
+   },
+   "library": {
+    "functions": 1026,
+    "kloc": 135.4,
+    "functions_flagged": 753,
+    "functions_flagged_own": 453,
+    "wide_hits": 1693,
+    "precise_hits_in_bug_files": 96
+   },
+   "seconds": 125
+  },
+  {
+   "id": 388905046,
+   "project": "libbpf",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "71208c3362199ed08fa9fd98859ec0e821d26160",
+   "vulnerable": "9544a909f13f955f0559dd457352baf18116dda5",
+   "fix_files": [
+    "src/btf.c"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/btf.c",
+     "lo": 3018,
+     "hi": 3019
+    },
+    {
+     "file": "src/btf.c",
+     "lo": 3036,
+     "hi": 3037
+    }
+   ],
+   "crash": {
+    "function": "btf_ext_parse_info",
+    "file": "src/btf.c",
+    "line": 3016
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/btf.c:3001-3042"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "calls",
+    "rank_pct": 54.2
+   },
+   "library": {
+    "functions": 1217,
+    "kloc": 62.9,
+    "functions_flagged": 927,
+    "functions_flagged_own": 577,
+    "wide_hits": 2180,
+    "precise_hits_in_bug_files": 20
+   },
+   "seconds": 81
+  },
+  {
+   "id": 42488172,
+   "project": "libcoap",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "238fded2d8d6288429810573c2b27dc73898134f",
+   "vulnerable": "7e6b2a9ec32e2d260a80899a2577e62c2454a55f",
+   "fix_files": [
+    "src/pdu.c"
+   ],
+   "fix_lines": 9,
+   "regions": [
+    {
+     "file": "src/pdu.c",
+     "lo": 704,
+     "hi": 704
+    },
+    {
+     "file": "src/pdu.c",
+     "lo": 707,
+     "hi": 709
+    }
+   ],
+   "crash": {
+    "function": "coap_opt_length",
+    "file": "src/option.c",
+    "line": 266
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/option.c:208-243",
+    "src/pdu.c:678-768"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 14.8
+   },
+   "library": {
+    "functions": 689,
+    "kloc": 31.8,
+    "functions_flagged": 398,
+    "functions_flagged_own": 264,
+    "wide_hits": 1287,
+    "precise_hits_in_bug_files": 9
+   },
+   "seconds": 40
+  },
+  {
+   "id": 42512598,
+   "project": "libcoap",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "c0572443dcfe544071ef2f66f0059ebd7b01311b",
+   "vulnerable": "6a633e3d493db3b23bc7f0eed37326d4a07fc2fb",
+   "fix_files": [
+    "src/uri.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/uri.c",
+     "lo": 64,
+     "hi": 64
+    }
+   ],
+   "crash": {
+    "function": "coap_split_uri_sub",
+    "file": "src/uri.c",
+    "line": 72
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/uri.c:54-238"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 13.3
+   },
+   "library": {
+    "functions": 722,
+    "kloc": 39.7,
+    "functions_flagged": 386,
+    "functions_flagged_own": 206,
+    "wide_hits": 1148,
+    "precise_hits_in_bug_files": 6
+   },
+   "seconds": 46
+  },
+  {
+   "id": 42471111,
+   "project": "libgit2",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "cb23c3efd22d34db279ceb39cc312473761db5ed",
+   "vulnerable": "11d33df802b00acf5ef1e437c12751b3e6a5d39b",
+   "fix_files": [
+    "src/commit.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/commit.c",
+     "lo": 423,
+     "hi": 423
+    }
+   ],
+   "crash": {
+    "function": "prefixcmp",
+    "file": "src/util.c",
+    "line": 262
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/commit.c:386-478",
+    "src/util.c:279-300"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 4.0
+   },
+   "library": {
+    "functions": 4009,
+    "kloc": 162.9,
+    "functions_flagged": 3274,
+    "functions_flagged_own": 2018,
+    "wide_hits": 8092,
+    "precise_hits_in_bug_files": 10
+   },
+   "seconds": 203
+  },
+  {
+   "id": 42471100,
+   "project": "libgit2",
+   "crash_type": "Heap-buffer-overflow READ 2",
+   "fix": "ee11d47e3d907b66eeff99e0ba1e1c71e05164b7",
+   "vulnerable": "4c738e563d0a52c7f06902a6bdac37fe3472b86b",
+   "fix_files": [
+    "src/tag.c"
+   ],
+   "fix_lines": 10,
+   "regions": [
+    {
+     "file": "src/tag.c",
+     "lo": 73,
+     "hi": 74
+    },
+    {
+     "file": "src/tag.c",
+     "lo": 76,
+     "hi": 76
+    },
+    {
+     "file": "src/tag.c",
+     "lo": 141,
+     "hi": 142
+    }
+   ],
+   "crash": {
+    "function": "tag_parse",
+    "file": "src/tag.c",
+    "line": 142
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/tag.c:68-160"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.8
+   },
+   "library": {
+    "functions": 3992,
+    "kloc": 161.6,
+    "functions_flagged": 3260,
+    "functions_flagged_own": 2001,
+    "wide_hits": 8053,
+    "precise_hits_in_bug_files": 6
+   },
+   "seconds": 59
+  },
+  {
+   "id": 42483421,
+   "project": "libheif",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "b7484d2ed35338970b727e55adb509f2200b0e40",
+   "vulnerable": "0e329635b8539d4a22f45dfc4d537c7717932eb8",
+   "fix_files": [
+    "libheif/heif_colorconversion.cc"
+   ],
+   "fix_lines": 17,
+   "regions": [
+    {
+     "file": "libheif/heif_colorconversion.cc",
+     "lo": 2926,
+     "hi": 2927
+    }
+   ],
+   "crash": {
+    "function": "convert_colorspace",
+    "file": "libheif/heif_colorconversion.cc",
+    "line": 164
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libheif/heif_colorconversion.cc:164-216",
+    "libheif/heif_colorconversion.cc:2921-2983"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.8
+   },
+   "library": {
+    "functions": 906,
+    "kloc": 23.9,
+    "functions_flagged": 380,
+    "functions_flagged_own": 205,
+    "wide_hits": 1015,
+    "precise_hits_in_bug_files": 8
+   },
+   "seconds": 41
+  },
+  {
+   "id": 42536646,
+   "project": "libheif",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "7c9729ea8d0f319ab423f8e4e6de121fd78596d0",
+   "vulnerable": "32dc21beaf051b403a041252f58210bb93c1b00c",
+   "fix_files": [
+    "libheif/context.cc"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "libheif/context.cc",
+     "lo": 472,
+     "hi": 473
+    }
+   ],
+   "crash": {
+    "function": "decode_image_planar",
+    "file": "libheif/context.cc",
+    "line": 1410
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libheif/context.cc:1349-1729",
+    "libheif/context.cc:459-474"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 11.5
+   },
+   "library": {
+    "functions": 1842,
+    "kloc": 52.0,
+    "functions_flagged": 766,
+    "functions_flagged_own": 424,
+    "wide_hits": 2089,
+    "precise_hits_in_bug_files": 9
+   },
+   "seconds": 59
+  },
+  {
+   "id": 42489817,
+   "project": "libjpeg-turbo",
+   "crash_type": "Heap-buffer-overflow READ 2",
+   "fix": "ccaba5d7894ecfb5a8f11e48d3f86e1f14d5a469",
+   "vulnerable": "cfc7e6e58e9a187aba9312c28f8245052919212b",
+   "fix_files": [
+    "jdcoefct.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "jdcoefct.c",
+     "lo": 590,
+     "hi": 590
+    }
+   ],
+   "crash": {
+    "function": "decompress_smooth_data",
+    "file": "jdcoefct.c",
+    "line": 595
+   },
+   "crash_function_found": true,
+   "targets": [
+    "jdcoefct.c:425-801",
+    "jdcoefct.c:426-801"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.4
+   },
+   "library": {
+    "functions": 2383,
+    "kloc": 83.5,
+    "functions_flagged": 1275,
+    "functions_flagged_own": 582,
+    "wide_hits": 7281,
+    "precise_hits_in_bug_files": 3
+   },
+   "seconds": 140
+  },
+  {
+   "id": 42495916,
+   "project": "libjpeg-turbo",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "4de8f6922a9be7d0a51a429e367283fd40031b26",
+   "vulnerable": "785ec30eb4754e11c961de41047785c6ead07f7b",
+   "fix_files": [
+    "jdhuff.h"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "jdhuff.h",
+     "lo": 240,
+     "hi": 240
+    }
+   ],
+   "crash": {
+    "function": "decode_mcu_fast",
+    "file": "jdhuff.c",
+    "line": 693
+   },
+   "crash_function_found": true,
+   "targets": [
+    "jdhuff.c:655-738"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.7
+   },
+   "library": {
+    "functions": 2386,
+    "kloc": 83.7,
+    "functions_flagged": 1281,
+    "functions_flagged_own": 585,
+    "wide_hits": 7299,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 47
+  },
+  {
+   "id": 42518233,
+   "project": "libjpeg-turbo.dev",
+   "crash_type": "Segv on unknown address",
+   "fix": "aa3dd0bd29d8e29a6b08ba9c35fa3a07cebbfa0c",
+   "vulnerable": "4f7a8afbb7839a82dd357b5128cfb04dac6a5986",
+   "fix_files": [
+    "turbojpeg.c"
+   ],
+   "fix_lines": 10,
+   "regions": [
+    {
+     "file": "turbojpeg.c",
+     "lo": 1395,
+     "hi": 1396
+    },
+    {
+     "file": "turbojpeg.c",
+     "lo": 1431,
+     "hi": 1432
+    },
+    {
+     "file": "turbojpeg.c",
+     "lo": 1498,
+     "hi": 1500
+    }
+   ],
+   "crash": {
+    "function": "jpeg_start_decompress",
+    "file": "jdapistd.c",
+    "line": 69
+   },
+   "crash_function_found": true,
+   "targets": [
+    "jdapistd.c:45-90",
+    "turbojpeg.c:1395-1433",
+    "turbojpeg.c:1445-1591"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.7
+   },
+   "library": {
+    "functions": 2396,
+    "kloc": 84.1,
+    "functions_flagged": 1299,
+    "functions_flagged_own": 602,
+    "wide_hits": 7479,
+    "precise_hits_in_bug_files": 130
+   },
+   "seconds": 86
+  },
+  {
+   "id": 42520431,
+   "project": "libjpeg-turbo.dev",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "9b3a8f36418e8b6a601aa683506bb875f6dd9f12",
+   "vulnerable": "d0015876ec798dbf03df23d98b72161704c7c57a",
+   "fix_files": [
+    "jcapimin.c"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "jcapimin.c",
+     "lo": 8,
+     "hi": 8
+    },
+    {
+     "file": "jcapimin.c",
+     "lo": 243,
+     "hi": 243
+    },
+    {
+     "file": "jcapimin.c",
+     "lo": 247,
+     "hi": 247
+    }
+   ],
+   "crash": {
+    "function": "jpeg_write_marker",
+    "file": "jcapimin.c",
+    "line": 244
+   },
+   "crash_function_found": true,
+   "targets": [
+    "jcapimin.c:229-248",
+    "jcapimin.c:230-248"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 2420,
+    "kloc": 91.1,
+    "functions_flagged": 1408,
+    "functions_flagged_own": 672,
+    "wide_hits": 7866,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 111
+  },
+  {
+   "id": 42499415,
+   "project": "libjxl",
+   "crash_type": "Heap-buffer-overflow WRITE 4",
+   "fix": "48e2a0ba25a7bac9ec510c48e322e5199de0583e",
+   "vulnerable": "08973db8ae2e4f19bf57afa85089e705c50a572b",
+   "fix_files": [
+    "lib/jxl/dec_modular.cc"
+   ],
+   "fix_lines": 8,
+   "regions": [
+    {
+     "file": "lib/jxl/dec_modular.cc",
+     "lo": 53,
+     "hi": 54
+    },
+    {
+     "file": "lib/jxl/dec_modular.cc",
+     "lo": 75,
+     "hi": 76
+    },
+    {
+     "file": "lib/jxl/dec_modular.cc",
+     "lo": 310,
+     "hi": 310
+    },
+    {
+     "file": "lib/jxl/dec_modular.cc",
+     "lo": 461,
+     "hi": 462
+    }
+   ],
+   "crash": {
+    "function": "SingleFromSingle",
+    "file": "lib/jxl/dec_modular.cc",
+    "line": 85
+   },
+   "crash_function_found": true,
+   "targets": [
+    "lib/jxl/dec_modular.cc:249-333",
+    "lib/jxl/dec_modular.cc:454-577",
+    "lib/jxl/dec_modular.cc:50-69",
+    "lib/jxl/dec_modular.cc:72-87"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.2
+   },
+   "library": {
+    "functions": 3391,
+    "kloc": 105.9,
+    "functions_flagged": 2105,
+    "functions_flagged_own": 1298,
+    "wide_hits": 9075,
+    "precise_hits_in_bug_files": 5
+   },
+   "seconds": 170
+  },
+  {
+   "id": 42512228,
+   "project": "libjxl",
+   "crash_type": "Heap-buffer-overflow READ {*}",
+   "fix": "746d1f5e8498f501238894899c301e70ea57e2aa",
+   "vulnerable": "ca8e276aacf63a752346a6a44ba673b0af993237",
+   "fix_files": [
+    "lib/jxl/decode.cc"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "lib/jxl/decode.cc",
+     "lo": 532,
+     "hi": 533
+    },
+    {
+     "file": "lib/jxl/decode.cc",
+     "lo": 1687,
+     "hi": 1687
+    }
+   ],
+   "crash": {
+    "function": "Process",
+    "file": "lib/jxl/box_content_decoder.cc",
+    "line": 86
+   },
+   "crash_function_found": true,
+   "targets": [
+    "lib/jxl/box_content_decoder.cc:33-99",
+    "lib/jxl/decode.cc:1673-1701",
+    "lib/jxl/decode.cc:532-536"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 5.1
+   },
+   "library": {
+    "functions": 3831,
+    "kloc": 132.2,
+    "functions_flagged": 2328,
+    "functions_flagged_own": 1459,
+    "wide_hits": 10230,
+    "precise_hits_in_bug_files": 12
+   },
+   "seconds": 201
+  },
+  {
+   "id": 408523839,
+   "project": "liblouis",
+   "crash_type": "UNKNOWN WRITE",
+   "fix": "e61de0bfb8148b295d27da0d47333281d19ef606",
+   "vulnerable": "1961bffae271c17c29eafa4cb7850e7527b8e987",
+   "fix_files": [
+    "liblouis/lou_backTranslateString.c",
+    "liblouis/lou_translateString.c"
+   ],
+   "fix_lines": 16,
+   "regions": [
+    {
+     "file": "liblouis/lou_backTranslateString.c",
+     "lo": 76,
+     "hi": 77
+    },
+    {
+     "file": "liblouis/lou_backTranslateString.c",
+     "lo": 89,
+     "hi": 90
+    },
+    {
+     "file": "liblouis/lou_translateString.c",
+     "lo": 82,
+     "hi": 83
+    },
+    {
+     "file": "liblouis/lou_translateString.c",
+     "lo": 95,
+     "hi": 96
+    }
+   ],
+   "crash": {
+    "function": "_lou_handlePassVariableAction",
+    "file": "liblouis/commonTranslationFunctions.c",
+    "line": 86
+   },
+   "crash_function_found": true,
+   "targets": [
+    "liblouis/commonTranslationFunctions.c:72-95",
+    "liblouis/lou_backTranslateString.c:74-86",
+    "liblouis/lou_backTranslateString.c:88-98",
+    "liblouis/lou_translateString.c:80-92",
+    "liblouis/lou_translateString.c:94-104"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 10.1
+   },
+   "library": {
+    "functions": 573,
+    "kloc": 60.1,
+    "functions_flagged": 354,
+    "functions_flagged_own": 277,
+    "wide_hits": 2665,
+    "precise_hits_in_bug_files": 63
+   },
+   "seconds": 57
+  },
+  {
+   "id": 42526328,
+   "project": "liblouis",
+   "crash_type": "Negative-size-param",
+   "fix": "878ef436e6cf401e5134899d70d5a8c0815cd549",
+   "vulnerable": "2e9409c1b4f32e2c752bf22686c8e752ffd868e2",
+   "fix_files": [
+    "liblouis/lou_translateString.c"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "liblouis/lou_translateString.c",
+     "lo": 481,
+     "hi": 482
+    }
+   ],
+   "crash": {
+    "function": "swapReplace",
+    "file": "liblouis/lou_translateString.c",
+    "line": 481
+   },
+   "crash_function_found": true,
+   "targets": [
+    "liblouis/lou_translateString.c:435-487"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 7.0
+   },
+   "library": {
+    "functions": 554,
+    "kloc": 55.7,
+    "functions_flagged": 341,
+    "functions_flagged_own": 268,
+    "wide_hits": 2619,
+    "precise_hits_in_bug_files": 47
+   },
+   "seconds": 55
+  },
+  {
+   "id": 42513154,
+   "project": "libpcap",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "e2c0fd75e48a3cbf1bf48b8afe28fff50d8e0877",
+   "vulnerable": "7610a61d72c818067a1e51f150b81ee7d489a577",
+   "fix_files": [
+    "pcap-common.c",
+    "pcap-usb-linux-common.c"
+   ],
+   "fix_lines": 15,
+   "regions": [
+    {
+     "file": "pcap-common.c",
+     "lo": 1839,
+     "hi": 1839
+    },
+    {
+     "file": "pcap-common.c",
+     "lo": 1851,
+     "hi": 1852
+    },
+    {
+     "file": "pcap-usb-linux-common.c",
+     "lo": 43,
+     "hi": 44
+    },
+    {
+     "file": "pcap-usb-linux-common.c",
+     "lo": 45,
+     "hi": 50
+    }
+   ],
+   "crash": {
+    "function": "fixup_pcap_pkthdr",
+    "file": "pcap-common.c",
+    "line": 1853
+   },
+   "crash_function_found": true,
+   "targets": [
+    "pcap-common.c:1833-1863",
+    "pcap-usb-linux-common.c:38-130"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.6
+   },
+   "library": {
+    "functions": 1252,
+    "kloc": 83.8,
+    "functions_flagged": 797,
+    "functions_flagged_own": 452,
+    "wide_hits": 2317,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 75
+  },
+  {
+   "id": 42475737,
+   "project": "libpcap",
+   "crash_type": "Heap-double-free",
+   "fix": "3a48c915ea98a60fbac94522202279f56c740487",
+   "vulnerable": "2e9d0ae34ece4d6f67f4d66a4c3628febf0b13dd",
+   "fix_files": [
+    "optimize.c"
+   ],
+   "fix_lines": 33,
+   "regions": [
+    {
+     "file": "optimize.c",
+     "lo": 2054,
+     "hi": 2059
+    },
+    {
+     "file": "optimize.c",
+     "lo": 2185,
+     "hi": 2186
+    },
+    {
+     "file": "optimize.c",
+     "lo": 2195,
+     "hi": 2196
+    },
+    {
+     "file": "optimize.c",
+     "lo": 2208,
+     "hi": 2209
+    },
+    {
+     "file": "optimize.c",
+     "lo": 2251,
+     "hi": 2252
+    },
+    {
+     "file": "optimize.c",
+     "lo": 2260,
+     "hi": 2261
+    }
+   ],
+   "crash": {
+    "function": "opt_cleanup",
+    "file": "optimize.c",
+    "line": 2034
+   },
+   "crash_function_found": true,
+   "targets": [
+    "optimize.c:2051-2060",
+    "optimize.c:2163-2263"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.3
+   },
+   "library": {
+    "functions": 1175,
+    "kloc": 80.6,
+    "functions_flagged": 866,
+    "functions_flagged_own": 417,
+    "wide_hits": 2198,
+    "precise_hits_in_bug_files": 43
+   },
+   "seconds": 85
+  },
+  {
+   "id": 42502671,
+   "project": "libpsl",
+   "crash_type": "Stack-buffer-overflow WRITE 1",
+   "fix": "1023a9ad12d146608ba6326a3114f9b23b812124",
+   "vulnerable": "044b5ed5d46e422a04ab9df7d03098bfdc46d977",
+   "fix_files": [
+    "src/psl.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/psl.c",
+     "lo": 593,
+     "hi": 593
+    }
+   ],
+   "crash": {
+    "function": "domain_to_punycode",
+    "file": "src/psl.c",
+    "line": 604
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/psl.c:565-605"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.6
+   },
+   "library": {
+    "functions": 61,
+    "kloc": 2.6,
+    "functions_flagged": 38,
+    "functions_flagged_own": 30,
+    "wide_hits": 204,
+    "precise_hits_in_bug_files": 13
+   },
+   "seconds": 20
+  },
+  {
+   "id": 42502451,
+   "project": "libpsl",
+   "crash_type": "Stack-buffer-overflow WRITE 1",
+   "fix": "1023a9ad12d146608ba6326a3114f9b23b812124",
+   "vulnerable": "044b5ed5d46e422a04ab9df7d03098bfdc46d977",
+   "fix_files": [
+    "src/psl.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/psl.c",
+     "lo": 593,
+     "hi": 593
+    }
+   ],
+   "crash": {
+    "function": "domain_to_punycode",
+    "file": "src/psl.c",
+    "line": 604
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/psl.c:565-605"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.6
+   },
+   "library": {
+    "functions": 61,
+    "kloc": 2.6,
+    "functions_flagged": 38,
+    "functions_flagged_own": 30,
+    "wide_hits": 204,
+    "precise_hits_in_bug_files": 13
+   },
+   "seconds": 1
+  },
+  {
+   "id": 42534139,
+   "project": "libraw",
+   "crash_type": "UNKNOWN READ",
+   "fix": "73d6daa053e1537e29b28eca9b34ab802fdd06e1",
+   "vulnerable": "0d011198b2f75ffa3ede51566616b9b2797104e9",
+   "fix_files": [
+    "src/utils/utils_libraw.cpp"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/utils/utils_libraw.cpp",
+     "lo": 693,
+     "hi": 693
+    }
+   ],
+   "crash": {
+    "function": "libraw_sget4_static",
+    "file": "src/utils/read_utils.cpp",
+    "line": 63
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/utils/read_utils.cpp:58-64",
+    "src/utils/utils_libraw.cpp:691-695"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 46.0
+   },
+   "library": {
+    "functions": 994,
+    "kloc": 65.6,
+    "functions_flagged": 775,
+    "functions_flagged_own": 621,
+    "wide_hits": 10825,
+    "precise_hits_in_bug_files": 10
+   },
+   "seconds": 127
+  },
+  {
+   "id": 42492565,
+   "project": "libraw",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "363e91ea656f4ce46584b4b0af6285030f236b7e",
+   "vulnerable": "371161a06d7f98f231a001dad4af2dfb463e270a",
+   "fix_files": [
+    "src/metadata/identify.cpp",
+    "src/metadata/tiff.cpp"
+   ],
+   "fix_lines": 13,
+   "regions": [
+    {
+     "file": "src/metadata/identify.cpp",
+     "lo": 961,
+     "hi": 962
+    },
+    {
+     "file": "src/metadata/identify.cpp",
+     "lo": 969,
+     "hi": 969
+    },
+    {
+     "file": "src/metadata/identify.cpp",
+     "lo": 1111,
+     "hi": 1111
+    },
+    {
+     "file": "src/metadata/tiff.cpp",
+     "lo": 1796,
+     "hi": 1796
+    }
+   ],
+   "crash": {
+    "function": "read",
+    "file": "src/libraw_datastream.cpp",
+    "line": 371
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/libraw_datastream.cpp:365-375",
+    "src/metadata/identify.cpp:179-1144",
+    "src/metadata/tiff.cpp:1517-2064"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.2
+   },
+   "library": {
+    "functions": 890,
+    "kloc": 60.4,
+    "functions_flagged": 708,
+    "functions_flagged_own": 571,
+    "wide_hits": 10058,
+    "precise_hits_in_bug_files": 176
+   },
+   "seconds": 104
+  },
+  {
+   "id": 42497736,
+   "project": "librawspeed",
+   "crash_type": "Use-after-poison READ 2",
+   "fix": "8cfad9ca0d21986594ef2a9c05ff286a3377f001",
+   "vulnerable": "d505b6d818773a70c26ba6d31e6ae88beb0ecb0c",
+   "fix_files": [
+    "src/librawspeed/decompressors/SamsungV2Decompressor.cpp"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "src/librawspeed/decompressors/SamsungV2Decompressor.cpp",
+     "lo": 192,
+     "hi": 193
+    },
+    {
+     "file": "src/librawspeed/decompressors/SamsungV2Decompressor.cpp",
+     "lo": 235,
+     "hi": 236
+    }
+   ],
+   "crash": {
+    "function": "decompress",
+    "file": "src/librawspeed/decompressors/SamsungV2Decompressor.cpp",
+    "line": 151
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/librawspeed/decompressors/SamsungV2Decompressor.cpp:115-159",
+    "src/librawspeed/decompressors/SamsungV2Decompressor.cpp:161-317"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.5
+   },
+   "library": {
+    "functions": 807,
+    "kloc": 24.4,
+    "functions_flagged": 462,
+    "functions_flagged_own": 269,
+    "wide_hits": 1434,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 26
+  },
+  {
+   "id": 42508197,
+   "project": "librawspeed",
+   "crash_type": "UNKNOWN WRITE",
+   "fix": "ddd9d4bd666d492ed7f0a58da87caac58c69bbb7",
+   "vulnerable": "2fb7cad53e051d21db0390b370bff07fcba9f2be",
+   "fix_files": [
+    "src/librawspeed/common/RawImage.cpp"
+   ],
+   "fix_lines": 10,
+   "regions": [
+    {
+     "file": "src/librawspeed/common/RawImage.cpp",
+     "lo": 229,
+     "hi": 229
+    },
+    {
+     "file": "src/librawspeed/common/RawImage.cpp",
+     "lo": 231,
+     "hi": 231
+    },
+    {
+     "file": "src/librawspeed/common/RawImage.cpp",
+     "lo": 233,
+     "hi": 233
+    },
+    {
+     "file": "src/librawspeed/common/RawImage.cpp",
+     "lo": 245,
+     "hi": 245
+    },
+    {
+     "file": "src/librawspeed/common/RawImage.cpp",
+     "lo": 247,
+     "hi": 247
+    },
+    {
+     "file": "src/librawspeed/common/RawImage.cpp",
+     "lo": 249,
+     "hi": 249
+    }
+   ],
+   "crash": {
+    "function": "decodeN<4>",
+    "file": "src/librawspeed/decompressors/LJpegDecompressor.cpp",
+    "line": 130
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/librawspeed/common/RawImage.cpp:228-242",
+    "src/librawspeed/common/RawImage.cpp:244-255",
+    "src/librawspeed/decompressors/LJpegDecompressor.cpp:92-140"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.0
+   },
+   "library": {
+    "functions": 810,
+    "kloc": 24.5,
+    "functions_flagged": 470,
+    "functions_flagged_own": 273,
+    "wide_hits": 1428,
+    "precise_hits_in_bug_files": 6
+   },
+   "seconds": 18
+  },
+  {
+   "id": 42533949,
+   "project": "libspdm",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "907da5f6ee1eee9efb91aa1722d8284bc5a92272",
+   "vulnerable": "d6a800391260d31f973a12e59fa9575066aee6d3",
+   "fix_files": [
+    "library/spdm_responder_lib/libspdm_rsp_chunk_send_ack.c"
+   ],
+   "fix_lines": 7,
+   "regions": [
+    {
+     "file": "library/spdm_responder_lib/libspdm_rsp_chunk_send_ack.c",
+     "lo": 94,
+     "hi": 95
+    }
+   ],
+   "crash": {
+    "function": "libspdm_copy_mem",
+    "file": "os_stub/memlib/copy_mem.c",
+    "line": 30
+   },
+   "crash_function_found": true,
+   "targets": [
+    "library/spdm_responder_lib/libspdm_rsp_chunk_send_ack.c:11-229",
+    "os_stub/memlib/copy_mem.c:10-32"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.2
+   },
+   "library": {
+    "functions": 2719,
+    "kloc": 232.0,
+    "functions_flagged": 1814,
+    "functions_flagged_own": 858,
+    "wide_hits": 5539,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 108
+  },
+  {
+   "id": 42535447,
+   "project": "libultrahdr",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "1fee19e70ba0697eb707512e5f30e9eefdaee284",
+   "vulnerable": "d23e88533c2f3ae2d65917cd04c3f4fbcfd89ec7",
+   "fix_files": [
+    "lib/src/gainmapmetadata.cpp"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "lib/src/gainmapmetadata.cpp",
+     "lo": 44,
+     "hi": 44
+    }
+   ],
+   "crash": {
+    "function": "streamReadU32",
+    "file": "lib/src/gainmapmetadata.cpp",
+    "line": 47
+   },
+   "crash_function_found": true,
+   "targets": [
+    "lib/src/gainmapmetadata.cpp:43-50"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 11.9
+   },
+   "library": {
+    "functions": 864,
+    "kloc": 21.8,
+    "functions_flagged": 337,
+    "functions_flagged_own": 222,
+    "wide_hits": 1375,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 26
+  },
+  {
+   "id": 42538160,
+   "project": "libultrahdr",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "89480db742e0af741901b1f8740566b89b798c3b",
+   "vulnerable": "f1f8f56e4639c643dccd803b79db08574c016449",
+   "fix_files": [
+    "lib/src/jpegdecoderhelper.cpp"
+   ],
+   "fix_lines": 40,
+   "regions": [
+    {
+     "file": "lib/src/jpegdecoderhelper.cpp",
+     "lo": 151,
+     "hi": 164
+    },
+    {
+     "file": "lib/src/jpegdecoderhelper.cpp",
+     "lo": 421,
+     "hi": 422
+    }
+   ],
+   "crash": {
+    "function": "getYuv4abPixel",
+    "file": "lib/src/gainmapmath.cpp",
+    "line": 740
+   },
+   "crash_function_found": true,
+   "targets": [
+    "lib/src/gainmapmath.cpp:755-776",
+    "lib/src/jpegdecoderhelper.cpp:147-167",
+    "lib/src/jpegdecoderhelper.cpp:415-438"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 5.4
+   },
+   "library": {
+    "functions": 1007,
+    "kloc": 26.5,
+    "functions_flagged": 414,
+    "functions_flagged_own": 246,
+    "wide_hits": 1515,
+    "precise_hits_in_bug_files": 11
+   },
+   "seconds": 26
+  },
+  {
+   "id": 42527550,
+   "project": "libxaac",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "cd91e1af765486ea6aad21e258b3a23294fa291d",
+   "vulnerable": "5285d1921d3a1d002eb07b2269f18ebeb64d4136",
+   "fix_files": [
+    "encoder/ixheaace_api.c"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "encoder/ixheaace_api.c",
+     "lo": 3082,
+     "hi": 3082
+    }
+   ],
+   "crash": {
+    "function": "iusace_process",
+    "file": "encoder/ixheaace_api.c",
+    "line": 3252
+   },
+   "crash_function_found": true,
+   "targets": [
+    "encoder/ixheaace_api.c:2738-3286"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.4
+   },
+   "library": {
+    "functions": 2370,
+    "kloc": 266.9,
+    "functions_flagged": 2206,
+    "functions_flagged_own": 2085,
+    "wide_hits": 48440,
+    "precise_hits_in_bug_files": 27
+   },
+   "seconds": 341
+  },
+  {
+   "id": 42533603,
+   "project": "libxaac",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "ed65992ff095e40193a311e8192a17b2e9e6cd6b",
+   "vulnerable": "0cdc7e8df4e67d145fa4e3e30ccb5849733b309f",
+   "fix_files": [
+    "encoder/drc_src/impd_drc_common_enc.h"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "encoder/drc_src/impd_drc_common_enc.h",
+     "lo": 28,
+     "hi": 28
+    },
+    {
+     "file": "encoder/drc_src/impd_drc_common_enc.h",
+     "lo": 32,
+     "hi": 32
+    }
+   ],
+   "crash": {
+    "function": "ixheaace_write_audio_preroll_data",
+    "file": "encoder/ixheaace_api.c",
+    "line": 1818
+   },
+   "crash_function_found": true,
+   "targets": [
+    "encoder/ixheaace_api.c:1722-1851"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 15.8
+   },
+   "library": {
+    "functions": 2395,
+    "kloc": 269.2,
+    "functions_flagged": 2226,
+    "functions_flagged_own": 2103,
+    "wide_hits": 48816,
+    "precise_hits_in_bug_files": 32
+   },
+   "seconds": 108
+  },
+  {
+   "id": 42492314,
+   "project": "libxslt",
+   "crash_type": "Heap-double-free",
+   "fix": "3e8bbcdec8d2318ca8ab27a2a4a509a5d9bb2d51",
+   "vulnerable": "7238299d64847e44bfe92170af1c7c57e26d469a",
+   "fix_files": [
+    "libxslt/xslt.c"
+   ],
+   "fix_lines": 8,
+   "regions": [
+    {
+     "file": "libxslt/xslt.c",
+     "lo": 3659,
+     "hi": 3664
+    }
+   ],
+   "crash": {
+    "function": "xsltFreeStylesheet",
+    "file": "libxslt/xslt.c",
+    "line": 1075
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libxslt/xslt.c:3497-3695",
+    "libxslt/xslt.c:978-1089"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 4.9
+   },
+   "library": {
+    "functions": 751,
+    "kloc": 51.7,
+    "functions_flagged": 523,
+    "functions_flagged_own": 326,
+    "wide_hits": 1757,
+    "precise_hits_in_bug_files": 14
+   },
+   "seconds": 45
+  },
+  {
+   "id": 42479300,
+   "project": "libxslt",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "b6f38bfdd2241cded26d20036d99669df305ce7e",
+   "vulnerable": "6d4a773a4bd06cbfe3c0ca68728d0099777e8df6",
+   "fix_files": [
+    "libxslt/numbers.c",
+    "libxslt/pattern.c",
+    "libxslt/transform.c"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "libxslt/numbers.c",
+     "lo": 988,
+     "hi": 988
+    },
+    {
+     "file": "libxslt/pattern.c",
+     "lo": 2385,
+     "hi": 2386
+    },
+    {
+     "file": "libxslt/transform.c",
+     "lo": 5031,
+     "hi": 5031
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "libxslt/numbers.c:951-1362",
+    "libxslt/pattern.c:2355-2591",
+    "libxslt/transform.c:4856-5221"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.6
+   },
+   "library": {
+    "functions": 756,
+    "kloc": 51.6,
+    "functions_flagged": 524,
+    "functions_flagged_own": 325,
+    "wide_hits": 1743,
+    "precise_hits_in_bug_files": 20
+   },
+   "seconds": 53
+  },
+  {
+   "id": 376331508,
+   "project": "llama.cpp",
+   "crash_type": "Segv on unknown address",
+   "fix": "85679d37f34f66783cc04664a06c405b28e8e035",
+   "vulnerable": "1e9f94994ef908d964cf81069f03d9d3668beb7d",
+   "fix_files": [
+    "src/llama.cpp"
+   ],
+   "fix_lines": 16,
+   "regions": [
+    {
+     "file": "src/llama.cpp",
+     "lo": 17165,
+     "hi": 17176
+    }
+   ],
+   "crash": {
+    "function": "llama_output_reserve",
+    "file": "src/llama.cpp",
+    "line": 17148
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/llama.cpp:17124-17202"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 17.2
+   },
+   "library": {
+    "functions": 4419,
+    "kloc": 181.2,
+    "functions_flagged": 2772,
+    "functions_flagged_own": 1540,
+    "wide_hits": 12943,
+    "precise_hits_in_bug_files": 50
+   },
+   "seconds": 468
+  },
+  {
+   "id": 42538148,
+   "project": "llama.cpp",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "dea5e86051aadcdf42f7db7a8855a78d8f5ff3d6",
+   "vulnerable": "1329c0a75e6a7defc5c380eaf80d8e0f66d7da78",
+   "fix_files": [
+    "ggml/src/ggml.c",
+    "src/llama.cpp"
+   ],
+   "fix_lines": 52,
+   "regions": [
+    {
+     "file": "ggml/src/ggml.c",
+     "lo": 22105,
+     "hi": 22107
+    },
+    {
+     "file": "ggml/src/ggml.c",
+     "lo": 22110,
+     "hi": 22110
+    },
+    {
+     "file": "ggml/src/ggml.c",
+     "lo": 22114,
+     "hi": 22116
+    },
+    {
+     "file": "ggml/src/ggml.c",
+     "lo": 22417,
+     "hi": 22418
+    },
+    {
+     "file": "src/llama.cpp",
+     "lo": 4276,
+     "hi": 4276
+    },
+    {
+     "file": "src/llama.cpp",
+     "lo": 4277,
+     "hi": 4278
+    },
+    {
+     "file": "src/llama.cpp",
+     "lo": 7429,
+     "hi": 7429
+    }
+   ],
+   "crash": {
+    "function": "gguf_get_tensor_offset",
+    "file": "ggml/src/ggml.c",
+    "line": 22436
+   },
+   "crash_function_found": true,
+   "targets": [
+    "ggml/src/ggml.c:22105-22117",
+    "ggml/src/ggml.c:22200-22574",
+    "ggml/src/ggml.c:22780-22782",
+    "src/llama.cpp:7291-9193"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.3
+   },
+   "library": {
+    "functions": 4438,
+    "kloc": 181.1,
+    "functions_flagged": 2791,
+    "functions_flagged_own": 1541,
+    "wide_hits": 12967,
+    "precise_hits_in_bug_files": 267
+   },
+   "seconds": 350
+  },
+  {
+   "id": 42474994,
+   "project": "lwan",
+   "crash_type": "Global-buffer-overflow READ {*}",
+   "fix": "6be9574a2d80457a5bfc16b23b67905d8f68e827",
+   "vulnerable": "341dca6b2594eea98df73dcdb96bb80b6ccc9fb9",
+   "fix_files": [
+    "src/lib/lwan-request.c"
+   ],
+   "fix_lines": 18,
+   "regions": [
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 141,
+     "hi": 141
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 151,
+     "hi": 152
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 171,
+     "hi": 174
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 353,
+     "hi": 354
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 372,
+     "hi": 372
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 374,
+     "hi": 374
+    }
+   ],
+   "crash": {
+    "function": "strsep_char",
+    "file": "src/lib/lwan-request.c",
+    "line": 148
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lib/lwan-request.c:141-154",
+    "src/lib/lwan-request.c:157-220",
+    "src/lib/lwan-request.c:346-401"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 783,
+    "kloc": 24.9,
+    "functions_flagged": 517,
+    "functions_flagged_own": 327,
+    "wide_hits": 1221,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 24
+  },
+  {
+   "id": 42474758,
+   "project": "lwan",
+   "crash_type": "Global-buffer-overflow READ 4",
+   "fix": "4d04b78ace04a72632a8ccc74b00d8205c75d89a",
+   "vulnerable": "cb600e2118b73d5aff465b222894437430db2d20",
+   "fix_files": [
+    "src/lib/lwan-request.c"
+   ],
+   "fix_lines": 10,
+   "regions": [
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 613,
+     "hi": 614
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 615,
+     "hi": 616
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 618,
+     "hi": 618
+    },
+    {
+     "file": "src/lib/lwan-request.c",
+     "lo": 621,
+     "hi": 621
+    }
+   ],
+   "crash": {
+    "function": "string_as_int32",
+    "file": "src/lib/lwan.h",
+    "line": 139
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lib/lwan-request.c:614-625",
+    "src/lib/lwan.h:24-141"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "calls",
+    "rank_pct": 43.2
+   },
+   "library": {
+    "functions": 782,
+    "kloc": 24.9,
+    "functions_flagged": 518,
+    "functions_flagged_own": 327,
+    "wide_hits": 1221,
+    "precise_hits_in_bug_files": 3
+   },
+   "seconds": 10
+  },
+  {
+   "id": 42494953,
+   "project": "lxc",
+   "crash_type": "Heap-use-after-free READ 8",
+   "fix": "b5fdc164e310c8c4d6d92200bd4433e8fac61c69",
+   "vulnerable": "65c5bc571b94345decd779092056c11981f6fea4",
+   "fix_files": [
+    "src/lxc/confile.c"
+   ],
+   "fix_lines": 17,
+   "regions": [
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2041,
+     "hi": 2042
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2045,
+     "hi": 2046
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2047,
+     "hi": 2049
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2056,
+     "hi": 2057
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2063,
+     "hi": 2063
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2065,
+     "hi": 2066
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2067,
+     "hi": 2067
+    },
+    {
+     "file": "src/lxc/confile.c",
+     "lo": 2070,
+     "hi": 2070
+    }
+   ],
+   "crash": {
+    "function": "lxc_clear_sysctls",
+    "file": "src/lxc/conf.c",
+    "line": 3779
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lxc/conf.c:3763-3790",
+    "src/lxc/confile.c:2028-2084"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.3
+   },
+   "library": {
+    "functions": 2160,
+    "kloc": 85.1,
+    "functions_flagged": 1636,
+    "functions_flagged_own": 935,
+    "wide_hits": 3893,
+    "precise_hits_in_bug_files": 301
+   },
+   "seconds": 102
+  },
+  {
+   "id": 42495006,
+   "project": "lxc",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "b8e539f44814cd1760c7dc21c027d7e6c51b72fd",
+   "vulnerable": "c04f422182501585e2e92a238dc416ce21ff077d",
+   "fix_files": [
+    "src/lxc/confile_utils.c"
+   ],
+   "fix_lines": 41,
+   "regions": [
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1027,
+     "hi": 1027
+    },
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1029,
+     "hi": 1030
+    },
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1032,
+     "hi": 1033
+    },
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1037,
+     "hi": 1037
+    },
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1046,
+     "hi": 1048
+    },
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1050,
+     "hi": 1053
+    },
+    {
+     "file": "src/lxc/confile_utils.c",
+     "lo": 1055,
+     "hi": 1055
+    }
+   ],
+   "crash": {
+    "function": "rt_sig_num",
+    "file": "src/lxc/confile_utils.c",
+    "line": 1033
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lxc/confile_utils.c:1025-1042",
+    "src/lxc/confile_utils.c:1044-1061"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 24.4
+   },
+   "library": {
+    "functions": 2161,
+    "kloc": 85.1,
+    "functions_flagged": 1637,
+    "functions_flagged_own": 935,
+    "wide_hits": 3893,
+    "precise_hits_in_bug_files": 43
+   },
+   "seconds": 25
+  },
+  {
+   "id": 42475409,
+   "project": "mbedtls",
+   "crash_type": "Heap-use-after-free READ 8",
+   "fix": "eb1bb3d2d0e69b01c7b1ada98a0a944eaccdcfed",
+   "vulnerable": "75d9a333cef532d55c01773add6dee1106da95c3",
+   "fix_files": [
+    "include/mbedtls/ssl.h"
+   ],
+   "fix_lines": 9,
+   "regions": [
+    {
+     "file": "include/mbedtls/ssl.h",
+     "lo": 2758,
+     "hi": 2758
+    },
+    {
+     "file": "include/mbedtls/ssl.h",
+     "lo": 2761,
+     "hi": 2761
+    },
+    {
+     "file": "include/mbedtls/ssl.h",
+     "lo": 2764,
+     "hi": 2765
+    }
+   ],
+   "crash": {
+    "function": "mbedtls_x509_crt_free",
+    "file": "library/x509_crt.c",
+    "line": 3280
+   },
+   "crash_function_found": true,
+   "targets": [
+    "library/x509_crt.c:2766-2845"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 11.6
+   },
+   "library": {
+    "functions": 1814,
+    "kloc": 137.9,
+    "functions_flagged": 1165,
+    "functions_flagged_own": 677,
+    "wide_hits": 3665,
+    "precise_hits_in_bug_files": 4
+   },
+   "seconds": 42
+  },
+  {
+   "id": 42511577,
+   "project": "moddable",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "05f55eeb219ff43373eebe904819c55276b3e393",
+   "vulnerable": "d0a8137a34a33b5fee83191454aedb9ee27f6b36",
+   "fix_files": [
+    "xs/sources/xsLexical.c"
+   ],
+   "fix_lines": 10,
+   "regions": [
+    {
+     "file": "xs/sources/xsLexical.c",
+     "lo": 1287,
+     "hi": 1289
+    },
+    {
+     "file": "xs/sources/xsLexical.c",
+     "lo": 1296,
+     "hi": 1298
+    }
+   ],
+   "crash": {
+    "function": "fxGetNextTokenAux",
+    "file": "xs/sources/xsLexical.c",
+    "line": 1299
+   },
+   "crash_function_found": true,
+   "targets": [
+    "xs/sources/xsLexical.c:861-1410"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.4
+   },
+   "library": {
+    "functions": 7768,
+    "kloc": 300.6,
+    "functions_flagged": 5397,
+    "functions_flagged_own": 3450,
+    "wide_hits": 18388,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 181
+  },
+  {
+   "id": 42535296,
+   "project": "moddable",
+   "crash_type": "UNKNOWN READ",
+   "fix": "96031f61b333e48bbcb86d308a4f9c27eedab498",
+   "vulnerable": "7568dc73c16c3d951fd825f0514db9029798bf28",
+   "fix_files": [
+    "xs/sources/xsRun.c"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "xs/sources/xsRun.c",
+     "lo": 4152,
+     "hi": 4152
+    },
+    {
+     "file": "xs/sources/xsRun.c",
+     "lo": 4165,
+     "hi": 4165
+    }
+   ],
+   "crash": {
+    "function": "fxRunID",
+    "file": "xs/sources/xsRun.c",
+    "line": 4152
+   },
+   "crash_function_found": true,
+   "targets": [
+    "xs/sources/xsRun.c:401-4307"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.0
+   },
+   "library": {
+    "functions": 9275,
+    "kloc": 389.0,
+    "functions_flagged": 6440,
+    "functions_flagged_own": 4144,
+    "wide_hits": 22613,
+    "precise_hits_in_bug_files": 9
+   },
+   "seconds": 162
+  },
+  {
+   "id": 42520955,
+   "project": "mosquitto",
+   "crash_type": "Heap-use-after-free READ 2",
+   "fix": "1df253e4e3c48079a196788dbacc9c1364c92162",
+   "vulnerable": "be688e883b734fc421e1dc1931a349b4d9afea49",
+   "fix_files": [
+    "src/conf.c"
+   ],
+   "fix_lines": 12,
+   "regions": [
+    {
+     "file": "src/conf.c",
+     "lo": 147,
+     "hi": 147
+    },
+    {
+     "file": "src/conf.c",
+     "lo": 160,
+     "hi": 161
+    }
+   ],
+   "crash": {
+    "function": "config__read_file_core",
+    "file": "src/conf.c",
+    "line": 2098
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/conf.c:144-163",
+    "src/conf.c:899-2465"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.2
+   },
+   "library": {
+    "functions": 1307,
+    "kloc": 66.1,
+    "functions_flagged": 972,
+    "functions_flagged_own": 519,
+    "wide_hits": 3114,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 48
+  },
+  {
+   "id": 42534812,
+   "project": "mosquitto",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "2754b6667d64069bcc3f5e24d43acc83a3a9f27a",
+   "vulnerable": "ac26467705ddbe06ced0fa07aba91d12fa62d414",
+   "fix_files": [
+    "src/conf.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/conf.c",
+     "lo": 160,
+     "hi": 160
+    }
+   ],
+   "crash": {
+    "function": "config__add_listener",
+    "file": "src/conf.c",
+    "line": 161
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/conf.c:142-173"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 14.7
+   },
+   "library": {
+    "functions": 1346,
+    "kloc": 68.2,
+    "functions_flagged": 1002,
+    "functions_flagged_own": 536,
+    "wide_hits": 3259,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 53
+  },
+  {
+   "id": 42483880,
+   "project": "mruby",
+   "crash_type": "Stack-buffer-overflow WRITE 1",
+   "fix": "15c63688e3f1a3c6067e6af70e3e9bf999d91389",
+   "vulnerable": "69c62415c07698d45e68ad2384a5204baf9e5f4d",
+   "fix_files": [
+    "mrbgems/mruby-sprintf/src/sprintf.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "mrbgems/mruby-sprintf/src/sprintf.c",
+     "lo": 1044,
+     "hi": 1044
+    }
+   ],
+   "crash": {
+    "function": "fmt_setup",
+    "file": "mrbgems/mruby-sprintf/src/sprintf.c",
+    "line": 1153
+   },
+   "crash_function_found": true,
+   "targets": [
+    "mrbgems/mruby-sprintf/src/sprintf.c:1135-1161",
+    "mrbgems/mruby-sprintf/src/sprintf.c:563-1132"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.1
+   },
+   "library": {
+    "functions": 1922,
+    "kloc": 65.5,
+    "functions_flagged": 1507,
+    "functions_flagged_own": 576,
+    "wide_hits": 3108,
+    "precise_hits_in_bug_files": 28
+   },
+   "seconds": 37
+  },
+  {
+   "id": 42497373,
+   "project": "mruby",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "063b49ab8e6a10212c7f88e5b114b90fe59296f7",
+   "vulnerable": "afbc199ed3b0820f156681548bf91290a2be48f4",
+   "fix_files": [
+    "src/fmt_fp.c"
+   ],
+   "fix_lines": 8,
+   "regions": [
+    {
+     "file": "src/fmt_fp.c",
+     "lo": 183,
+     "hi": 186
+    },
+    {
+     "file": "src/fmt_fp.c",
+     "lo": 189,
+     "hi": 190
+    }
+   ],
+   "crash": {
+    "function": "mrb_format_float",
+    "file": "src/fmt_fp.c",
+    "line": 200
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/fmt_fp.c:79-363"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.4
+   },
+   "library": {
+    "functions": 2113,
+    "kloc": 70.0,
+    "functions_flagged": 1652,
+    "functions_flagged_own": 626,
+    "wide_hits": 3170,
+    "precise_hits_in_bug_files": 3
+   },
+   "seconds": 38
+  },
+  {
+   "id": 42484795,
+   "project": "muparser",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "86de758d6ebe9b84ae2f65bea640211dd8900ec4",
+   "vulnerable": "111819c78b64ab59c9d76114370d8efc2c271a41",
+   "fix_files": [
+    "src/muParserTest.cpp",
+    "src/muParserTokenReader.cpp"
+   ],
+   "fix_lines": 13,
+   "regions": [
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 624,
+     "hi": 625
+    },
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 1172,
+     "hi": 1172
+    },
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 1199,
+     "hi": 1199
+    },
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 1210,
+     "hi": 1211
+    },
+    {
+     "file": "src/muParserTokenReader.cpp",
+     "lo": 590,
+     "hi": 590
+    }
+   ],
+   "crash": {
+    "function": "ParseCmdCodeBulk",
+    "file": "src/muParserBase.cpp",
+    "line": 1243
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/muParserBase.cpp:1081-1244",
+    "src/muParserTest.cpp:1172-1220",
+    "src/muParserTest.cpp:620-711",
+    "src/muParserTokenReader.cpp:570-606"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.0
+   },
+   "library": {
+    "functions": 482,
+    "kloc": 11.3,
+    "functions_flagged": 186,
+    "functions_flagged_own": 92,
+    "wide_hits": 1041,
+    "precise_hits_in_bug_files": 4
+   },
+   "seconds": 19
+  },
+  {
+   "id": 42485720,
+   "project": "muparser",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "650fbf88fae47c315ac4ba1c5519423664e4119e",
+   "vulnerable": "381017ac752f31c417fd6be3c61f248b7ec88436",
+   "fix_files": [
+    "samples/example1/example1.cpp",
+    "src/muParserBase.cpp",
+    "src/muParserTest.cpp"
+   ],
+   "fix_lines": 39,
+   "regions": [
+    {
+     "file": "samples/example1/example1.cpp",
+     "lo": 382,
+     "hi": 383
+    },
+    {
+     "file": "src/muParserBase.cpp",
+     "lo": 893,
+     "hi": 893
+    },
+    {
+     "file": "src/muParserBase.cpp",
+     "lo": 898,
+     "hi": 899
+    },
+    {
+     "file": "src/muParserBase.cpp",
+     "lo": 904,
+     "hi": 905
+    },
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 142,
+     "hi": 148
+    },
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 637,
+     "hi": 638
+    },
+    {
+     "file": "src/muParserTest.cpp",
+     "lo": 947,
+     "hi": 949
+    }
+   ],
+   "crash": {
+    "function": "ParseCmdCodeBulk",
+    "file": "src/muParserBase.cpp",
+    "line": 1104
+   },
+   "crash_function_found": true,
+   "targets": [
+    "samples/example1/example1.cpp:318-394",
+    "src/muParserBase.cpp:1076-1245",
+    "src/muParserBase.cpp:887-923",
+    "src/muParserTest.cpp:134-179",
+    "src/muParserTest.cpp:628-726",
+    "src/muParserTest.cpp:941-1064"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.0
+   },
+   "library": {
+    "functions": 482,
+    "kloc": 11.2,
+    "functions_flagged": 177,
+    "functions_flagged_own": 86,
+    "wide_hits": 1047,
+    "precise_hits_in_bug_files": 10
+   },
+   "seconds": 19
+  },
+  {
+   "id": 398053010,
+   "project": "net-snmp",
+   "crash_type": "Heap-buffer-overflow WRITE 4",
+   "fix": "0b49a5de9ad4c3875e42ea223ff61de7d3e26963",
+   "vulnerable": "a147b834d49e656f6216701b8769b4b6261e72d5",
+   "fix_files": [
+    "snmplib/snmpv3.c"
+   ],
+   "fix_lines": 13,
+   "regions": [
+    {
+     "file": "snmplib/snmpv3.c",
+     "lo": 885,
+     "hi": 886
+    },
+    {
+     "file": "snmplib/snmpv3.c",
+     "lo": 891,
+     "hi": 891
+    }
+   ],
+   "crash": {
+    "function": "init_snmpv3_post_premib_config",
+    "file": "snmplib/snmpv3.c",
+    "line": 1123
+   },
+   "crash_function_found": true,
+   "targets": [
+    "snmplib/snmpv3.c:1118-1126",
+    "snmplib/snmpv3.c:883-892"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 43.1
+   },
+   "library": {
+    "functions": 7242,
+    "kloc": 443.1,
+    "functions_flagged": 5467,
+    "functions_flagged_own": 3177,
+    "wide_hits": 16222,
+    "precise_hits_in_bug_files": 22
+   },
+   "seconds": 299
+  },
+  {
+   "id": 42499879,
+   "project": "net-snmp",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "4f4a37ee1825d8e723364af6ec84c109594cd29c",
+   "vulnerable": "d1d3541070e398f478ba1a8b68958e5fad2e8c00",
+   "fix_files": [
+    "snmplib/read_config.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "snmplib/read_config.c",
+     "lo": 832,
+     "hi": 832
+    }
+   ],
+   "crash": {
+    "function": "read_config",
+    "file": "snmplib/read_config.c",
+    "line": 823
+   },
+   "crash_function_found": true,
+   "targets": [
+    "snmplib/read_config.c:741-979"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.9
+   },
+   "library": {
+    "functions": 7176,
+    "kloc": 437.8,
+    "functions_flagged": 5433,
+    "functions_flagged_own": 3138,
+    "wide_hits": 16102,
+    "precise_hits_in_bug_files": 26
+   },
+   "seconds": 217
+  },
+  {
+   "id": 42526976,
+   "project": "ntpsec",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "caf0eb5df3c6ddbfc2941389bff0f9146835c021",
+   "vulnerable": "df2fbec601e3c710f83025b23479b23580dd806e",
+   "fix_files": [
+    "ntpd/nts_client.c"
+   ],
+   "fix_lines": 21,
+   "regions": [
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 628,
+     "hi": 629
+    },
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 637,
+     "hi": 638
+    },
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 639,
+     "hi": 640
+    },
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 642,
+     "hi": 643
+    },
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 644,
+     "hi": 646
+    },
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 651,
+     "hi": 651
+    },
+    {
+     "file": "ntpd/nts_client.c",
+     "lo": 655,
+     "hi": 656
+    }
+   ],
+   "crash": {
+    "function": "next_bytes",
+    "file": "ntpd/nts.c",
+    "line": 403
+   },
+   "crash_function_found": true,
+   "targets": [
+    "ntpd/nts.c:434-439",
+    "ntpd/nts_client.c:608-748"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.0
+   },
+   "library": {
+    "functions": 1351,
+    "kloc": 80.1,
+    "functions_flagged": 1053,
+    "functions_flagged_own": 684,
+    "wide_hits": 3107,
+    "precise_hits_in_bug_files": 5
+   },
+   "seconds": 66
+  },
+  {
+   "id": 42479160,
+   "project": "open62541",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "cc7d2558ff2f63859ee1301b5d07b8b110f6cd6e",
+   "vulnerable": "9e0a81f518fd46a5da8f0421b7a5ad856926002e",
+   "fix_files": [
+    "src/ua_types_encoding_json.c"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "src/ua_types_encoding_json.c",
+     "lo": 2261,
+     "hi": 2262
+    }
+   ],
+   "crash": {
+    "function": "Variant_decodeJson",
+    "file": "src/ua_types_encoding_json.c",
+    "line": 2632
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/ua_types_encoding_json.c:2245-2300",
+    "src/ua_types_encoding_json.c:2613-2721"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 5.7
+   },
+   "library": {
+    "functions": 1612,
+    "kloc": 60.3,
+    "functions_flagged": 1192,
+    "functions_flagged_own": 652,
+    "wide_hits": 2976,
+    "precise_hits_in_bug_files": 27
+   },
+   "seconds": 45
+  },
+  {
+   "id": 42506598,
+   "project": "open62541",
+   "crash_type": "Heap-double-free",
+   "fix": "9165b056a95f3ff5db23dbf9628acb1efee6f86b",
+   "vulnerable": "23131fe8aec1143aceb587386f8d01b656d2a905",
+   "fix_files": [
+    "src/ua_types_encoding_binary.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/ua_types_encoding_binary.c",
+     "lo": 946,
+     "hi": 946
+    }
+   ],
+   "crash": {
+    "function": "String_deleteMembers",
+    "file": "src/ua_types.c",
+    "line": 91
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/ua_types.c:89-92",
+    "src/ua_types_encoding_binary.c:938-963"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 27.2
+   },
+   "library": {
+    "functions": 823,
+    "kloc": 30.0,
+    "functions_flagged": 675,
+    "functions_flagged_own": 354,
+    "wide_hits": 1259,
+    "precise_hits_in_bug_files": 25
+   },
+   "seconds": 25
+  },
+  {
+   "id": 42479702,
+   "project": "openh264",
+   "crash_type": "Heap-use-after-free WRITE 1",
+   "fix": "8b942ee2d0b429b7ac083c4c16febbf3aa80cbf0",
+   "vulnerable": "1feb533b3d5e5656762934a8c1282b4c5b840d3f",
+   "fix_files": [
+    "codec/common/inc/cpu_core.h",
+    "codec/common/src/cpu.cpp"
+   ],
+   "fix_lines": 46,
+   "regions": [
+    {
+     "file": "codec/common/inc/cpu_core.h",
+     "lo": 88,
+     "hi": 89
+    },
+    {
+     "file": "codec/common/src/cpu.cpp",
+     "lo": 311,
+     "hi": 312
+    },
+    {
+     "file": "codec/common/src/cpu.cpp",
+     "lo": 313,
+     "hi": 317
+    },
+    {
+     "file": "codec/common/src/cpu.cpp",
+     "lo": 327,
+     "hi": 328
+    }
+   ],
+   "crash": {
+    "function": "SetOption",
+    "file": "codec/decoder/plus/src/welsDecoderExt.cpp",
+    "line": 505
+   },
+   "crash_function_found": true,
+   "targets": [
+    "codec/common/src/cpu.cpp:312-318",
+    "codec/decoder/plus/src/welsDecoderExt.cpp:496-516"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "calls",
+    "rank_pct": 46.6
+   },
+   "library": {
+    "functions": 2164,
+    "kloc": 96.8,
+    "functions_flagged": 1344,
+    "functions_flagged_own": 1004,
+    "wide_hits": 10856,
+    "precise_hits_in_bug_files": 13
+   },
+   "seconds": 93
+  },
+  {
+   "id": 42488005,
+   "project": "openh264",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "f1bb6d3acb057785b4d89e8228e23cc4fc9caa12",
+   "vulnerable": "83a0eae9bbbda5bfe802438109a025a3d7caee10",
+   "fix_files": [
+    "codec/decoder/plus/src/welsDecoderExt.cpp"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "codec/decoder/plus/src/welsDecoderExt.cpp",
+     "lo": 813,
+     "hi": 814
+    }
+   ],
+   "crash": {
+    "function": "WelsCheckAndRecoverForFutureDecoding",
+    "file": "codec/decoder/core/src/manage_dec_ref.cpp",
+    "line": 182
+   },
+   "crash_function_found": true,
+   "targets": [
+    "codec/decoder/core/src/manage_dec_ref.cpp:148-208",
+    "codec/decoder/plus/src/welsDecoderExt.cpp:722-901"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 5.3
+   },
+   "library": {
+    "functions": 2228,
+    "kloc": 101.8,
+    "functions_flagged": 1405,
+    "functions_flagged_own": 1050,
+    "wide_hits": 11092,
+    "precise_hits_in_bug_files": 32
+   },
+   "seconds": 78
+  },
+  {
+   "id": 42479959,
+   "project": "openjpeg",
+   "crash_type": "UNKNOWN READ",
+   "fix": "ac3737372a00b8778b528094dd5bd58a74f67d42",
+   "vulnerable": "9701b3305db58d35e4446946309f88937e2f5342",
+   "fix_files": [
+    "src/lib/openjp2/pi.c",
+    "src/lib/openjp2/pi.h"
+   ],
+   "fix_lines": 28,
+   "regions": [
+    {
+     "file": "src/lib/openjp2/pi.c",
+     "lo": 379,
+     "hi": 382
+    },
+    {
+     "file": "src/lib/openjp2/pi.c",
+     "lo": 511,
+     "hi": 514
+    },
+    {
+     "file": "src/lib/openjp2/pi.c",
+     "lo": 642,
+     "hi": 645
+    },
+    {
+     "file": "src/lib/openjp2/pi.h",
+     "lo": 105,
+     "hi": 105
+    },
+    {
+     "file": "src/lib/openjp2/pi.h",
+     "lo": 107,
+     "hi": 107
+    }
+   ],
+   "crash": {
+    "function": "opj_t2_decode_packets",
+    "file": "src/lib/openjp2/t2.c",
+    "line": 471
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lib/openjp2/pi.c:338-468",
+    "src/lib/openjp2/pi.c:470-599",
+    "src/lib/openjp2/pi.c:601-727",
+    "src/lib/openjp2/t2.c:373-569"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.7
+   },
+   "library": {
+    "functions": 5108,
+    "kloc": 290.2,
+    "functions_flagged": 3776,
+    "functions_flagged_own": 2768,
+    "wide_hits": 24348,
+    "precise_hits_in_bug_files": 20
+   },
+   "seconds": 232
+  },
+  {
+   "id": 42511641,
+   "project": "openjpeg",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "0535bfc3b7d5cd6fc73a7d4a6749a338fc5d7703",
+   "vulnerable": "52927287402a9f7353de8854c88f931051211e2f",
+   "fix_files": [
+    "src/lib/openjp2/ht_dec.c"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/lib/openjp2/ht_dec.c",
+     "lo": 1066,
+     "hi": 1066
+    },
+    {
+     "file": "src/lib/openjp2/ht_dec.c",
+     "lo": 1074,
+     "hi": 1074
+    }
+   ],
+   "crash": {
+    "function": "opj_t1_allocate_buffers",
+    "file": "src/lib/openjp2/t1.c",
+    "line": 1504
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/lib/openjp2/ht_dec.c:1023-1081",
+    "src/lib/openjp2/t1.c:1449-1538"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 4.6
+   },
+   "library": {
+    "functions": 4306,
+    "kloc": 239.7,
+    "functions_flagged": 3076,
+    "functions_flagged_own": 2209,
+    "wide_hits": 17968,
+    "precise_hits_in_bug_files": 16
+   },
+   "seconds": 150
+  },
+  {
+   "id": 42479758,
+   "project": "opensc",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "e50bc29bd9519c9f4c43e9f3cf34b5b8a9aa38da",
+   "vulnerable": "c173563ad2d7a9483762c584899b9af09edb750d",
+   "fix_files": [
+    "src/libopensc/card-setcos.c"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/libopensc/card-setcos.c",
+     "lo": 790,
+     "hi": 790
+    },
+    {
+     "file": "src/libopensc/card-setcos.c",
+     "lo": 792,
+     "hi": 792
+    }
+   ],
+   "crash": {
+    "function": "parse_sec_attr_44",
+    "file": "src/libopensc/card-setcos.c",
+    "line": 791
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/libopensc/card-setcos.c:764-916"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.3
+   },
+   "library": {
+    "functions": 4080,
+    "kloc": 208.2,
+    "functions_flagged": 3379,
+    "functions_flagged_own": 2283,
+    "wide_hits": 12806,
+    "precise_hits_in_bug_files": 8
+   },
+   "seconds": 98
+  },
+  {
+   "id": 42487631,
+   "project": "opensc",
+   "crash_type": "Heap-buffer-overflow READ 7",
+   "fix": "595926471b034fe4b518af722b2e1fae4ed6c450",
+   "vulnerable": "6545cd26f4117326550b78c1be12f19c076dd18a",
+   "fix_files": [
+    "src/libopensc/pkcs15-itacns.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/libopensc/pkcs15-itacns.c",
+     "lo": 382,
+     "hi": 382
+    }
+   ],
+   "crash": {
+    "function": "hextoint",
+    "file": "src/libopensc/pkcs15-itacns.c",
+    "line": 389
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/libopensc/pkcs15-itacns.c:374-388"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 17.4
+   },
+   "library": {
+    "functions": 4131,
+    "kloc": 212.0,
+    "functions_flagged": 3422,
+    "functions_flagged_own": 2303,
+    "wide_hits": 12913,
+    "precise_hits_in_bug_files": 5
+   },
+   "seconds": 78
+  },
+  {
+   "id": 42480361,
+   "project": "opus",
+   "crash_type": "Global-buffer-overflow READ 2",
+   "fix": "aef369f536ecb89ab94c2c6bc6b6e0a767fab39d",
+   "vulnerable": "73808cf8ba20b3efa36d271ee066808c79154513",
+   "fix_files": [
+    "silk/MacroCount.h"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "silk/MacroCount.h",
+     "lo": 694,
+     "hi": 694
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "silk/MacroCount.h:694-702"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 66.4
+   },
+   "library": {
+    "functions": 898,
+    "kloc": 69.0,
+    "functions_flagged": 761,
+    "functions_flagged_own": 657,
+    "wide_hits": 8469,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 59
+  },
+  {
+   "id": 42480416,
+   "project": "opus",
+   "crash_type": "UNKNOWN WRITE",
+   "fix": "aef369f536ecb89ab94c2c6bc6b6e0a767fab39d",
+   "vulnerable": "73808cf8ba20b3efa36d271ee066808c79154513",
+   "fix_files": [
+    "silk/MacroCount.h"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "silk/MacroCount.h",
+     "lo": 694,
+     "hi": 694
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "silk/MacroCount.h:694-702"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 66.4
+   },
+   "library": {
+    "functions": 898,
+    "kloc": 69.0,
+    "functions_flagged": 761,
+    "functions_flagged_own": 657,
+    "wide_hits": 8469,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 0
+  },
+  {
+   "id": 42533725,
+   "project": "p11-kit",
+   "crash_type": "Heap-buffer-overflow WRITE 8",
+   "fix": "f53bdc2c941aae47d592b0376de9a4bc442ec3d2",
+   "vulnerable": "ebfc19c741c7399c2bd48133d3bdf2c70a7b5b0e",
+   "fix_files": [
+    "p11-kit/rpc-message.c"
+   ],
+   "fix_lines": 20,
+   "regions": [
+    {
+     "file": "p11-kit/rpc-message.c",
+     "lo": 1335,
+     "hi": 1336
+    },
+    {
+     "file": "p11-kit/rpc-message.c",
+     "lo": 1367,
+     "hi": 1367
+    },
+    {
+     "file": "p11-kit/rpc-message.c",
+     "lo": 1372,
+     "hi": 1374
+    },
+    {
+     "file": "p11-kit/rpc-message.c",
+     "lo": 1375,
+     "hi": 1376
+    }
+   ],
+   "crash": {
+    "function": "p11_rpc_buffer_get_date_value",
+    "file": "p11-kit/rpc-message.c",
+    "line": 1298
+   },
+   "crash_function_found": true,
+   "targets": [
+    "p11-kit/rpc-message.c:1278-1305",
+    "p11-kit/rpc-message.c:1328-1379"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 15.1
+   },
+   "library": {
+    "functions": 2669,
+    "kloc": 97.9,
+    "functions_flagged": 1847,
+    "functions_flagged_own": 987,
+    "wide_hits": 3014,
+    "precise_hits_in_bug_files": 33
+   },
+   "seconds": 46
+  },
+  {
+   "id": 42522417,
+   "project": "p11-kit",
+   "crash_type": "Global-buffer-overflow READ 8",
+   "fix": "d7c318845405fa7ea33154082b437e4a87ee3699",
+   "vulnerable": "cb531a61afc0e3c0f2174fa1bf026e993c76ea89",
+   "fix_files": [
+    "p11-kit/virtual.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "p11-kit/virtual.c",
+     "lo": 3417,
+     "hi": 3418
+    }
+   ],
+   "crash": {
+    "function": "base_C_MessageSignFinal",
+    "file": "p11-kit/virtual.c",
+    "line": 3399
+   },
+   "crash_function_found": true,
+   "targets": [
+    "p11-kit/virtual.c:3412-3419"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 2899,
+    "kloc": 98.8,
+    "functions_flagged": 1825,
+    "functions_flagged_own": 941,
+    "wide_hits": 2844,
+    "precise_hits_in_bug_files": 20
+   },
+   "seconds": 28
+  },
+  {
+   "id": 42519362,
+   "project": "pjsip",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "bc4812d31a67d5e2f973fbfaf950d6118226cf36",
+   "vulnerable": "087832fd1a97949ac620e976ffa932bda09366a6",
+   "fix_files": [
+    "pjnath/src/pjnath/stun_msg.c"
+   ],
+   "fix_lines": 11,
+   "regions": [
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 1441,
+     "hi": 1442
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 1446,
+     "hi": 1447
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 1759,
+     "hi": 1760
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 1765,
+     "hi": 1767
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "pjnath/src/pjnath/stun_msg.c:1428-1451",
+    "pjnath/src/pjnath/stun_msg.c:1746-1776"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 14.3
+   },
+   "library": {
+    "functions": 15272,
+    "kloc": 771.0,
+    "functions_flagged": 10369,
+    "functions_flagged_own": 5962,
+    "wide_hits": 39028,
+    "precise_hits_in_bug_files": 52
+   },
+   "seconds": 412
+  },
+  {
+   "id": 42519046,
+   "project": "pjsip",
+   "crash_type": "Heap-buffer-overflow READ {*}",
+   "fix": "d8440f4d711a654b511f50f79c0445b26f9dd1e1",
+   "vulnerable": "950081c737063e12aa95cc4a7b332b85ae6a8d5d",
+   "fix_files": [
+    "pjnath/include/pjnath/stun_msg.h",
+    "pjnath/src/pjnath/stun_msg.c"
+   ],
+   "fix_lines": 18,
+   "regions": [
+    {
+     "file": "pjnath/include/pjnath/stun_msg.h",
+     "lo": 444,
+     "hi": 445
+    },
+    {
+     "file": "pjnath/include/pjnath/stun_msg.h",
+     "lo": 475,
+     "hi": 476
+    },
+    {
+     "file": "pjnath/include/pjnath/stun_msg.h",
+     "lo": 492,
+     "hi": 493
+    },
+    {
+     "file": "pjnath/include/pjnath/stun_msg.h",
+     "lo": 508,
+     "hi": 509
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 749,
+     "hi": 749
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 2329,
+     "hi": 2330
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 2348,
+     "hi": 2348
+    },
+    {
+     "file": "pjnath/src/pjnath/stun_msg.c",
+     "lo": 2360,
+     "hi": 2360
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "pjnath/src/pjnath/stun_msg.c:2300-2552"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 4.4
+   },
+   "library": {
+    "functions": 15272,
+    "kloc": 771.0,
+    "functions_flagged": 10369,
+    "functions_flagged_own": 5960,
+    "wide_hits": 39023,
+    "precise_hits_in_bug_files": 52
+   },
+   "seconds": 20
+  },
+  {
+   "id": 42498525,
+   "project": "proj.4",
+   "crash_type": "Heap-use-after-free READ 8",
+   "fix": "cb335699aafc84952d1a6a94eb9d2ee201ad416f",
+   "vulnerable": "faca621657c5c325c54e6f4f7ea2bc6df386b328",
+   "fix_files": [
+    "src/PJ_geos.c",
+    "src/pj_ctx.c",
+    "src/pj_malloc.c"
+   ],
+   "fix_lines": 53,
+   "regions": [
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 43,
+     "hi": 43
+    },
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 193,
+     "hi": 194
+    },
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 200,
+     "hi": 200
+    },
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 203,
+     "hi": 203
+    },
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 205,
+     "hi": 206
+    },
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 209,
+     "hi": 210
+    },
+    {
+     "file": "src/PJ_geos.c",
+     "lo": 212,
+     "hi": 212
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 57,
+     "hi": 58
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 105,
+     "hi": 106
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 119,
+     "hi": 119
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 128,
+     "hi": 129
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 135,
+     "hi": 137
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 144,
+     "hi": 145
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 148,
+     "hi": 148
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 149,
+     "hi": 150
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 158,
+     "hi": 159
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 168,
+     "hi": 169
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 178,
+     "hi": 179
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 188,
+     "hi": 189
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 198,
+     "hi": 199
+    },
+    {
+     "file": "src/pj_ctx.c",
+     "lo": 208,
+     "hi": 209
+    },
+    {
+     "file": "src/pj_malloc.c",
+     "lo": 160,
+     "hi": 161
+    },
+    {
+     "file": "src/pj_malloc.c",
+     "lo": 182,
+     "hi": 183
+    }
+   ],
+   "crash": {
+    "function": "pj_projection_specific_setup_geos",
+    "file": "src/PJ_geos.c",
+    "line": 202
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/PJ_geos.c:193-234",
+    "src/pj_ctx.c:102-110",
+    "src/pj_ctx.c:116-120",
+    "src/pj_ctx.c:126-130",
+    "src/pj_ctx.c:140-150",
+    "src/pj_ctx.c:156-160",
+    "src/pj_ctx.c:166-170",
+    "src/pj_ctx.c:176-180",
+    "src/pj_ctx.c:186-190",
+    "src/pj_ctx.c:196-200",
+    "src/pj_ctx.c:206-210",
+    "src/pj_ctx.c:55-59",
+    "src/pj_malloc.c:155-185"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 29.7
+   },
+   "library": {
+    "functions": 1261,
+    "kloc": 44.8,
+    "functions_flagged": 944,
+    "functions_flagged_own": 584,
+    "wide_hits": 3515,
+    "precise_hits_in_bug_files": 5
+   },
+   "seconds": 637
+  },
+  {
+   "id": 42524446,
+   "project": "proj.4",
+   "crash_type": "Stack-buffer-overflow WRITE {*}",
+   "fix": "d14bf09d94be40e3e2ed2be5b0b55c9d885f1513",
+   "vulnerable": "9a8c37ac04ce913617a2b429bbc7f8a3daa1848d",
+   "fix_files": [
+    "src/proj_4D_api.c"
+   ],
+   "fix_lines": 25,
+   "regions": [
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 405,
+     "hi": 405
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 417,
+     "hi": 418
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 419,
+     "hi": 420
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 428,
+     "hi": 429
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 430,
+     "hi": 431
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 439,
+     "hi": 440
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 441,
+     "hi": 442
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 449,
+     "hi": 450
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 458,
+     "hi": 459
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 461,
+     "hi": 462
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 463,
+     "hi": 464
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 474,
+     "hi": 474
+    },
+    {
+     "file": "src/proj_4D_api.c",
+     "lo": 482,
+     "hi": 482
+    }
+   ],
+   "crash": {
+    "function": "pj_cs2cs_emulation_setup",
+    "file": "src/proj_4D_api.c",
+    "line": 440
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/proj_4D_api.c:397-490"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.5
+   },
+   "library": {
+    "functions": 1055,
+    "kloc": 41.0,
+    "functions_flagged": 870,
+    "functions_flagged_own": 637,
+    "wide_hits": 3767,
+    "precise_hits_in_bug_files": 24
+   },
+   "seconds": 22
+  },
+  {
+   "id": 377977949,
+   "project": "qpdf",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "64e98397104f3fff759c27eb40092085e287755e",
+   "vulnerable": "54cf0e519c49e3fb44c7ca1de95a1fffbafc211c",
+   "fix_files": [
+    "libqpdf/Pl_AES_PDF.cc"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "libqpdf/Pl_AES_PDF.cc",
+     "lo": 25,
+     "hi": 26
+    }
+   ],
+   "crash": {
+    "function": "rijndaelSetupEncrypt",
+    "file": "libqpdf/rijndael.cc",
+    "line": 719
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libqpdf/Pl_AES_PDF.cc:12-31",
+    "libqpdf/rijndael.cc:714-796"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.2
+   },
+   "library": {
+    "functions": 3259,
+    "kloc": 79.0,
+    "functions_flagged": 2055,
+    "functions_flagged_own": 523,
+    "wide_hits": 1673,
+    "precise_hits_in_bug_files": 3
+   },
+   "seconds": 48
+  },
+  {
+   "id": 42535152,
+   "project": "qpdf",
+   "crash_type": "Heap-use-after-free READ 4",
+   "fix": "02e89bbe47853a59f40de27e997dbdb67712586b",
+   "vulnerable": "6ae439f180b300523527038b0537e4c4c2dcac7d",
+   "fix_files": [
+    "libqpdf/QPDFWriter.cc"
+   ],
+   "fix_lines": 46,
+   "regions": [
+    {
+     "file": "libqpdf/QPDFWriter.cc",
+     "lo": 1947,
+     "hi": 1947
+    },
+    {
+     "file": "libqpdf/QPDFWriter.cc",
+     "lo": 1949,
+     "hi": 1966
+    },
+    {
+     "file": "libqpdf/QPDFWriter.cc",
+     "lo": 1968,
+     "hi": 1968
+    },
+    {
+     "file": "libqpdf/QPDFWriter.cc",
+     "lo": 1977,
+     "hi": 1978
+    },
+    {
+     "file": "libqpdf/QPDFWriter.cc",
+     "lo": 1979,
+     "hi": 1979
+    },
+    {
+     "file": "libqpdf/QPDFWriter.cc",
+     "lo": 1982,
+     "hi": 1983
+    }
+   ],
+   "crash": {
+    "function": "getType",
+    "file": "libqpdf/QPDFXRefEntry.cc",
+    "line": 23
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libqpdf/QPDFWriter.cc:1936-1984",
+    "libqpdf/QPDFXRefEntry.cc:20-24"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.4
+   },
+   "library": {
+    "functions": 3185,
+    "kloc": 75.8,
+    "functions_flagged": 2032,
+    "functions_flagged_own": 520,
+    "wide_hits": 1608,
+    "precise_hits_in_bug_files": 3
+   },
+   "seconds": 25
+  },
+  {
+   "id": 42504114,
+   "project": "qpid-proton",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "b788baad3e9d9ba028d3d115e272e94a30227e17",
+   "vulnerable": "61fff0bca0017ed0175d148a61038a5e5d3d26e3",
+   "fix_files": [
+    "c/src/core/consumers.h"
+   ],
+   "fix_lines": 23,
+   "regions": [
+    {
+     "file": "c/src/core/consumers.h",
+     "lo": 546,
+     "hi": 546
+    },
+    {
+     "file": "c/src/core/consumers.h",
+     "lo": 564,
+     "hi": 565
+    },
+    {
+     "file": "c/src/core/consumers.h",
+     "lo": 571,
+     "hi": 572
+    },
+    {
+     "file": "c/src/core/consumers.h",
+     "lo": 601,
+     "hi": 602
+    },
+    {
+     "file": "c/src/core/consumers.h",
+     "lo": 609,
+     "hi": 610
+    }
+   ],
+   "crash": {
+    "function": "pni_consumer_readf8",
+    "file": "c/src/core/consumers.h",
+    "line": 56
+   },
+   "crash_function_found": true,
+   "targets": [
+    "c/src/core/consumers.h:50-60",
+    "c/src/core/consumers.h:535-553",
+    "c/src/core/consumers.h:555-584",
+    "c/src/core/consumers.h:591-620"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 7.5
+   },
+   "library": {
+    "functions": 3927,
+    "kloc": 76.4,
+    "functions_flagged": 1890,
+    "functions_flagged_own": 646,
+    "wide_hits": 2054,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 54
+  },
+  {
+   "id": 42504747,
+   "project": "qpid-proton",
+   "crash_type": "UNKNOWN READ",
+   "fix": "586d94464d2ad6fc69e04aaa42f0df54a788561c",
+   "vulnerable": "239a39eb2d04f0588081975a4f173bb5f121d1fa",
+   "fix_files": [
+    "c/src/proactor/epoll.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "c/src/proactor/epoll.c",
+     "lo": 1454,
+     "hi": 1454
+    }
+   ],
+   "crash": {
+    "function": "pni_sniff_header",
+    "file": "c/src/core/autodetect.c",
+    "line": 101
+   },
+   "crash_function_found": true,
+   "targets": [
+    "c/src/core/autodetect.c:80-121",
+    "c/src/proactor/epoll.c:1418-1455"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.8
+   },
+   "library": {
+    "functions": 3933,
+    "kloc": 76.4,
+    "functions_flagged": 1891,
+    "functions_flagged_own": 646,
+    "wide_hits": 2059,
+    "precise_hits_in_bug_files": 14
+   },
+   "seconds": 10
+  },
+  {
+   "id": 42510753,
+   "project": "quickjs",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "a0570086c698f78ec829cafd7d8d7ac3906abbc1",
+   "vulnerable": "177af416659188e114545d1194b23463baef2598",
+   "fix_files": [
+    "quickjs.c"
+   ],
+   "fix_lines": 77,
+   "regions": [
+    {
+     "file": "quickjs.c",
+     "lo": 38498,
+     "hi": 38499
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 38500,
+     "hi": 38500
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 38505,
+     "hi": 38505
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 38521,
+     "hi": 38521
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 38535,
+     "hi": 38535
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 38549,
+     "hi": 38549
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 39372,
+     "hi": 39373
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 50728,
+     "hi": 50729
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 51794,
+     "hi": 51794
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 51799,
+     "hi": 51799
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 51814,
+     "hi": 51814
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 51826,
+     "hi": 51826
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 51835,
+     "hi": 51835
+    },
+    {
+     "file": "quickjs.c",
+     "lo": 52633,
+     "hi": 52634
+    }
+   ],
+   "crash": {
+    "function": "build_for_in_iterator",
+    "file": "quickjs.c",
+    "line": 15131
+   },
+   "crash_function_found": true,
+   "targets": [
+    "quickjs.c:14708-14827",
+    "quickjs.c:38499-38559",
+    "quickjs.c:50652-50847",
+    "quickjs.c:51793-51843"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.7
+   },
+   "library": {
+    "functions": 2163,
+    "kloc": 85.2,
+    "functions_flagged": 1844,
+    "functions_flagged_own": 1037,
+    "wide_hits": 5724,
+    "precise_hits_in_bug_files": 159
+   },
+   "seconds": 299
+  },
+  {
+   "id": 419216923,
+   "project": "quickjs",
+   "crash_type": "Heap-use-after-free WRITE 8",
+   "fix": "02a2643142a0522e9e2d0d60df19e72daa84bbc3",
+   "vulnerable": "3dc7ef1f7f500e39698bef9762b904b2690bb369",
+   "fix_files": [
+    "quickjs.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "quickjs.c",
+     "lo": 35356,
+     "hi": 35356
+    }
+   ],
+   "crash": {
+    "function": "list_del",
+    "file": "list.h",
+    "line": 75
+   },
+   "crash_function_found": true,
+   "targets": [
+    "list.h:69-78",
+    "quickjs.c:34969-35535"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.5
+   },
+   "library": {
+    "functions": 2099,
+    "kloc": 83.5,
+    "functions_flagged": 1769,
+    "functions_flagged_own": 1043,
+    "wide_hits": 5699,
+    "precise_hits_in_bug_files": 153
+   },
+   "seconds": 336
+  },
+  {
+   "id": 42492195,
+   "project": "relic",
+   "crash_type": "Stack-buffer-overflow WRITE 1",
+   "fix": "bba5b5fa5489706ab4eaf5d7d0c2550e0a9722c0",
+   "vulnerable": "d4f9349eafd4dc65eac47d14a900311607f4b38e",
+   "fix_files": [
+    "src/bn/relic_bn_mxp.c"
+   ],
+   "fix_lines": 9,
+   "regions": [
+    {
+     "file": "src/bn/relic_bn_mxp.c",
+     "lo": 115,
+     "hi": 115
+    },
+    {
+     "file": "src/bn/relic_bn_mxp.c",
+     "lo": 130,
+     "hi": 131
+    },
+    {
+     "file": "src/bn/relic_bn_mxp.c",
+     "lo": 174,
+     "hi": 174
+    },
+    {
+     "file": "src/bn/relic_bn_mxp.c",
+     "lo": 209,
+     "hi": 210
+    }
+   ],
+   "crash": {
+    "function": "bn_mxp_slide",
+    "file": "src/bn/relic_bn_mxp.c",
+    "line": 175
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/bn/relic_bn_mxp.c:112-199"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 12.9
+   },
+   "library": {
+    "functions": 1881,
+    "kloc": 105.7,
+    "functions_flagged": 1813,
+    "functions_flagged_own": 1042,
+    "wide_hits": 5843,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 72
+  },
+  {
+   "id": 42537803,
+   "project": "relic",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "6163b404b2d35f4d576a5c4db4632a9b845b4c5c",
+   "vulnerable": "d01bcb23910677acf3dc7c90d72611fe5ffda7c6",
+   "fix_files": [
+    "src/bn/relic_bn_smb.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/bn/relic_bn_smb.c",
+     "lo": 114,
+     "hi": 115
+    }
+   ],
+   "crash": {
+    "function": "dv_zero",
+    "file": "src/dv/relic_dv_util.c",
+    "line": 63
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/bn/relic_bn_smb.c:79-217",
+    "src/dv/relic_dv_util.c:52-67"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.7
+   },
+   "library": {
+    "functions": 2452,
+    "kloc": 156.9,
+    "functions_flagged": 2474,
+    "functions_flagged_own": 1462,
+    "wide_hits": 9859,
+    "precise_hits_in_bug_files": 1
+   },
+   "seconds": 98
+  },
+  {
+   "id": 42485834,
+   "project": "rnp",
+   "crash_type": "Global-buffer-overflow READ 1",
+   "fix": "03d578619513b7186624172538f655a59ab4204b",
+   "vulnerable": "16811384589ce1753ef1165fc28b27f39ce8c108",
+   "fix_files": [
+    "src/librepgp/stream-armor.cpp"
+   ],
+   "fix_lines": 6,
+   "regions": [
+    {
+     "file": "src/librepgp/stream-armor.cpp",
+     "lo": 143,
+     "hi": 143
+    },
+    {
+     "file": "src/librepgp/stream-armor.cpp",
+     "lo": 282,
+     "hi": 282
+    },
+    {
+     "file": "src/librepgp/stream-armor.cpp",
+     "lo": 553,
+     "hi": 553
+    }
+   ],
+   "crash": {
+    "function": "armor_parse_header",
+    "file": "src/librepgp/stream-armor.cpp",
+    "line": 553
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/librepgp/stream-armor.cpp:126-154",
+    "src/librepgp/stream-armor.cpp:217-408",
+    "src/librepgp/stream-armor.cpp:533-575"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.0
+   },
+   "library": {
+    "functions": 1083,
+    "kloc": 49.5,
+    "functions_flagged": 785,
+    "functions_flagged_own": 463,
+    "wide_hits": 1652,
+    "precise_hits_in_bug_files": 21
+   },
+   "seconds": 28
+  },
+  {
+   "id": 42487079,
+   "project": "rnp",
+   "crash_type": "Heap-buffer-overflow READ {*}",
+   "fix": "1c43db6db6ec3c8f84d6d751f904ab8558561430",
+   "vulnerable": "a78cdb748a715796613c59f07575737b767fcab9",
+   "fix_files": [
+    "src/librekey/key_store_kbx.cpp"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "src/librekey/key_store_kbx.cpp",
+     "lo": 139,
+     "hi": 139
+    },
+    {
+     "file": "src/librekey/key_store_kbx.cpp",
+     "lo": 457,
+     "hi": 457
+    }
+   ],
+   "crash": {
+    "function": "mem_src_read",
+    "file": "src/librepgp/stream-common.cpp",
+    "line": 493
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/librekey/key_store_kbx.cpp:108-339",
+    "src/librekey/key_store_kbx.cpp:406-485",
+    "src/librepgp/stream-common.cpp:482-497"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.1
+   },
+   "library": {
+    "functions": 1098,
+    "kloc": 50.0,
+    "functions_flagged": 787,
+    "functions_flagged_own": 450,
+    "wide_hits": 1616,
+    "precise_hits_in_bug_files": 19
+   },
+   "seconds": 28
+  },
+  {
+   "id": 418437591,
+   "project": "rtpproxy",
+   "crash_type": "Segv on unknown address",
+   "fix": "47917ead67e8c37f72ec9a95885c227b78056d1a",
+   "vulnerable": "e7a2329997097cb0a1f930cf8eb2e32e932def31",
+   "fix_files": [
+    "src/rtpp_hash_table.c"
+   ],
+   "fix_lines": 5,
+   "regions": [
+    {
+     "file": "src/rtpp_hash_table.c",
+     "lo": 656,
+     "hi": 656
+    },
+    {
+     "file": "src/rtpp_hash_table.c",
+     "lo": 659,
+     "hi": 660
+    },
+    {
+     "file": "src/rtpp_hash_table.c",
+     "lo": 768,
+     "hi": 769
+    },
+    {
+     "file": "src/rtpp_hash_table.c",
+     "lo": 782,
+     "hi": 783
+    }
+   ],
+   "crash": {
+    "function": "rtpp_refcnt_decref",
+    "file": "src/rtpp_refcnt.c",
+    "line": 298
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/rtpp_hash_table.c:628-661",
+    "src/rtpp_hash_table.c:764-772",
+    "src/rtpp_hash_table.c:774-789",
+    "src/rtpp_refcnt.c:239-305"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 14.3
+   },
+   "library": {
+    "functions": 3674,
+    "kloc": 148.0,
+    "functions_flagged": 2253,
+    "functions_flagged_own": 1080,
+    "wide_hits": 4280,
+    "precise_hits_in_bug_files": 4
+   },
+   "seconds": 93
+  },
+  {
+   "id": 42522936,
+   "project": "simdutf",
+   "crash_type": "Heap-buffer-overflow WRITE {*}",
+   "fix": "03280d7dbe8e91f0ecc06d88fef8adc0fbb41d14",
+   "vulnerable": "c565f3184ea4d5e6464fe988f6fe8f945c298db4",
+   "fix_files": [
+    "src/generic/utf8_to_utf16/utf8_to_utf16.h",
+    "src/generic/utf8_to_utf32/utf8_to_utf32.h"
+   ],
+   "fix_lines": 54,
+   "regions": [
+    {
+     "file": "src/generic/utf8_to_utf16/utf8_to_utf16.h",
+     "lo": 135,
+     "hi": 136
+    },
+    {
+     "file": "src/generic/utf8_to_utf16/utf8_to_utf16.h",
+     "lo": 199,
+     "hi": 199
+    },
+    {
+     "file": "src/generic/utf8_to_utf32/utf8_to_utf32.h",
+     "lo": 133,
+     "hi": 133
+    },
+    {
+     "file": "src/generic/utf8_to_utf32/utf8_to_utf32.h",
+     "lo": 135,
+     "hi": 136
+    },
+    {
+     "file": "src/generic/utf8_to_utf32/utf8_to_utf32.h",
+     "lo": 198,
+     "hi": 198
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "src/generic/utf8_to_utf16/utf8_to_utf16.h:128-193",
+    "src/generic/utf8_to_utf16/utf8_to_utf16.h:195-275",
+    "src/generic/utf8_to_utf32/utf8_to_utf32.h:129-193",
+    "src/generic/utf8_to_utf32/utf8_to_utf32.h:195-268"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.3
+   },
+   "library": {
+    "functions": 1404,
+    "kloc": 27.8,
+    "functions_flagged": 344,
+    "functions_flagged_own": 228,
+    "wide_hits": 1486,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 28
+  },
+  {
+   "id": 372067232,
+   "project": "simdutf",
+   "crash_type": "Heap-buffer-overflow WRITE 16",
+   "fix": "0210f3078da66f1b9512c1e5981aeb2a28bf962c",
+   "vulnerable": "80099819c98f4da0d240c11a38122ef4f81a04e1",
+   "fix_files": [
+    "src/generic/utf8_to_latin1/utf8_to_latin1.h"
+   ],
+   "fix_lines": 4,
+   "regions": [
+    {
+     "file": "src/generic/utf8_to_latin1/utf8_to_latin1.h",
+     "lo": 125,
+     "hi": 125
+    },
+    {
+     "file": "src/generic/utf8_to_latin1/utf8_to_latin1.h",
+     "lo": 128,
+     "hi": 128
+    }
+   ],
+   "crash": {
+    "function": "",
+    "file": "src/haswell/avx2_convert_utf8_to_latin1.cpp",
+    "line": 26
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/generic/utf8_to_latin1/utf8_to_latin1.h:116-201",
+    "src/haswell/avx2_convert_utf8_to_latin1.cpp:7-60"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.3
+   },
+   "library": {
+    "functions": 1899,
+    "kloc": 41.2,
+    "functions_flagged": 580,
+    "functions_flagged_own": 378,
+    "wide_hits": 2350,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 37
+  },
+  {
+   "id": 42488041,
+   "project": "sleuthkit",
+   "crash_type": "UNKNOWN READ",
+   "fix": "3cf945255ae546e507ee4c884dd83a4d3f669c72",
+   "vulnerable": "47b6cb50c5deca05847e0f60a8f909188dc74cb9",
+   "fix_files": [
+    "tsk/fs/ntfs.c"
+   ],
+   "fix_lines": 73,
+   "regions": [
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 576,
+     "hi": 577
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 585,
+     "hi": 585
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 593,
+     "hi": 594
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 601,
+     "hi": 602
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 606,
+     "hi": 606
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 761,
+     "hi": 762
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 2050,
+     "hi": 2051
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 2052,
+     "hi": 2052
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 2054,
+     "hi": 2054
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 2060,
+     "hi": 2063
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3229,
+     "hi": 3230
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3234,
+     "hi": 3235
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3239,
+     "hi": 3239
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3244,
+     "hi": 3246
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3256,
+     "hi": 3256
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3261,
+     "hi": 3261
+    },
+    {
+     "file": "tsk/fs/ntfs.c",
+     "lo": 3263,
+     "hi": 3267
+    }
+   ],
+   "crash": {
+    "function": "ntfs_make_data_run",
+    "file": "tsk/fs/ntfs.c",
+    "line": 593
+   },
+   "crash_function_found": true,
+   "targets": [
+    "tsk/fs/ntfs.c:1822-2504",
+    "tsk/fs/ntfs.c:3203-3311",
+    "tsk/fs/ntfs.c:583-780"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.1
+   },
+   "library": {
+    "functions": 3542,
+    "kloc": 317.1,
+    "functions_flagged": 2811,
+    "functions_flagged_own": 1704,
+    "wide_hits": 12079,
+    "precise_hits_in_bug_files": 18
+   },
+   "seconds": 561
+  },
+  {
+   "id": 42498519,
+   "project": "sleuthkit",
+   "crash_type": "Heap-use-after-free READ 8",
+   "fix": "3a32d25c88a771892c9db1d2055395ae4523a682",
+   "vulnerable": "9f960bfca4add2f86e1edc7672b1736ff1f7f181",
+   "fix_files": [
+    "tsk/fs/apfs_fs.cpp"
+   ],
+   "fix_lines": 54,
+   "regions": [
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 77,
+     "hi": 77
+    },
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 81,
+     "hi": 83
+    },
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 85,
+     "hi": 86
+    },
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 88,
+     "hi": 94
+    },
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 96,
+     "hi": 98
+    },
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 100,
+     "hi": 100
+    },
+    {
+     "file": "tsk/fs/apfs_fs.cpp",
+     "lo": 102,
+     "hi": 103
+    }
+   ],
+   "crash": {
+    "function": "tsk_fs_attr_set_run",
+    "file": "tsk/fs/fs_attr.c",
+    "line": 334
+   },
+   "crash_function_found": true,
+   "targets": [
+    "tsk/fs/apfs_fs.cpp:64-195",
+    "tsk/fs/fs_attr.c:272-353"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 19.0
+   },
+   "library": {
+    "functions": 3539,
+    "kloc": 316.8,
+    "functions_flagged": 2808,
+    "functions_flagged_own": 1702,
+    "wide_hits": 12057,
+    "precise_hits_in_bug_files": 25
+   },
+   "seconds": 76
+  },
+  {
+   "id": 42501527,
+   "project": "stb",
+   "crash_type": "Heap-buffer-overflow READ 2",
+   "fix": "4d160de463003e8e35660eeb1ed4891419dddbdb",
+   "vulnerable": "e5da6acacd64f72187c14f202ee2021e1bca9e0c",
+   "fix_files": [
+    "stb_image.h"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "stb_image.h",
+     "lo": 4959,
+     "hi": 4959
+    }
+   ],
+   "crash": {
+    "function": "stbi__convert_16_to_8",
+    "file": "stb_image.h",
+    "line": 1180
+   },
+   "crash_function_found": true,
+   "targets": [
+    "stb_image.h:1170-1184",
+    "stb_image.h:4959-4963"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 1620,
+    "kloc": 63.4,
+    "functions_flagged": 544,
+    "functions_flagged_own": 395,
+    "wide_hits": 4209,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 36
+  },
+  {
+   "id": 42484598,
+   "project": "stb",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "5ba0baaa269b3fd681828e0e3b3ac0f1472eaf40",
+   "vulnerable": "c404b789ca01a00cd244240484f7eccdd639ef06",
+   "fix_files": [
+    "stb_image.h"
+   ],
+   "fix_lines": 7,
+   "regions": [
+    {
+     "file": "stb_image.h",
+     "lo": 3269,
+     "hi": 3270
+    }
+   ],
+   "crash": {
+    "function": "load_jpeg_image",
+    "file": "stb_image.h",
+    "line": 3799
+   },
+   "crash_function_found": true,
+   "targets": [
+    "stb_image.h:3229-3312",
+    "stb_image.h:3804-3965"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": false,
+    "via": null,
+    "rank_pct": null
+   },
+   "library": {
+    "functions": 1617,
+    "kloc": 63.3,
+    "functions_flagged": 544,
+    "functions_flagged_own": 395,
+    "wide_hits": 4209,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 10
+  },
+  {
+   "id": 42492262,
+   "project": "sudo",
+   "crash_type": "UNKNOWN WRITE",
+   "fix": "419c8952402b5b5642a0d093aa713819f26a36e3",
+   "vulnerable": "8781560e1bf30e2b7fa564865d138f663bbfa125",
+   "fix_files": [
+    "plugins/sudoers/parse_ldif.c"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "plugins/sudoers/parse_ldif.c",
+     "lo": 769,
+     "hi": 769
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "plugins/sudoers/parse_ldif.c:567-780"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.2
+   },
+   "library": {
+    "functions": 2346,
+    "kloc": 135.1,
+    "functions_flagged": 1702,
+    "functions_flagged_own": 1066,
+    "wide_hits": 6752,
+    "precise_hits_in_bug_files": 11
+   },
+   "seconds": 74
+  },
+  {
+   "id": 42500043,
+   "project": "sudo",
+   "crash_type": "Heap-double-free",
+   "fix": "ffdd7920cd98b495a42775bb35012ec259e33a46",
+   "vulnerable": "ef91b90ad64a8c3f7b34842a3f25de303b349c07",
+   "fix_files": [
+    "plugins/sudoers/editor.c"
+   ],
+   "fix_lines": 3,
+   "regions": [
+    {
+     "file": "plugins/sudoers/editor.c",
+     "lo": 153,
+     "hi": 154
+    },
+    {
+     "file": "plugins/sudoers/editor.c",
+     "lo": 189,
+     "hi": 190
+    },
+    {
+     "file": "plugins/sudoers/editor.c",
+     "lo": 261,
+     "hi": 262
+    }
+   ],
+   "crash": null,
+   "crash_function_found": false,
+   "targets": [
+    "plugins/sudoers/editor.c:128-201",
+    "plugins/sudoers/editor.c:213-263"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 2.4
+   },
+   "library": {
+    "functions": 2543,
+    "kloc": 144.4,
+    "functions_flagged": 1834,
+    "functions_flagged_own": 1129,
+    "wide_hits": 7178,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 45
+  },
+  {
+   "id": 42505670,
+   "project": "tinygltf",
+   "crash_type": "UNKNOWN WRITE",
+   "fix": "e4132167222efec26ba012e7481dd067a6e23cb0",
+   "vulnerable": "4581d37bec66daeaccb869505c3e415c3179e9cd",
+   "fix_files": [
+    "tiny_gltf.h"
+   ],
+   "fix_lines": 27,
+   "regions": [
+    {
+     "file": "tiny_gltf.h",
+     "lo": 5806,
+     "hi": 5809
+    },
+    {
+     "file": "tiny_gltf.h",
+     "lo": 5814,
+     "hi": 5819
+    }
+   ],
+   "crash": {
+    "function": "LoadFromString",
+    "file": "tiny_gltf.h",
+    "line": 5779
+   },
+   "crash_function_found": true,
+   "targets": [
+    "tiny_gltf.h:5487-7873"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.2
+   },
+   "library": {
+    "functions": 1200,
+    "kloc": 44.7,
+    "functions_flagged": 519,
+    "functions_flagged_own": 136,
+    "wide_hits": 754,
+    "precise_hits_in_bug_files": 16
+   },
+   "seconds": 49
+  },
+  {
+   "id": 42487066,
+   "project": "uWebSockets",
+   "crash_type": "Segv on unknown address",
+   "fix": "03fca626a95130ab80f86adada54b29d27242759",
+   "vulnerable": "33968490b418e70869b9922c2c287814bf191710",
+   "fix_files": [
+    "src/TopicTree.h"
+   ],
+   "fix_lines": 14,
+   "regions": [
+    {
+     "file": "src/TopicTree.h",
+     "lo": 127,
+     "hi": 130
+    },
+    {
+     "file": "src/TopicTree.h",
+     "lo": 153,
+     "hi": 154
+    },
+    {
+     "file": "src/TopicTree.h",
+     "lo": 177,
+     "hi": 178
+    }
+   ],
+   "crash": {
+    "function": "drain",
+    "file": "src/TopicTree.h",
+    "line": 331
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/TopicTree.h:126-181",
+    "src/TopicTree.h:316-432"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.0
+   },
+   "library": {
+    "functions": 256,
+    "kloc": 7.1,
+    "functions_flagged": 103,
+    "functions_flagged_own": 56,
+    "wide_hits": 227,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 9
+  },
+  {
+   "id": 42481055,
+   "project": "uWebSockets",
+   "crash_type": "Heap-buffer-overflow READ 8",
+   "fix": "968fd0a14272d3ade214e6ec50c335559070c0f5",
+   "vulnerable": "7d2c1b437970a5f4f89735ff4eaaa5fe3c1ab301",
+   "fix_files": [
+    "src/TopicTreeDraft.h"
+   ],
+   "fix_lines": 12,
+   "regions": [
+    {
+     "file": "src/TopicTreeDraft.h",
+     "lo": 140,
+     "hi": 143
+    },
+    {
+     "file": "src/TopicTreeDraft.h",
+     "lo": 170,
+     "hi": 173
+    },
+    {
+     "file": "src/TopicTreeDraft.h",
+     "lo": 429,
+     "hi": 429
+    }
+   ],
+   "crash": {
+    "function": "publish",
+    "file": "src/TopicTreeDraft.h",
+    "line": 171
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/TopicTreeDraft.h:122-177"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.7
+   },
+   "library": {
+    "functions": 238,
+    "kloc": 6.4,
+    "functions_flagged": 94,
+    "functions_flagged_own": 50,
+    "wide_hits": 244,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 8
+  },
+  {
+   "id": 383187490,
+   "project": "upx",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "0870514194c83c193330c817d82a78d276b72215",
+   "vulnerable": "0a61ffea3a15cefbeb2ceb24dc136579cae10bef",
+   "fix_files": [
+    "src/p_lx_elf.cpp"
+   ],
+   "fix_lines": 44,
+   "regions": [
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8653,
+     "hi": 8653
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8655,
+     "hi": 8657
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8660,
+     "hi": 8660
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8665,
+     "hi": 8665
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8668,
+     "hi": 8671
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8740,
+     "hi": 8740
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8742,
+     "hi": 8744
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8747,
+     "hi": 8747
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8752,
+     "hi": 8752
+    },
+    {
+     "file": "src/p_lx_elf.cpp",
+     "lo": 8755,
+     "hi": 8758
+    }
+   ],
+   "crash": {
+    "function": "get_te32",
+    "file": "src/packer.h",
+    "line": 262
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/p_lx_elf.cpp:8650-8735",
+    "src/p_lx_elf.cpp:8737-8818",
+    "src/packer.h:262-262"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 1.7
+   },
+   "library": {
+    "functions": 3020,
+    "kloc": 166.8,
+    "functions_flagged": 1454,
+    "functions_flagged_own": 766,
+    "wide_hits": 4223,
+    "precise_hits_in_bug_files": 78
+   },
+   "seconds": 152
+  },
+  {
+   "id": 42531669,
+   "project": "upx",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "c0e40da2ab6f072ceaff780308756b1e9e1fb6a2",
+   "vulnerable": "dff37665018a0b9d3617f7cb12a558527b2c7811",
+   "fix_files": [
+    "src/p_mach.cpp"
+   ],
+   "fix_lines": 13,
+   "regions": [
+    {
+     "file": "src/p_mach.cpp",
+     "lo": 1470,
+     "hi": 1471
+    },
+    {
+     "file": "src/p_mach.cpp",
+     "lo": 1532,
+     "hi": 1532
+    },
+    {
+     "file": "src/p_mach.cpp",
+     "lo": 1645,
+     "hi": 1646
+    },
+    {
+     "file": "src/p_mach.cpp",
+     "lo": 1957,
+     "hi": 1958
+    }
+   ],
+   "crash": {
+    "function": "unsigned int get_ne32<unsigned char, unsigned char>",
+    "file": "src/bele.h",
+    "line": 117
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/bele.h:114-119",
+    "src/p_mach.cpp:1471-1627",
+    "src/p_mach.cpp:1630-1921",
+    "src/p_mach.cpp:1942-2247"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.1
+   },
+   "library": {
+    "functions": 2810,
+    "kloc": 148.1,
+    "functions_flagged": 1345,
+    "functions_flagged_own": 707,
+    "wide_hits": 4009,
+    "precise_hits_in_bug_files": 39
+   },
+   "seconds": 116
+  },
+  {
+   "id": 42520285,
+   "project": "util-linux",
+   "crash_type": "UNKNOWN READ",
+   "fix": "46ce48b6a5bf13f95318d579e2af4fde189d049a",
+   "vulnerable": "e601773d39e173e5ebf1df0d5f78d35d92eb7181",
+   "fix_files": [
+    "libblkid/src/superblocks/bcache.c"
+   ],
+   "fix_lines": 15,
+   "regions": [
+    {
+     "file": "libblkid/src/superblocks/bcache.c",
+     "lo": 170,
+     "hi": 171
+    },
+    {
+     "file": "libblkid/src/superblocks/bcache.c",
+     "lo": 181,
+     "hi": 181
+    },
+    {
+     "file": "libblkid/src/superblocks/bcache.c",
+     "lo": 189,
+     "hi": 189
+    }
+   ],
+   "crash": {
+    "function": "probe_bcachefs_sb_fields",
+    "file": "libblkid/src/superblocks/bcache.c",
+    "line": 191
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libblkid/src/superblocks/bcache.c:171-201"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.1
+   },
+   "library": {
+    "functions": 5592,
+    "kloc": 219.7,
+    "functions_flagged": 3635,
+    "functions_flagged_own": 2202,
+    "wide_hits": 8581,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 197
+  },
+  {
+   "id": 42517915,
+   "project": "util-linux",
+   "crash_type": "Stack-buffer-overflow WRITE 1",
+   "fix": "32bd447fd7d0933c5aecac75cc1823b3ee897f11",
+   "vulnerable": "9c82a8ca123a4e4028d51f4e38c7c3cfbdc74711",
+   "fix_files": [
+    "libblkid/src/superblocks/iso9660.c"
+   ],
+   "fix_lines": 23,
+   "regions": [
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 72,
+     "hi": 73
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 172,
+     "hi": 172
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 176,
+     "hi": 176
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 198,
+     "hi": 198
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 212,
+     "hi": 212
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 256,
+     "hi": 256
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 263,
+     "hi": 263
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 272,
+     "hi": 272
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 281,
+     "hi": 281
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 290,
+     "hi": 290
+    },
+    {
+     "file": "libblkid/src/superblocks/iso9660.c",
+     "lo": 315,
+     "hi": 315
+    }
+   ],
+   "crash": {
+    "function": "merge_utf16be_ascii",
+    "file": "libblkid/src/superblocks/iso9660.c",
+    "line": 199
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libblkid/src/superblocks/iso9660.c:172-204",
+    "libblkid/src/superblocks/iso9660.c:207-323"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.3
+   },
+   "library": {
+    "functions": 5270,
+    "kloc": 208.3,
+    "functions_flagged": 3501,
+    "functions_flagged_own": 2144,
+    "wide_hits": 8481,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 69
+  },
+  {
+   "id": 42481499,
+   "project": "wabt",
+   "crash_type": "UNKNOWN READ",
+   "fix": "ef0d3789f229e1176910e45fc47600336ae3aed9",
+   "vulnerable": "49a78c6173e5702326c9fb033f9ca1057f2cff64",
+   "fix_files": [
+    "src/binary-reader-ir.cc"
+   ],
+   "fix_lines": 16,
+   "regions": [
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1279,
+     "hi": 1280
+    },
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1292,
+     "hi": 1293
+    },
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1309,
+     "hi": 1310
+    },
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1327,
+     "hi": 1328
+    }
+   ],
+   "crash": {
+    "function": "",
+    "file": "src/binary-reader-ir.cc",
+    "line": 1280
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/binary-reader-ir.cc:1265-1286",
+    "src/binary-reader-ir.cc:1288-1303",
+    "src/binary-reader-ir.cc:1305-1316",
+    "src/binary-reader-ir.cc:1323-1334"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.4
+   },
+   "library": {
+    "functions": 3781,
+    "kloc": 54.9,
+    "functions_flagged": 2087,
+    "functions_flagged_own": 460,
+    "wide_hits": 1070,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 40
+  },
+  {
+   "id": 42483620,
+   "project": "wabt",
+   "crash_type": "Segv on unknown address",
+   "fix": "ef0d3789f229e1176910e45fc47600336ae3aed9",
+   "vulnerable": "49a78c6173e5702326c9fb033f9ca1057f2cff64",
+   "fix_files": [
+    "src/binary-reader-ir.cc"
+   ],
+   "fix_lines": 16,
+   "regions": [
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1279,
+     "hi": 1280
+    },
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1292,
+     "hi": 1293
+    },
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1309,
+     "hi": 1310
+    },
+    {
+     "file": "src/binary-reader-ir.cc",
+     "lo": 1327,
+     "hi": 1328
+    }
+   ],
+   "crash": {
+    "function": "",
+    "file": "src/binary-reader-ir.cc",
+    "line": 1281
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/binary-reader-ir.cc:1265-1286",
+    "src/binary-reader-ir.cc:1288-1303",
+    "src/binary-reader-ir.cc:1305-1316",
+    "src/binary-reader-ir.cc:1323-1334"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 6.4
+   },
+   "library": {
+    "functions": 3781,
+    "kloc": 54.9,
+    "functions_flagged": 2087,
+    "functions_flagged_own": 460,
+    "wide_hits": 1070,
+    "precise_hits_in_bug_files": 2
+   },
+   "seconds": 1
+  },
+  {
+   "id": 42496364,
+   "project": "wasm3",
+   "crash_type": "UNKNOWN READ",
+   "fix": "6bb612ccbfd5f8993a07a99092fab534722df1c3",
+   "vulnerable": "bc32ee0367d6736edd41c4d94b96cca5d096aaa8",
+   "fix_files": [
+    "source/m3_compile.c",
+    "source/m3_env.c"
+   ],
+   "fix_lines": 10,
+   "regions": [
+    {
+     "file": "source/m3_compile.c",
+     "lo": 1117,
+     "hi": 1117
+    },
+    {
+     "file": "source/m3_env.c",
+     "lo": 517,
+     "hi": 518
+    }
+   ],
+   "crash": {
+    "function": "m3_Realloc",
+    "file": "source/m3_core.c",
+    "line": 127
+   },
+   "crash_function_found": true,
+   "targets": [
+    "source/m3_compile.c:1105-1124",
+    "source/m3_core.c:123-137",
+    "source/m3_env.c:516-542"
+   ],
+   "precise": {
+    "line": true,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 13.1
+   },
+   "library": {
+    "functions": 847,
+    "kloc": 27.2,
+    "functions_flagged": 501,
+    "functions_flagged_own": 277,
+    "wide_hits": 1126,
+    "precise_hits_in_bug_files": 16
+   },
+   "seconds": 30
+  },
+  {
+   "id": 42495627,
+   "project": "wasm3",
+   "crash_type": "Segv on unknown address",
+   "fix": "60fdd9ecd84b841351059dbfb962a32f616e376e",
+   "vulnerable": "cfbfbbff1531b4eaf7e557816ea4649e4e259cb1",
+   "fix_files": [
+    "source/m3_compile.c",
+    "source/m3_compile.h"
+   ],
+   "fix_lines": 27,
+   "regions": [
+    {
+     "file": "source/m3_compile.c",
+     "lo": 2196,
+     "hi": 2197
+    },
+    {
+     "file": "source/m3_compile.h",
+     "lo": 141,
+     "hi": 151
+    }
+   ],
+   "crash": {
+    "function": "ForEachModule",
+    "file": "source/m3_env.c",
+    "line": 201
+   },
+   "crash_function_found": true,
+   "targets": [
+    "source/m3_compile.c:2197-2227",
+    "source/m3_compile.h:144-151",
+    "source/m3_env.c:197-214"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 13.2
+   },
+   "library": {
+    "functions": 1277,
+    "kloc": 26.0,
+    "functions_flagged": 596,
+    "functions_flagged_own": 393,
+    "wide_hits": 1062,
+    "precise_hits_in_bug_files": 6
+   },
+   "seconds": 22
+  },
+  {
+   "id": 42470179,
+   "project": "wget2",
+   "crash_type": "Heap-buffer-overflow WRITE 1",
+   "fix": "f6e762181df35bb081d8e776df6cbb6af4bd5939",
+   "vulnerable": "756e470de942ec830a9a424a2340b7e986e9fe7c",
+   "fix_files": [
+    "src/options.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/options.c",
+     "lo": 472,
+     "hi": 472
+    }
+   ],
+   "crash": {
+    "function": "set_char_prefix",
+    "file": "src/options.c",
+    "line": 492
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/options.c:468-498"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 4.3
+   },
+   "library": {
+    "functions": 1114,
+    "kloc": 42.0,
+    "functions_flagged": 743,
+    "functions_flagged_own": 458,
+    "wide_hits": 1730,
+    "precise_hits_in_bug_files": 16
+   },
+   "seconds": 34
+  },
+  {
+   "id": 42502754,
+   "project": "wget2",
+   "crash_type": "Heap-buffer-overflow READ 1",
+   "fix": "e8892c59a4d413d747644cec8f1e6d29ec22f733",
+   "vulnerable": "01a08e2f3fc5787a7ccec5801870f18f7b18fcab",
+   "fix_files": [
+    "src/options.c"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/options.c",
+     "lo": 2033,
+     "hi": 2033
+    }
+   ],
+   "crash": {
+    "function": "_parse_option",
+    "file": "src/options.c",
+    "line": 2032
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/options.c:2004-2050"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 7.4
+   },
+   "library": {
+    "functions": 1061,
+    "kloc": 38.3,
+    "functions_flagged": 697,
+    "functions_flagged_own": 429,
+    "wide_hits": 1607,
+    "precise_hits_in_bug_files": 5
+   },
+   "seconds": 31
+  },
+  {
+   "id": 42470953,
+   "project": "wpantund",
+   "crash_type": "Heap-use-after-free READ 4",
+   "fix": "bd1361434619a52b296e6a94c4188aae1a693179",
+   "vulnerable": "8a8c7f7621dea86aa3136444561facf141e65512",
+   "fix_files": [
+    "src/wpantund/NCPInstanceBase-Addresses.cpp"
+   ],
+   "fix_lines": 2,
+   "regions": [
+    {
+     "file": "src/wpantund/NCPInstanceBase-Addresses.cpp",
+     "lo": 919,
+     "hi": 919
+    }
+   ],
+   "crash": {
+    "function": "unicast_address_was_removed",
+    "file": "src/wpantund/NCPInstanceBase-Addresses.cpp",
+    "line": 623
+   },
+   "crash_function_found": true,
+   "targets": [
+    "src/wpantund/NCPInstanceBase-Addresses.cpp:609-631",
+    "src/wpantund/NCPInstanceBase-Addresses.cpp:888-929"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": false,
+    "function": true,
+    "via": "own",
+    "rank_pct": 8.9
+   },
+   "library": {
+    "functions": 3058,
+    "kloc": 141.0,
+    "functions_flagged": 1065,
+    "functions_flagged_own": 325,
+    "wide_hits": 1251,
+    "precise_hits_in_bug_files": 0
+   },
+   "seconds": 140
+  },
+  {
+   "id": 42512561,
+   "project": "yara",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "86b0e3f7c7fc2c689db88972221b5d4da1c7214f",
+   "vulnerable": "fd8921c2cd50cd21aa229c65e5f72697a80a4ba0",
+   "fix_files": [
+    "libyara/include/yara/dotnet.h",
+    "libyara/modules/dotnet/dotnet.c"
+   ],
+   "fix_lines": 31,
+   "regions": [
+    {
+     "file": "libyara/include/yara/dotnet.h",
+     "lo": 215,
+     "hi": 215
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 524,
+     "hi": 524
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 538,
+     "hi": 538
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 582,
+     "hi": 582
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 594,
+     "hi": 595
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 600,
+     "hi": 600
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 625,
+     "hi": 625
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 661,
+     "hi": 661
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 1466,
+     "hi": 1466
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 1467,
+     "hi": 1468
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 1508,
+     "hi": 1508
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 1572,
+     "hi": 1572
+    }
+   ],
+   "crash": {
+    "function": "read_blob_signed",
+    "file": "libyara/modules/dotnet/dotnet.c",
+    "line": 610
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libyara/modules/dotnet/dotnet.c:1464-1522",
+    "libyara/modules/dotnet/dotnet.c:1525-1651",
+    "libyara/modules/dotnet/dotnet.c:497-546",
+    "libyara/modules/dotnet/dotnet.c:550-614",
+    "libyara/modules/dotnet/dotnet.c:627-715"
+   ],
+   "precise": {
+    "line": false,
+    "function": false
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 3.5
+   },
+   "library": {
+    "functions": 1070,
+    "kloc": 76.2,
+    "functions_flagged": 750,
+    "functions_flagged_own": 541,
+    "wide_hits": 5665,
+    "precise_hits_in_bug_files": 13
+   },
+   "seconds": 54
+  },
+  {
+   "id": 42509043,
+   "project": "yara",
+   "crash_type": "Heap-buffer-overflow READ 4",
+   "fix": "7ed3cc413635b51ea34006cd6094a8cd8455b526",
+   "vulnerable": "7f01792a8b94c730a9b740e178cf2f5a478368df",
+   "fix_files": [
+    "libyara/modules/dotnet/dotnet.c"
+   ],
+   "fix_lines": 7,
+   "regions": [
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 440,
+     "hi": 441
+    },
+    {
+     "file": "libyara/modules/dotnet/dotnet.c",
+     "lo": 449,
+     "hi": 452
+    }
+   ],
+   "crash": {
+    "function": "dotnet_parse_tilde_2",
+    "file": "libyara/modules/dotnet/dotnet.c",
+    "line": 441
+   },
+   "crash_function_found": true,
+   "targets": [
+    "libyara/modules/dotnet/dotnet.c:343-1451"
+   ],
+   "precise": {
+    "line": false,
+    "function": true
+   },
+   "wide": {
+    "line": true,
+    "function": true,
+    "via": "own",
+    "rank_pct": 0.6
+   },
+   "library": {
+    "functions": 950,
+    "kloc": 65.4,
+    "functions_flagged": 655,
+    "functions_flagged_own": 465,
+    "wide_hits": 4744,
+    "precise_hits_in_bug_files": 7
+   },
+   "seconds": 36
+  }
+ ],
+ "summary": {
+  "bugs": 149,
+  "projects": 78,
+  "precise": {
+   "line": 32,
+   "function": 59
+  },
+  "wide": {
+   "line": 120,
+   "function": 140,
+   "function_in_top_5pct": 67,
+   "function_in_top_10pct": 95,
+   "function_in_top_25pct": 127,
+   "function_in_top_50pct": 137
+  },
+  "crash_function_located": 138
+ }
+}

@@ -1,0 +1,5345 @@
+{
+ "benchmark": "Magma v1.2 (HexHive), 9 libraries, 138 bugs",
+ "analyzer": "static_analyzer.py --backend both (Semgrep 1.185 rules/memory_safety.yaml + CodeQL 2.27.4 codeql/memory-safety.qls)",
+ "summary": {
+  "all": {
+   "bugs": 138,
+   "line_level": 17,
+   "function_level": 45,
+   "confirmed": 15,
+   "findings": 14116,
+   "findings_codeql": 269,
+   "kloc": 3213.1
+  },
+  "tuning": {
+   "bugs": 60,
+   "line_level": 9,
+   "function_level": 18,
+   "confirmed": 10,
+   "findings": 2138,
+   "findings_codeql": 56,
+   "kloc": 589.6
+  },
+  "held_out": {
+   "bugs": 78,
+   "line_level": 8,
+   "function_level": 27,
+   "confirmed": 5,
+   "findings": 11978,
+   "findings_codeql": 213,
+   "kloc": 2623.5
+  },
+  "magma_v1.1_programs": {
+   "bugs": 116,
+   "line_level": 14,
+   "function_level": 39,
+   "confirmed": 11,
+   "findings": 13827,
+   "findings_codeql": 263,
+   "kloc": 3114.0
+  },
+  "criteria": {
+   "line_level": "a finding within 5 lines of a line the bug patch changed",
+   "function_level": "a finding in a function the bug patch changed (Lipp et al. ISSTA'22 / Hassler et al. 2025)",
+   "confirmed": "hand-checked: the finding points at the statement where the memory error happens (or the missing check) with a matching bug class"
+  },
+  "confirmed_by_analyzer": {
+   "semgrep": 14,
+   "codeql": 1
+  }
+ },
+ "per_target": {
+  "libpng": {
+   "set": "tuning",
+   "bugs": 7,
+   "line_level": 0,
+   "function_level": 4,
+   "confirmed": 2,
+   "kloc": 86.5,
+   "findings": 359,
+   "findings_semgrep": 338,
+   "findings_codeql": 21,
+   "findings_per_kloc": 4.15
+  },
+  "libsndfile": {
+   "set": "tuning",
+   "bugs": 18,
+   "line_level": 3,
+   "function_level": 5,
+   "confirmed": 4,
+   "kloc": 67.9,
+   "findings": 208,
+   "findings_semgrep": 203,
+   "findings_codeql": 5,
+   "findings_per_kloc": 3.06
+  },
+  "libtiff": {
+   "set": "tuning",
+   "bugs": 14,
+   "line_level": 2,
+   "function_level": 3,
+   "confirmed": 0,
+   "kloc": 89.6,
+   "findings": 779,
+   "findings_semgrep": 758,
+   "findings_codeql": 21,
+   "findings_per_kloc": 8.69
+  },
+  "libxml2": {
+   "set": "tuning",
+   "bugs": 17,
+   "line_level": 4,
+   "function_level": 5,
+   "confirmed": 4,
+   "kloc": 314.4,
+   "findings": 711,
+   "findings_semgrep": 703,
+   "findings_codeql": 8,
+   "findings_per_kloc": 2.26
+  },
+  "lua": {
+   "set": "tuning",
+   "bugs": 4,
+   "line_level": 0,
+   "function_level": 1,
+   "confirmed": 0,
+   "kloc": 31.2,
+   "findings": 81,
+   "findings_semgrep": 80,
+   "findings_codeql": 1,
+   "findings_per_kloc": 2.59
+  },
+  "openssl": {
+   "set": "held-out",
+   "bugs": 20,
+   "line_level": 4,
+   "function_level": 7,
+   "confirmed": 2,
+   "kloc": 508.5,
+   "findings": 1576,
+   "findings_semgrep": 1553,
+   "findings_codeql": 23,
+   "findings_per_kloc": 3.1
+  },
+  "php": {
+   "set": "held-out",
+   "bugs": 16,
+   "line_level": 3,
+   "function_level": 6,
+   "confirmed": 2,
+   "kloc": 1497.0,
+   "findings": 7182,
+   "findings_semgrep": 7041,
+   "findings_codeql": 141,
+   "findings_per_kloc": 4.8
+  },
+  "poppler": {
+   "set": "held-out",
+   "bugs": 22,
+   "line_level": 0,
+   "function_level": 7,
+   "confirmed": 1,
+   "kloc": 245.0,
+   "findings": 846,
+   "findings_semgrep": 842,
+   "findings_codeql": 4,
+   "findings_per_kloc": 3.45
+  },
+  "sqlite3": {
+   "set": "held-out",
+   "bugs": 20,
+   "line_level": 1,
+   "function_level": 7,
+   "confirmed": 0,
+   "kloc": 373.0,
+   "findings": 2374,
+   "findings_semgrep": 2329,
+   "findings_codeql": 45,
+   "findings_per_kloc": 6.37
+  }
+ },
+ "targets": [
+  {
+   "target": "libpng",
+   "bugs": [
+    {
+     "bug": "PNG001",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "png_check_chunk_length (pngrutil.c:3157-3210)"
+     ],
+     "regions": [
+      {
+       "file": "pngrutil.c",
+       "lo": 3173,
+       "hi": 3173
+      },
+      {
+       "file": "pngrutil.c",
+       "lo": 3180,
+       "hi": 3193
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PNG002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "png_image_free (png.c:4591-4608)",
+      "png_image_free_function (png.c:4526-4589)",
+      "png_safe_execute (pngerror.c:935-965)"
+     ],
+     "regions": [
+      {
+       "file": "png.c",
+       "lo": 4582,
+       "hi": 4586
+      },
+      {
+       "file": "png.c",
+       "lo": 4601,
+       "hi": 4605
+      },
+      {
+       "file": "png.h",
+       "lo": 2972,
+       "hi": 2979
+      },
+      {
+       "file": "pngerror.c",
+       "lo": 954,
+       "hi": 957
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PNG003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy in png_set_PLTE (pngset.c:635): the overflow the CVE names",
+     "functions": [
+      "png_handle_PLTE (pngrutil.c:911-1102)",
+      "png_set_PLTE (pngset.c:571-643)"
+     ],
+     "regions": [
+      {
+       "file": "pngrutil.c",
+       "lo": 986,
+       "hi": 993
+      },
+      {
+       "file": "pngset.c",
+       "lo": 586,
+       "hi": 590
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "pngset.c",
+       "line": 635,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "pngset.c",
+       "line": 635,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PNG004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy(dp, sp, bytes_to_copy) in png_combine_row (pngrutil.c:3682, 3711): overflow after row_width is truncated",
+     "functions": [
+      "png_combine_row (pngrutil.c:3219-3716)"
+     ],
+     "regions": [
+      {
+       "file": "pngrutil.c",
+       "lo": 3224,
+       "hi": 3228
+      },
+      {
+       "file": "pngrutil.c",
+       "lo": 3478,
+       "hi": 3481
+      },
+      {
+       "file": "pngrutil.c",
+       "lo": 3507,
+       "hi": 3511
+      },
+      {
+       "file": "pngrutil.c",
+       "lo": 3691,
+       "hi": 3695
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "pngrutil.c",
+       "line": 3549,
+       "rule_id": "element-copy-loop",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "pngrutil.c",
+       "line": 3682,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "pngrutil.c",
+       "line": 3711,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PNG005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memset/alloc warnings in png_read_start_row; the overflow happens in png_combine_row",
+     "functions": [
+      "png_check_IHDR (png.c:2549-2705)",
+      "png_read_start_row (pngrutil.c:4426-4733)"
+     ],
+     "regions": [
+      {
+       "file": "png.c",
+       "lo": 2588,
+       "hi": 2591
+      },
+      {
+       "file": "pngrutil.c",
+       "lo": 4631,
+       "hi": 4647
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "pngrutil.c",
+       "line": 4701,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "pngrutil.c",
+       "line": 4701,
+       "rule_id": "memory-set-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PNG006",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "png_free_data (png.c:470-681)",
+      "png_handle_eXIf (pngrutil.c:2043-2102)"
+     ],
+     "regions": [
+      {
+       "file": "png.c",
+       "lo": 619,
+       "hi": 621
+      },
+      {
+       "file": "pngrutil.c",
+       "lo": 2067,
+       "hi": 2069
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PNG007",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "the NULL dereference is in png_do_expand_palette; findings are on other statements",
+     "functions": [
+      "png_read_transform_info (pngrtran.c:1939-2147)",
+      "png_set_PLTE (pngset.c:571-643)"
+     ],
+     "regions": [
+      {
+       "file": "pngrtran.c",
+       "lo": 1962,
+       "hi": 1968
+      },
+      {
+       "file": "pngset.c",
+       "lo": 610,
+       "hi": 615
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "pngrtran.c",
+       "line": 2144,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "pngset.c",
+       "line": 635,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "pngset.c",
+       "line": 635,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "target": "libsndfile",
+   "bugs": [
+    {
+     "bug": "SND001",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "paf_read_header (src/paf.c:157-277)"
+     ],
+     "regions": [
+      {
+       "file": "src/paf.c",
+       "lo": 201,
+       "hi": 207
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "sd2_parse_rsrc_fork (src/sd2.c:369-512)"
+     ],
+     "regions": [
+      {
+       "file": "src/sd2.c",
+       "lo": 460,
+       "hi": 468
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "psf_fwrite (src/file_io.c:384-431)"
+     ],
+     "regions": [
+      {
+       "file": "src/file_io.c",
+       "lo": 389,
+       "hi": 395
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy of the channel map in aiff_read_chanmap (aiff.c:1790): source over-read",
+     "functions": [
+      "aiff_read_chanmap (src/aiff.c:1757-1794)"
+     ],
+     "regions": [
+      {
+       "file": "src/aiff.c",
+       "lo": 1776,
+       "hi": 1783
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/aiff.c",
+       "line": 1790,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SND006",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "flagged memcpy fills a correctly sized buffer; the overflow is the later write loop",
+     "functions": [
+      "flac_buffer_copy (src/flac.c:165-336)"
+     ],
+     "regions": [
+      {
+       "file": "src/flac.c",
+       "lo": 172,
+       "hi": 172
+      },
+      {
+       "file": "src/flac.c",
+       "lo": 180,
+       "hi": 183
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/flac.c",
+       "line": 211,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SND007",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "sf_flac_meta_callback (src/flac.c:442-542)"
+     ],
+     "regions": [
+      {
+       "file": "src/flac.c",
+       "lo": 462,
+       "hi": 471
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND010",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy into the header buffer in psf_binheader_writef (common.c:725)",
+     "functions": [
+      "psf_binheader_writef (src/common.c:562-850)"
+     ],
+     "regions": [
+      {
+       "file": "src/common.c",
+       "lo": 698,
+       "hi": 698
+      },
+      {
+       "file": "src/common.c",
+       "lo": 708,
+       "hi": 726
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/common.c",
+       "line": 725,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 755,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 784,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 796,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 817,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SND012",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy into the header buffer in psf_binheader_writef (common.c:755)",
+     "functions": [
+      "psf_binheader_writef (src/common.c:562-850)"
+     ],
+     "regions": [
+      {
+       "file": "src/common.c",
+       "lo": 739,
+       "hi": 761
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/common.c",
+       "line": 725,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 755,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 784,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 796,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 817,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SND013",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy into the header buffer in psf_binheader_writef (common.c:784)",
+     "functions": [
+      "psf_binheader_writef (src/common.c:562-850)"
+     ],
+     "regions": [
+      {
+       "file": "src/common.c",
+       "lo": 773,
+       "hi": 780
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/common.c",
+       "line": 725,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 755,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 784,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 796,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/common.c",
+       "line": 817,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SND014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "d2alaw_array (src/alaw.c:357-375)"
+     ],
+     "regions": [
+      {
+       "file": "src/alaw.c",
+       "lo": 360,
+       "hi": 370
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND015",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "i2alaw_array (src/alaw.c:327-345)"
+     ],
+     "regions": [
+      {
+       "file": "src/alaw.c",
+       "lo": 330,
+       "hi": 340
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND016",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "double64_init (src/double64.c:90-262)"
+     ],
+     "regions": [
+      {
+       "file": "src/double64.c",
+       "lo": 94,
+       "hi": 101
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND017",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "wavlike_read_fmt_chunk (src/wavlike.c:123-480)"
+     ],
+     "regions": [
+      {
+       "file": "src/wavlike.c",
+       "lo": 338,
+       "hi": 346
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND020",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "wavlike_read_fmt_chunk (src/wavlike.c:123-480)"
+     ],
+     "regions": [
+      {
+       "file": "src/wavlike.c",
+       "lo": 360,
+       "hi": 371
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND022",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "d2ulaw_array (src/ulaw.c:858-876)"
+     ],
+     "regions": [
+      {
+       "file": "src/ulaw.c",
+       "lo": 861,
+       "hi": 871
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND023",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "i2ulaw_array (src/ulaw.c:828-846)"
+     ],
+     "regions": [
+      {
+       "file": "src/ulaw.c",
+       "lo": 831,
+       "hi": 841
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND024",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "sf_flac_meta_callback (src/flac.c:442-542)"
+     ],
+     "regions": [
+      {
+       "file": "src/flac.c",
+       "lo": 449,
+       "hi": 449
+      },
+      {
+       "file": "src/flac.c",
+       "lo": 457,
+       "hi": 460
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SND025",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "wav_write_header (src/wav.c:1059-1203)"
+     ],
+     "regions": [
+      {
+       "file": "src/wav.c",
+       "lo": 1154,
+       "hi": 1161
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    }
+   ]
+  },
+  {
+   "target": "libtiff",
+   "bugs": [
+    {
+     "bug": "TIF001",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "flagged memcpy copies into a buffer allocated with that exact size; the bug is the missing row-size check in the predictor loops",
+     "functions": [
+      "PredictorDecodeTile (libtiff/tif_predict.c:498-532)",
+      "PredictorEncodeTile (libtiff/tif_predict.c:749-804)",
+      "fpAcc (libtiff/tif_predict.c:424-471)",
+      "fpDiff (libtiff/tif_predict.c:686-732)",
+      "horAcc16 (libtiff/tif_predict.c:351-379)",
+      "horAcc32 (libtiff/tif_predict.c:391-419)",
+      "horAcc8 (libtiff/tif_predict.c:278-339)",
+      "horDiff16 (libtiff/tif_predict.c:593-623)",
+      "horDiff32 (libtiff/tif_predict.c:638-668)",
+      "horDiff8 (libtiff/tif_predict.c:534-591)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 285,
+       "hi": 285
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 292,
+       "hi": 295
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 359,
+       "hi": 359
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 366,
+       "hi": 369
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 399,
+       "hi": 399
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 406,
+       "hi": 409
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 434,
+       "hi": 434
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 441,
+       "hi": 444
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 509,
+       "hi": 510
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 517,
+       "hi": 521
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 542,
+       "hi": 542
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 549,
+       "hi": 552
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 602,
+       "hi": 602
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 609,
+       "hi": 612
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 647,
+       "hi": 647
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 654,
+       "hi": 657
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 697,
+       "hi": 697
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 704,
+       "hi": 707
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 780,
+       "hi": 781
+      },
+      {
+       "file": "libtiff/tif_predict.c",
+       "lo": 789,
+       "hi": 793
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "libtiff/tif_predict.c",
+       "line": 775,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "TIF002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "PixarLogDecode (libtiff/tif_pixarlog.c:751-899)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_pixarlog.c",
+       "lo": 801,
+       "hi": 801
+      },
+      {
+       "file": "libtiff/tif_pixarlog.c",
+       "lo": 808,
+       "hi": 811
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "TIFFReadEncodedStripGetStripSize (libtiff/tif_read.c:465-504)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_read.c",
+       "lo": 487,
+       "hi": 494
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "OJPEGDecode (libtiff/tif_ojpeg.c:787-818)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_ojpeg.c",
+       "lo": 793,
+       "hi": 793
+      },
+      {
+       "file": "libtiff/tif_ojpeg.c",
+       "lo": 803,
+       "hi": 806
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "LogLuvClose (libtiff/tif_luv.c:1554-1583)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_luv.c",
+       "lo": 1569,
+       "hi": 1571
+      },
+      {
+       "file": "libtiff/tif_luv.c",
+       "lo": 1580,
+       "hi": 1582
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF006",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "PixarLogClose (libtiff/tif_pixarlog.c:1254-1287)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_pixarlog.c",
+       "lo": 1269,
+       "hi": 1272
+      },
+      {
+       "file": "libtiff/tif_pixarlog.c",
+       "lo": 1284,
+       "hi": 1286
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF007",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "ChopUpSingleUncompressedStrip (libtiff/tif_dirread.c:5914-5993)",
+      "allocChoppedUpStripArrays (libtiff/tif_dirread.c:5835-5905)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_dirread.c",
+       "lo": 5882,
+       "hi": 5886
+      },
+      {
+       "file": "libtiff/tif_dirread.c",
+       "lo": 5961,
+       "hi": 5973
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF008",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "NeXTDecode (libtiff/tif_next.c:46-161)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_next.c",
+       "lo": 125,
+       "hi": 144
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF009",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "allocation-size warning; the bug is an invalid transfer-function pointer",
+     "functions": [
+      "TIFFWriteDirectoryTagTransferfunction (libtiff/tif_dirwrite.c:2079-2144)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_dirwrite.c",
+       "lo": 2104,
+       "hi": 2125
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "libtiff/tif_dirwrite.c",
+       "line": 2130,
+       "rule_id": "alloc-size-unbounded-arithmetic",
+       "cwe": "CWE-789",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "TIF010",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "LZWDecodeCompat (libtiff/tif_lzw.c:587-791)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_lzw.c",
+       "lo": 752,
+       "hi": 761
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF011",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "format-string warnings (false alarms from PRIu16 macros); the bug is a NULL dereference",
+     "functions": [
+      "TIFFPrintDirectory (libtiff/tif_print.c:234-667)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_print.c",
+       "lo": 542,
+       "hi": 553
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 326,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 337,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 353,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 413,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 428,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 448,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 454,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 461,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "libtiff/tif_print.c",
+       "line": 503,
+       "rule_id": "format-string-not-literal",
+       "cwe": "CWE-134",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "TIF012",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "_TIFFVSetField (libtiff/tif_dir.c:175-797)",
+      "setExtraSamples (libtiff/tif_dir.c:90-143)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_dir.c",
+       "lo": 121,
+       "hi": 121
+      },
+      {
+       "file": "libtiff/tif_dir.c",
+       "lo": 132,
+       "hi": 136
+      },
+      {
+       "file": "libtiff/tif_dir.c",
+       "lo": 279,
+       "hi": 279
+      },
+      {
+       "file": "libtiff/tif_dir.c",
+       "lo": 311,
+       "hi": 317
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF013",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "JBIGDecode (libtiff/tif_jbig.c:49-132)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_jbig.c",
+       "lo": 109,
+       "hi": 123
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "TIF014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "ChopUpSingleUncompressedStrip (libtiff/tif_dirread.c:5914-5993)"
+     ],
+     "regions": [
+      {
+       "file": "libtiff/tif_dirread.c",
+       "lo": 5976,
+       "hi": 5976
+      },
+      {
+       "file": "libtiff/tif_dirread.c",
+       "lo": 5984,
+       "hi": 5990
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    }
+   ]
+  },
+  {
+   "target": "libxml2",
+   "bugs": [
+    {
+     "bug": "XML001",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "strcat into buf in xmlSnprintfElementContent (valid.c:1331, 1332, 1345)",
+     "functions": [
+      "xmlSnprintfElementContent (valid.c:1296-1410)"
+     ],
+     "regions": [
+      {
+       "file": "valid.c",
+       "lo": 1313,
+       "hi": 1313
+      },
+      {
+       "file": "valid.c",
+       "lo": 1322,
+       "hi": 1343
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "valid.c",
+       "line": 1304,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1307,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1310,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1327,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1331,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1332,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1337,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1345,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1357,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1360,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1377,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1380,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1396,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1401,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1404,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1407,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "XML002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlValidateOneNamespace (valid.c:4624-4836)"
+     ],
+     "regions": [
+      {
+       "file": "valid.c",
+       "lo": 4727,
+       "hi": 4733
+      },
+      {
+       "file": "valid.c",
+       "lo": 4740,
+       "hi": 4742
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlParsePEReference (parser.c:7935-8081)"
+     ],
+     "regions": [
+      {
+       "file": "parser.c",
+       "lo": 8023,
+       "hi": 8023
+      },
+      {
+       "file": "parser.c",
+       "lo": 8032,
+       "hi": 8042
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xz_decomp (xzlib.c:529-646)"
+     ],
+     "regions": [
+      {
+       "file": "xzlib.c",
+       "lo": 594,
+       "hi": 604
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML005",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "CodeQL cpp/multiplication-overflow-in-alloc at xmlmemory.c:187: the integer overflow in malloc(RESERVE_SIZE+size) (CVE-2017-5130)",
+     "functions": [
+      "xmlMallocAtomicLoc (xmlmemory.c:242-310)",
+      "xmlMallocLoc (xmlmemory.c:161-229)",
+      "xmlMemStrdupLoc (xmlmemory.c:521-580)",
+      "xmlReallocLoc (xmlmemory.c:338-422)"
+     ],
+     "regions": [
+      {
+       "file": "xmlmemory.c",
+       "lo": 175,
+       "hi": 175
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 182,
+       "hi": 185
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 256,
+       "hi": 256
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 263,
+       "hi": 266
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 372,
+       "hi": 372
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 379,
+       "hi": 382
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 531,
+       "hi": 531
+      },
+      {
+       "file": "xmlmemory.c",
+       "lo": 538,
+       "hi": 541
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "xmlmemory.c",
+       "line": 386,
+       "rule_id": "use-after-free",
+       "cwe": "CWE-416",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "xmlmemory.c",
+       "line": 566,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "xmlmemory.c",
+       "line": 187,
+       "rule_id": "cpp/multiplication-overflow-in-alloc",
+       "cwe": "CWE-190",
+       "analyzer": "codeql"
+      }
+     ]
+    },
+    {
+     "bug": "XML006",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "strcat(buf, \")\") in xmlSnprintfElementContent (valid.c:1396)",
+     "functions": [
+      "xmlSnprintfElementContent (valid.c:1296-1410)"
+     ],
+     "regions": [
+      {
+       "file": "valid.c",
+       "lo": 1389,
+       "hi": 1394
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "valid.c",
+       "line": 1304,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1307,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1310,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1327,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1331,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1332,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1337,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1345,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1357,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1360,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1377,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1380,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1396,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1401,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1404,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "valid.c",
+       "line": 1407,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "XML007",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "htmlParseTryOrFinish (HTMLparser.c:5461-6246)",
+      "xmlHaltParser (parser.c:12606-12634)"
+     ],
+     "regions": [
+      {
+       "file": "HTMLparser.c",
+       "lo": 5532,
+       "hi": 5534
+      },
+      {
+       "file": "parser.c",
+       "lo": 12623,
+       "hi": 12631
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML008",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memcpy earlier in xmlParseComment; the bug is in the double-hyphen handling",
+     "functions": [
+      "xmlParseComment (parser.c:4900-5070)"
+     ],
+     "regions": [
+      {
+       "file": "parser.c",
+       "lo": 5047,
+       "hi": 5058
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "parser.c",
+       "line": 4983,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "XML009",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlParseEncodingDecl (parser.c:10401-10511)"
+     ],
+     "regions": [
+      {
+       "file": "parser.c",
+       "lo": 10487,
+       "hi": 10502
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML010",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlStringLenDecodeEntities (parser.c:2645-2833)"
+     ],
+     "regions": [
+      {
+       "file": "parser.c",
+       "lo": 2761,
+       "hi": 2762
+      },
+      {
+       "file": "parser.c",
+       "lo": 2774,
+       "hi": 2787
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML011",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy + unbounded size arithmetic in xmlStrncat/xmlStrncatNew (xmlstring.c:478, 517, 526, 527)",
+     "functions": [
+      "xmlStrncat (xmlstring.c:450-481)",
+      "xmlStrncatNew (xmlstring.c:495-530)"
+     ],
+     "regions": [
+      {
+       "file": "xmlstring.c",
+       "lo": 463,
+       "hi": 477
+      },
+      {
+       "file": "xmlstring.c",
+       "lo": 502,
+       "hi": 505
+      },
+      {
+       "file": "xmlstring.c",
+       "lo": 513,
+       "hi": 525
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "xmlstring.c",
+       "line": 478,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "xmlstring.c",
+       "line": 526,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "xmlstring.c",
+       "line": 527,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "xmlstring.c",
+       "line": 517,
+       "rule_id": "alloc-size-unbounded-arithmetic",
+       "cwe": "CWE-789",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "XML012",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlParseNCNameComplex (parser.c:3399-3469)"
+     ],
+     "regions": [
+      {
+       "file": "parser.c",
+       "lo": 3405,
+       "hi": 3405
+      },
+      {
+       "file": "parser.c",
+       "lo": 3416,
+       "hi": 3416
+      },
+      {
+       "file": "parser.c",
+       "lo": 3438,
+       "hi": 3438
+      },
+      {
+       "file": "parser.c",
+       "lo": 3452,
+       "hi": 3452
+      },
+      {
+       "file": "parser.c",
+       "lo": 3461,
+       "hi": 3468
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML013",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "htmlParsePubidLiteral (HTMLparser.c:3038-3092)",
+      "htmlParseSystemLiteral (HTMLparser.c:2974-3025)"
+     ],
+     "regions": [
+      {
+       "file": "HTMLparser.c",
+       "lo": 2977,
+       "hi": 2977
+      },
+      {
+       "file": "HTMLparser.c",
+       "lo": 2990,
+       "hi": 2995
+      },
+      {
+       "file": "HTMLparser.c",
+       "lo": 3011,
+       "hi": 3021
+      },
+      {
+       "file": "HTMLparser.c",
+       "lo": 3041,
+       "hi": 3041
+      },
+      {
+       "file": "HTMLparser.c",
+       "lo": 3057,
+       "hi": 3062
+      },
+      {
+       "file": "HTMLparser.c",
+       "lo": 3078,
+       "hi": 3088
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "htmlParseName (HTMLparser.c:2631-2671)"
+     ],
+     "regions": [
+      {
+       "file": "HTMLparser.c",
+       "lo": 2654,
+       "hi": 2660
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML015",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "htmlParseNameComplex (HTMLparser.c:2673-2726)"
+     ],
+     "regions": [
+      {
+       "file": "HTMLparser.c",
+       "lo": 2704,
+       "hi": 2704
+      },
+      {
+       "file": "HTMLparser.c",
+       "lo": 2712,
+       "hi": 2715
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML016",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlFAParseCharRange (xmlregexp.c:5065-5158)"
+     ],
+     "regions": [
+      {
+       "file": "xmlregexp.c",
+       "lo": 5140,
+       "hi": 5153
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "XML017",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "xmlParseInternalSubset (parser.c:8386-8451)"
+     ],
+     "regions": [
+      {
+       "file": "parser.c",
+       "lo": 8436,
+       "hi": 8449
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    }
+   ]
+  },
+  {
+   "target": "lua",
+   "bugs": [
+    {
+     "bug": "LUA001",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "findvararg (ldebug.c:188-205)",
+      "luaG_findlocal (ldebug.c:208-233)"
+     ],
+     "regions": [
+      {
+       "file": "ldebug.c",
+       "lo": 191,
+       "hi": 200
+      },
+      {
+       "file": "ldebug.c",
+       "lo": 213,
+       "hi": 217
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "LUA002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "changedline (ldebug.c:842-866)"
+     ],
+     "regions": [
+      {
+       "file": "ldebug.c",
+       "lo": 843,
+       "hi": 850
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "LUA003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "io_popen (liolib.c:290-304)"
+     ],
+     "regions": [
+      {
+       "file": "liolib.c",
+       "lo": 294,
+       "hi": 300
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "LUA004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memcpy elsewhere in luaV_execute; the bug is a stale oldpc",
+     "functions": [
+      "luaG_traceexec (ldebug.c:881-943)",
+      "luaV_execute (lvm.c:1138-1837)",
+      "lua_sethook (ldebug.c:131-146)",
+      "preinit_thread (lstate.c:249-268)",
+      "rethook (ldo.c:365-391)",
+      "vmcase (lvm.c:1818-1830)",
+      "vmdispatch (lvm.c:1176-1835)"
+     ],
+     "regions": [
+      {
+       "file": "ldebug.c",
+       "lo": 136,
+       "hi": 139
+      },
+      {
+       "file": "ldebug.c",
+       "lo": 884,
+       "hi": 886
+      },
+      {
+       "file": "ldebug.c",
+       "lo": 908,
+       "hi": 933
+      },
+      {
+       "file": "ldo.c",
+       "lo": 371,
+       "hi": 375
+      },
+      {
+       "file": "ldo.c",
+       "lo": 384,
+       "hi": 390
+      },
+      {
+       "file": "lstate.c",
+       "lo": 265,
+       "hi": 267
+      },
+      {
+       "file": "lstate.h",
+       "lo": 312,
+       "hi": 314
+      },
+      {
+       "file": "lstate.h",
+       "lo": 326,
+       "hi": 328
+      },
+      {
+       "file": "lvm.c",
+       "lo": 1822,
+       "hi": 1826
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "lvm.c",
+       "line": 1768,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "target": "openssl",
+   "bugs": [
+    {
+     "bug": "SSL001",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "flagged the positive-number memcpy; the bug is the negative-zero loop underflow",
+     "functions": [
+      "ASN1_TYPE_cmp (crypto/asn1/a_type.c:63-116)",
+      "asn1_ex_c2i (crypto/asn1/tasn_dec.c:831-968)",
+      "asn1_ex_i2c (crypto/asn1/tasn_enc.c:516-638)",
+      "i2c_ibuf (crypto/asn1/a_int.c:97-189)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/asn1/a_int.c",
+       "lo": 142,
+       "hi": 185
+      },
+      {
+       "file": "crypto/asn1/a_type.c",
+       "lo": 82,
+       "hi": 85
+      },
+      {
+       "file": "crypto/asn1/tasn_dec.c",
+       "lo": 889,
+       "hi": 892
+      },
+      {
+       "file": "crypto/asn1/tasn_enc.c",
+       "lo": 589,
+       "hi": 592
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "crypto/asn1/a_int.c",
+       "line": 148,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "crypto/asn1/tasn_enc.c",
+       "line": 636,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SSL002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "grow_init_buf (ssl/statem/statem.c:505-523)"
+     ],
+     "regions": [
+      {
+       "file": "ssl/statem/statem.c",
+       "lo": 515,
+       "hi": 520
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "asn1_d2i_read_bio (crypto/asn1/a_d2i_fp.c:109-266)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/asn1/a_d2i_fp.c",
+       "lo": 191,
+       "hi": 196
+      },
+      {
+       "file": "crypto/asn1/a_d2i_fp.c",
+       "lo": 218,
+       "hi": 227
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "flagged other copies; the bug is the EBCDIC buffer over-read",
+     "functions": [
+      "X509_NAME_oneline (crypto/x509/x509_obj.c:25-200)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/x509/x509_obj.c",
+       "lo": 86,
+       "hi": 101
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "crypto/x509/x509_obj.c",
+       "line": 57,
+       "rule_id": "bounded-string-op-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "crypto/x509/x509_obj.c",
+       "line": 147,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SSL005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "tls_parse_ctos_status_request (ssl/statem/extensions_srvr.c:301-419)"
+     ],
+     "regions": [
+      {
+       "file": "ssl/statem/extensions_srvr.c",
+       "lo": 332,
+       "hi": 332
+      },
+      {
+       "file": "ssl/statem/extensions_srvr.c",
+       "lo": 347,
+       "hi": 363
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL006",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy in EVP_EncodeUpdate (encode.c:184) after the length check overflows",
+     "functions": [
+      "EVP_EncodeUpdate (crypto/evp/encode.c:162-226)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/evp/encode.c",
+       "lo": 172,
+       "hi": 183
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "crypto/evp/encode.c",
+       "line": 184,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "crypto/evp/encode.c",
+       "line": 190,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "crypto/evp/encode.c",
+       "line": 221,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SSL007",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "memcpy in MDC2_Update (mdc2dgst.c:60) after the length check overflows",
+     "functions": [
+      "MDC2_Update (crypto/mdc2/mdc2dgst.c:45-82)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/mdc2/mdc2dgst.c",
+       "lo": 15,
+       "hi": 15
+      },
+      {
+       "file": "crypto/mdc2/mdc2dgst.c",
+       "lo": 51,
+       "hi": 58
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "crypto/mdc2/mdc2dgst.c",
+       "line": 60,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "crypto/mdc2/mdc2dgst.c",
+       "line": 66,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "crypto/mdc2/mdc2dgst.c",
+       "line": 78,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SSL008",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memset warning; the bug is a NULL skey dereference",
+     "functions": [
+      "tls_construct_cke_dhe (ssl/statem/statem_clnt.c:2901-2967)",
+      "tls_construct_cke_ecdhe (ssl/statem/statem_clnt.c:2969-3016)"
+     ],
+     "regions": [
+      {
+       "file": "ssl/statem/statem_clnt.c",
+       "lo": 2917,
+       "hi": 2925
+      },
+      {
+       "file": "ssl/statem/statem_clnt.c",
+       "lo": 2983,
+       "hi": 2991
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ssl/statem/statem_clnt.c",
+       "line": 2954,
+       "rule_id": "memory-set-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SSL009",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "X509v3_addr_get_afi (crypto/x509/v3_addr.c:86-113)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/x509/v3_addr.c",
+       "lo": 88,
+       "hi": 88
+      },
+      {
+       "file": "crypto/x509/v3_addr.c",
+       "lo": 95,
+       "hi": 112
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL010",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "bn_expand (crypto/bn/bn_local.h:664-680)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/bn/bn_local.h",
+       "lo": 666,
+       "hi": 666
+      },
+      {
+       "file": "crypto/bn/bn_local.h",
+       "lo": 674,
+       "hi": 679
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL011",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "PKCS7_dataDecode (crypto/pkcs7/pk7_doit.c:397-688)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 507,
+       "hi": 515
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 656,
+       "hi": 660
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL012",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "X509_to_X509_REQ (crypto/x509/x509_req.c:22-66)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/x509/x509_req.c",
+       "lo": 47,
+       "hi": 53
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL013",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "rsa_item_verify (crypto/rsa/rsa_ameth.c:611-633)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/rsa/rsa_ameth.c",
+       "lo": 620,
+       "hi": 628
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "ASN1_TYPE_cmp (crypto/asn1/a_type.c:63-116)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/asn1/a_type.c",
+       "lo": 74,
+       "hi": 78
+      },
+      {
+       "file": "crypto/asn1/a_type.c",
+       "lo": 107,
+       "hi": 109
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL015",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "PKCS7_dataDecode (crypto/pkcs7/pk7_doit.c:397-688)",
+      "PKCS7_dataFinal (crypto/pkcs7/pk7_doit.c:740-923)",
+      "PKCS7_dataInit (crypto/pkcs7/pk7_doit.c:203-383)",
+      "PKCS7_dataVerify (crypto/pkcs7/pk7_doit.c:979-1037)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 220,
+       "hi": 220
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 243,
+       "hi": 247
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 419,
+       "hi": 419
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 434,
+       "hi": 438
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 752,
+       "hi": 752
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 765,
+       "hi": 769
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 987,
+       "hi": 987
+      },
+      {
+       "file": "crypto/pkcs7/pk7_doit.c",
+       "lo": 998,
+       "hi": 1002
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL016",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "BN_GF2m_mod_inv_vartime (crypto/bn/bn_gf2m.c:561-735)"
+     ],
+     "regions": [
+      {
+       "file": "crypto/bn/bn_gf2m.c",
+       "lo": 673,
+       "hi": 673
+      },
+      {
+       "file": "crypto/bn/bn_gf2m.c",
+       "lo": 680,
+       "hi": 687
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL017",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [],
+     "regions": [
+      {
+       "file": "crypto/x509/x509_vfy.c",
+       "lo": 1072,
+       "hi": 1086
+      }
+     ],
+     "unparsed_files": [
+      "crypto/x509/x509_vfy.c"
+     ],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL018",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "dtls1_preprocess_fragment (ssl/statem/statem_dtls.c:439-486)"
+     ],
+     "regions": [
+      {
+       "file": "ssl/statem/statem_dtls.c",
+       "lo": 447,
+       "hi": 459
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SSL019",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "the bug is an infinite loop, not a memory error",
+     "functions": [
+      "ssl3_read_bytes (ssl/record/rec_layer_s3.c:1265-1794)"
+     ],
+     "regions": [
+      {
+       "file": "ssl/record/rec_layer_s3.c",
+       "lo": 1457,
+       "hi": 1470
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ssl/record/rec_layer_s3.c",
+       "line": 1455,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ssl/record/rec_layer_s3.c",
+       "line": 1676,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SSL020",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "unrelated memcpy; the bug is the ticket-length underflow fed to HMAC",
+     "functions": [
+      "tls_decrypt_ticket (ssl/t1_lib.c:1774-2040)"
+     ],
+     "regions": [
+      {
+       "file": "ssl/t1_lib.c",
+       "lo": 1895,
+       "hi": 1906
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ssl/t1_lib.c",
+       "line": 1956,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "target": "php",
+   "bugs": [
+    {
+     "bug": "PHP001",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "phar_detect_phar_fname_ext (ext/phar/phar.c:2016-2165)"
+     ],
+     "regions": [
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 2117,
+       "hi": 2124
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_process_IFD_in_TIFF_impl (ext/exif/exif.c:4093-4329)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 4101,
+       "hi": 4108
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_scan_thumbnail (ext/exif/exif.c:3974-4088)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 3980,
+       "hi": 3991
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_process_IFD_in_MAKERNOTE (ext/exif/exif.c:3152-3270)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 3235,
+       "hi": 3245
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "unrelated memcpy; the bug is the quoted-printable over-read",
+     "functions": [
+      "_php_iconv_mime_decode (ext/iconv/iconv.c:1186-1744)"
+     ],
+     "regions": [
+      {
+       "file": "ext/iconv/iconv.c",
+       "lo": 1374,
+       "hi": 1383
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/iconv/iconv.c",
+       "line": 1338,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PHP006",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_scan_thumbnail (ext/exif/exif.c:3974-4088)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 4017,
+       "hi": 4024
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP007",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "PHAR_GET_32 (a 4-byte memcpy) reading past the manifest (phar.c:817, 843, 1059)",
+     "functions": [
+      "phar_parse_pharfile (ext/phar/phar.c:730-1364)"
+     ],
+     "regions": [
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 805,
+       "hi": 805
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 812,
+       "hi": 821
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 840,
+       "hi": 848
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 1056,
+       "hi": 1072
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 1110,
+       "hi": 1114
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 1123,
+       "hi": 1142
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/phar/phar.c",
+       "line": 795,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 817,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 843,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 874,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 894,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1059,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1120,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1126,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1138,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1146,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1177,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1186,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1189,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1206,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1219,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1220,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1233,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1234,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1235,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1242,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1245,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1262,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1269,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1276,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1328,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1335,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PHP008",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "unrelated memcpy; the bug is add_assoc_stringl with a negative length (CAA records)",
+     "functions": [
+      "php_parserr (ext/standard/dns.c:460-827)"
+     ],
+     "regions": [
+      {
+       "file": "ext/standard/dns.c",
+       "lo": 484,
+       "hi": 493
+      },
+      {
+       "file": "ext/standard/dns.c",
+       "lo": 584,
+       "hi": 592
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/standard/dns.c",
+       "line": 667,
+       "rule_id": "unbounded-sprintf",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/dns.c",
+       "line": 712,
+       "rule_id": "unbounded-sprintf",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/dns.c",
+       "line": 737,
+       "rule_id": "unbounded-sprintf",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/dns.c",
+       "line": 616,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PHP009",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_process_IFD_in_MAKERNOTE (ext/exif/exif.c:3152-3270)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 3180,
+       "hi": 3198
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP010",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_scan_thumbnail (ext/exif/exif.c:3974-4088)",
+      "zif_exif_thumbnail (ext/exif/exif.c:4762-4850)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 4026,
+       "hi": 4037
+      },
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 4056,
+       "hi": 4065
+      },
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 4825,
+       "hi": 4832
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP011",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exif_offset_info_try_get (ext/exif/exif.c:2055-2088)"
+     ],
+     "regions": [
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 2057,
+       "hi": 2057
+      },
+      {
+       "file": "ext/exif/exif.c",
+       "lo": 2074,
+       "hi": 2087
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP012",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "NULL-assignment warnings; the bug is the tmp_line_len underflow",
+     "functions": [
+      "php_stream_url_wrap_http_ex (ext/standard/http_fopen_wrapper.c:117-970)"
+     ],
+     "regions": [
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "lo": 711,
+       "hi": 711
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "lo": 718,
+       "hi": 729
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 259,
+       "rule_id": "null-assigned-then-dereferenced",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 261,
+       "rule_id": "null-assigned-then-dereferenced",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 281,
+       "rule_id": "null-assigned-then-dereferenced",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 305,
+       "rule_id": "null-assigned-then-dereferenced",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 526,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 527,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 532,
+       "rule_id": "unbounded-string-copy",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 506,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 526,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 527,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 532,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 535,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 879,
+       "rule_id": "snprintf-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 881,
+       "rule_id": "snprintf-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 884,
+       "rule_id": "snprintf-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 890,
+       "rule_id": "snprintf-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 892,
+       "rule_id": "snprintf-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/standard/http_fopen_wrapper.c",
+       "line": 593,
+       "rule_id": "alloc-size-unbounded-arithmetic",
+       "cwe": "CWE-789",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PHP013",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "PHP_FUNCTION (ext/intl/msgformat/msgformat_parse.c:76-142)",
+      "zif_msgfmt_parse_message (ext/intl/msgformat/msgformat_parse.c:76-142)"
+     ],
+     "regions": [
+      {
+       "file": "ext/intl/msgformat/msgformat_parse.c",
+       "lo": 96,
+       "hi": 102
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "get_icu_disp_value_src_php (ext/intl/locale/locale_methods.c:457-590)"
+     ],
+     "regions": [
+      {
+       "file": "ext/intl/locale/locale_methods.c",
+       "lo": 487,
+       "hi": 487
+      },
+      {
+       "file": "ext/intl/locale/locale_methods.c",
+       "lo": 495,
+       "hi": 499
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PHP015",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "PHAR_GET_32 reading past a truncated manifest entry (phar.c:1186)",
+     "functions": [
+      "phar_parse_pharfile (ext/phar/phar.c:730-1364)"
+     ],
+     "regions": [
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 1171,
+       "hi": 1184
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "lo": 1195,
+       "hi": 1208
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/phar/phar.c",
+       "line": 795,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 817,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 843,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 874,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 894,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1059,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1120,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1126,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1138,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1146,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1177,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1186,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1189,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1206,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1219,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1220,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1233,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1234,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1235,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1242,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1245,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1262,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1269,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1276,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1328,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/phar.c",
+       "line": 1335,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PHP016",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "emalloc-NULL warning (emalloc never returns NULL); the bug is the signature length check",
+     "functions": [
+      "phar_parse_zipfile (ext/phar/zip.c:196-777)",
+      "phar_verify_signature (ext/phar/util.c:1476-1792)"
+     ],
+     "regions": [
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1606,
+       "hi": 1606
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1613,
+       "hi": 1617
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1651,
+       "hi": 1651
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1658,
+       "hi": 1662
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1696,
+       "hi": 1696
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1703,
+       "hi": 1708
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1742,
+       "hi": 1742
+      },
+      {
+       "file": "ext/phar/util.c",
+       "lo": 1749,
+       "hi": 1754
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "lo": 450,
+       "hi": 465
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/phar/zip.c",
+       "line": 232,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 251,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 263,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 267,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 283,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 285,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 287,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 288,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 289,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 292,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 306,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 308,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 310,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 314,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 466,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "ext/phar/zip.c",
+       "line": 607,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "target": "poppler",
+   "bugs": [
+    {
+     "bug": "PDF001",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "the bug is a divide-by-zero",
+     "functions": [
+      "SplashOutputDev::tilingPatternFill (poppler/SplashOutputDev.cc:4198-4409)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/SplashOutputDev.cc",
+       "lo": 4290,
+       "hi": 4298
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "poppler/SplashOutputDev.cc",
+       "line": 4226,
+       "rule_id": "element-copy-loop",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "JPXStream::init (poppler/JPEG2000Stream.cc:240-334)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/JPEG2000Stream.cc",
+       "lo": 250,
+       "hi": 258
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "unchecked-alloc warnings; the bug is the 1-byte zero[] buffer",
+     "functions": [
+      "HtmlOutputDev::drawPngImage (utils/HtmlOutputDev.cc:1316-1446)",
+      "ImageOutputDev::writeImageFile (utils/ImageOutputDev.cc:349-516)"
+     ],
+     "regions": [
+      {
+       "file": "utils/HtmlOutputDev.cc",
+       "lo": 1399,
+       "hi": 1407
+      },
+      {
+       "file": "utils/ImageOutputDev.cc",
+       "lo": 359,
+       "hi": 363
+      },
+      {
+       "file": "utils/ImageOutputDev.cc",
+       "lo": 406,
+       "hi": 408
+      },
+      {
+       "file": "poppler/GfxState.h",
+       "lo": 1211,
+       "hi": 1211
+      }
+     ],
+     "unparsed_files": [
+      "poppler/GfxState.h"
+     ],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "utils/HtmlOutputDev.cc",
+       "line": 1372,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "utils/HtmlOutputDev.cc",
+       "line": 1418,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "SplashXPathScanner::clipAALine (splash/SplashXPathScanner.cc:429-519)"
+     ],
+     "regions": [
+      {
+       "file": "splash/SplashXPathScanner.cc",
+       "lo": 449,
+       "hi": 455
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "JPXStream::init (poppler/JPEG2000Stream.cc:240-334)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/JPEG2000Stream.cc",
+       "lo": 304,
+       "hi": 313
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF006",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memset warning; the bug is a missing source bounds check",
+     "functions": [
+      "Splash::blitTransparent (splash/Splash.cc:5655-5787)"
+     ],
+     "regions": [
+      {
+       "file": "splash/Splash.cc",
+       "lo": 5669,
+       "hi": 5669
+      },
+      {
+       "file": "splash/Splash.cc",
+       "lo": 5687,
+       "hi": 5695
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "splash/Splash.cc",
+       "line": 5782,
+       "rule_id": "memory-set-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF007",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "ImageStream::getLine (poppler/Stream.cc:654-711)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/Stream.cc",
+       "lo": 661,
+       "hi": 668
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF008",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "loop warning on the type-4 path; the bug is the type-5 triangle-count overflow",
+     "functions": [
+      "GfxGouraudTriangleShading::parse (poppler/GfxState.cc:4646-4862)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 4826,
+       "hi": 4833
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "poppler/GfxState.cc",
+       "line": 4815,
+       "rule_id": "element-copy-loop",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "line": 4788,
+       "rule_id": "memory-set-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF009",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "Parser::makeStream (poppler/Parser.cc:221-345)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/Parser.cc",
+       "lo": 311,
+       "hi": 319
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF010",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "confirmed",
+     "note": "t3GlyphStack dereferenced before its NULL check (SplashOutputDev.cc:2472)",
+     "functions": [
+      "SplashOutputDev::type3D1 (poppler/SplashOutputDev.cc:2448-2578)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/SplashOutputDev.cc",
+       "lo": 2456,
+       "hi": 2463
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "poppler/SplashOutputDev.cc",
+       "line": 2472,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF011",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "XRef::getEntry (poppler/XRef.cc:1669-1717)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/XRef.cc",
+       "lo": 1671,
+       "hi": 1679
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF012",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "Parser::makeStream (poppler/Parser.cc:221-345)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/Parser.cc",
+       "lo": 281,
+       "hi": 289
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF013",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "FileSpec::FileSpec (poppler/FileSpec.cc:116-162)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/FileSpec.cc",
+       "lo": 146,
+       "hi": 161
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "XRef::getEntry (poppler/XRef.cc:1669-1717)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/XRef.cc",
+       "lo": 1683,
+       "hi": 1691
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF015",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "EmbFile::save2 (poppler/FileSpec.cc:98-114)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/FileSpec.cc",
+       "lo": 102,
+       "hi": 108
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF016",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "Parser::getObj (poppler/Parser.cc:82-219)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/Parser.cc",
+       "lo": 184,
+       "hi": 191
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF017",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "unrelated memcpy/alloc warnings; the bug is unchecked table lengths",
+     "functions": [
+      "FoFiTrueType::cvtSfnts (fofi/FoFiTrueType.cc:1101-1436)"
+     ],
+     "regions": [
+      {
+       "file": "fofi/FoFiTrueType.cc",
+       "lo": 1400,
+       "hi": 1421
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "fofi/FoFiTrueType.cc",
+       "line": 1146,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "fofi/FoFiTrueType.cc",
+       "line": 1285,
+       "rule_id": "unchecked-alloc-result-deref",
+       "cwe": "CWE-690",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF018",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [],
+     "regions": [
+      {
+       "file": "poppler/Annot.cc",
+       "lo": 6051,
+       "hi": 6058
+      }
+     ],
+     "unparsed_files": [
+      "poppler/Annot.cc"
+     ],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF019",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "JBIG2Bitmap::combine (poppler/JBIG2Stream.cc:762-960)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/JBIG2Stream.cc",
+       "lo": 811,
+       "hi": 817
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF020",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "index warning; the bug is unbounded recursion",
+     "functions": [
+      "FoFiType1C::cvtGlyph (fofi/FoFiType1C.cc:1118-1767)"
+     ],
+     "regions": [
+      {
+       "file": "fofi/FoFiType1C.cc",
+       "lo": 1288,
+       "hi": 1295
+      },
+      {
+       "file": "fofi/FoFiType1C.cc",
+       "lo": 1532,
+       "hi": 1539
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "fofi/FoFiType1C.cc",
+       "line": 1445,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "PDF021",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "ImageStream::ImageStream (poppler/Stream.cc:575-618)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/Stream.cc",
+       "lo": 586,
+       "hi": 593
+      },
+      {
+       "file": "poppler/Stream.cc",
+       "lo": 605,
+       "hi": 612
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "PDF022",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "GfxSeparationColorSpace::getCMYK (poppler/GfxState.cc:2723-2769)",
+      "GfxSeparationColorSpace::getGray (poppler/GfxState.cc:2661-2686)",
+      "GfxSeparationColorSpace::getRGB (poppler/GfxState.cc:2688-2721)"
+     ],
+     "regions": [
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2668,
+       "hi": 2676
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2683,
+       "hi": 2685
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2695,
+       "hi": 2705
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2718,
+       "hi": 2720
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2730,
+       "hi": 2730
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2752,
+       "hi": 2759
+      },
+      {
+       "file": "poppler/GfxState.cc",
+       "lo": 2766,
+       "hi": 2768
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    }
+   ]
+  },
+  {
+   "target": "sqlite3",
+   "bugs": [
+    {
+     "bug": "SQL001",
+     "status": "ok",
+     "line_hit": true,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memset warning; the bug is the memcmp over-read",
+     "functions": [
+      "fts5HashEntrySort (ext/fts5/fts5_hash.c:440-489)"
+     ],
+     "regions": [
+      {
+       "file": "ext/fts5/fts5_hash.c",
+       "lo": 459,
+       "hi": 468
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/fts5/fts5_hash.c",
+       "line": 454,
+       "rule_id": "memory-set-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL002",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "index warnings; the bug is a missing error abort",
+     "functions": [
+      "selectExpander (src/select.c:5395-5702)"
+     ],
+     "regions": [
+      {
+       "file": "src/select.c",
+       "lo": 5518,
+       "hi": 5527
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/select.c",
+       "line": 5561,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/select.c",
+       "line": 5570,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/select.c",
+       "line": 5572,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/select.c",
+       "line": 5573,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/select.c",
+       "line": 5574,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/select.c",
+       "line": 5576,
+       "rule_id": "array-index-missing-lower-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL003",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "flattenSubquery (src/select.c:3996-4417)"
+     ],
+     "regions": [
+      {
+       "file": "src/select.c",
+       "lo": 4088,
+       "hi": 4096
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL004",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "unrelated memcpy; the bug is in the '/' name handling",
+     "functions": [
+      "zipfileStep (ext/misc/zipfile.c:1950-2127)",
+      "zipfileUpdate (ext/misc/zipfile.c:1532-1734)"
+     ],
+     "regions": [
+      {
+       "file": "ext/misc/zipfile.c",
+       "lo": 1656,
+       "hi": 1663
+      },
+      {
+       "file": "ext/misc/zipfile.c",
+       "lo": 2069,
+       "hi": 2076
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "ext/misc/zipfile.c",
+       "line": 2104,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL005",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "zipfileUpdate (ext/misc/zipfile.c:1532-1734)"
+     ],
+     "regions": [
+      {
+       "file": "ext/misc/zipfile.c",
+       "lo": 1633,
+       "hi": 1639
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL006",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "pGroupBy NULL-check warnings; the bug is DISTINCT + window-function handling",
+     "functions": [
+      "sqlite3Select (src/select.c:6232-7431)"
+     ],
+     "regions": [
+      {
+       "file": "src/select.c",
+       "lo": 6691,
+       "hi": 6701
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/select.c",
+       "line": 6933,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/select.c",
+       "line": 6989,
+       "rule_id": "null-check-after-deref",
+       "cwe": "CWE-476",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL007",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "sqlite3EndTable (src/build.c:2416-2714)"
+     ],
+     "regions": [
+      {
+       "file": "src/build.c",
+       "lo": 2448,
+       "hi": 2456
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL008",
+     "status": "not-scanned",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "not-scanned",
+     "note": null,
+     "functions": [],
+     "regions": [
+      {
+       "file": "src/shell.c.in",
+       "lo": 3627,
+       "hi": 3632
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL009",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "valueToText (src/vdbemem.c:1235-1271)"
+     ],
+     "regions": [
+      {
+       "file": "src/vdbemem.c",
+       "lo": 1242,
+       "hi": 1247
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL010",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exprAnalyze (src/whereexpr.c:1031-1443)"
+     ],
+     "regions": [
+      {
+       "file": "src/whereexpr.c",
+       "lo": 1434,
+       "hi": 1441
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL011",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "getNodeSize (ext/rtree/rtree.c:3644-3687)"
+     ],
+     "regions": [
+      {
+       "file": "ext/rtree/rtree.c",
+       "lo": 3672,
+       "hi": 3682
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL012",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "index warning on other code; the bug is generated-column handling",
+     "functions": [
+      "sqlite3Pragma (src/pragma.c:380-2290)"
+     ],
+     "regions": [
+      {
+       "file": "src/pragma.c",
+       "lo": 1680,
+       "hi": 1690
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/pragma.c",
+       "line": 1753,
+       "rule_id": "array-index-missing-upper-bound",
+       "cwe": "CWE-129",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL013",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "whereLoopAddBtreeIndex (src/where.c:2473-2868)"
+     ],
+     "regions": [
+      {
+       "file": "src/where.c",
+       "lo": 2841,
+       "hi": 2847
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL014",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "multiSelect (src/select.c:2673-3021)"
+     ],
+     "regions": [
+      {
+       "file": "src/select.c",
+       "lo": 2962,
+       "hi": 2967
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL015",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "sqlite3ExprColUsed (src/resolve.c:188-222)"
+     ],
+     "regions": [
+      {
+       "file": "src/resolve.c",
+       "lo": 191,
+       "hi": 221
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL016",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "memcpy elsewhere in sqlite3VdbeExec; the bug is an invalid free in comparisons",
+     "functions": [
+      "sqlite3VdbeExec (src/vdbe.c:679-8313)"
+     ],
+     "regions": [
+      {
+       "file": "src/vdbe.c",
+       "lo": 2157,
+       "hi": 2169
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/vdbe.c",
+       "line": 1345,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 1597,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 1601,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 1825,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 1833,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 2834,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 3308,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/vdbe.c",
+       "line": 6773,
+       "rule_id": "memory-set-size-unverified",
+       "cwe": "CWE-787",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL017",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "impliesNotNullRow (src/expr.c:5622-5716)"
+     ],
+     "regions": [
+      {
+       "file": "src/expr.c",
+       "lo": 5691,
+       "hi": 5708
+      },
+      {
+       "file": "src/sqliteInt.h",
+       "lo": 2249,
+       "hi": 2261
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL018",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "sqlite3ExprAddCollateToken (src/expr.c:94-116)"
+     ],
+     "regions": [
+      {
+       "file": "src/expr.c",
+       "lo": 101,
+       "hi": 108
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    },
+    {
+     "bug": "SQL019",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": true,
+     "manual": "coincidental",
+     "note": "constant-size memcpy (harmless); the bug is the precision/width overflow",
+     "functions": [
+      "sqlite3_str_vappendf (src/printf.c:213-921)"
+     ],
+     "regions": [
+      {
+       "file": "src/printf.c",
+       "lo": 544,
+       "hi": 549
+      },
+      {
+       "file": "src/printf.c",
+       "lo": 611,
+       "hi": 618
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": [
+      {
+       "file": "src/printf.c",
+       "line": 556,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      },
+      {
+       "file": "src/printf.c",
+       "line": 579,
+       "rule_id": "memory-copy-size-unverified",
+       "cwe": "CWE-120",
+       "analyzer": "semgrep"
+      }
+     ]
+    },
+    {
+     "bug": "SQL020",
+     "status": "ok",
+     "line_hit": false,
+     "function_hit": false,
+     "manual": "missed",
+     "note": null,
+     "functions": [
+      "exprListAppendList (src/window.c:891-928)"
+     ],
+     "regions": [
+      {
+       "file": "src/window.c",
+       "lo": 915,
+       "hi": 920
+      }
+     ],
+     "unparsed_files": [],
+     "timeouts": [],
+     "hits": []
+    }
+   ]
+  }
+ ]
+}
