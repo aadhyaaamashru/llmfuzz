@@ -1,18 +1,4 @@
 __pycache__/
-*.pyc
 .DS_Store
-# local scan outputs, CodeQL databases and benchmark data (large; see README for sources)
-/findings.json
-/toy.json
-/mxml.json
-*.codeqldb/
-cqdb/
-juliet-test-suite-c/
-magma/
-magma_src/
-magma_work/
-work/
-repos/
-cgc_work/
-cb-multios/
-arvo.db
+# your scan outputs and downloaded benchmark data go here (not committed)
+data/

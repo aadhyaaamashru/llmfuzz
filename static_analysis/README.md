@@ -37,17 +37,18 @@ dereference).
 cd static_analysis
 
 # a quick check on the bundled examples (6 small files, 5 with a known bug)
-python3 static_analyzer.py --target tests/toy --out toy.json
-#   [+] 6 precise findings + 10 wide-net hotspot functions -> toy.json
+python3 static_analyzer.py --target tests/toy --out data/toy.json
+#   [+] 6 precise findings + 10 wide-net hotspot functions -> data/toy.json
 
 # a real library: any local folder, or a git URL (cloned for you)
-git clone https://github.com/michaelrsweet/mxml /tmp/mxml && git -C /tmp/mxml checkout v2.12
-python3 static_analyzer.py --target /tmp/mxml --out mxml.json          # ~1 minute
-#   [+] 93 precise findings + 146 wide-net hotspot functions -> mxml.json
+git clone https://github.com/michaelrsweet/mxml data/mxml && git -C data/mxml checkout v2.12
+python3 static_analyzer.py --target data/mxml --out data/mxml.json     # ~1 minute
+#   [+] 93 precise findings + 146 wide-net hotspot functions -> data/mxml.json
 ```
 
 Progress is printed to the terminal, and the last line says what was written. The library
-doesn't need to be built or configured first.
+doesn't need to be built or configured first. `data/` is just a suggestion: git ignores it, so
+your downloads and outputs never get committed by accident. The target can be anywhere.
 
 | option | what it does |
 |---|---|
@@ -201,17 +202,50 @@ evidence.**
   listed functions contain no known bug. That's the trade-off the pipeline wants: the LLM filters,
   the fuzzer confirms.
 
-The full design, every experiment and every result are in [PLAN.md](PLAN.md).
-
 ---
 
 ## Reproducing the benchmarks
 
-Scripts are in `benchmarks/`, and their outputs in `benchmarks/results/`. Run them from this
-folder. Benchmark data is not included; get it from:
+The benchmark data isn't in the repo because it's several GB. You download it into `data/`.
+The scripts in `benchmarks/` turn a download into a score. For each known bug they rebuild the
+vulnerable version (apply Magma's bug patches, check out the commit before an OSS-Fuzz fix, strip
+CGC's `#ifdef PATCHED` fixes), run the analyzer on it, and check whether the bug's location is on
+the list. Running the analyzer on a benchmark by hand would give a list, but no way to tell
+how many real bugs it caught.
 
-| benchmark | data | command |
-|---|---|---|
+```bash
+cd static_analysis && mkdir -p data
+
+# Magma (needs unifdef)
+git clone https://github.com/HexHive/magma data/magma
+python3 benchmarks/magma_benchmark.py --magma data/magma --src data/magma_src \
+    --work data/magma_work --keep-work --out data/magma.json          # precise entries
+python3 benchmarks/magma_wide_eval.py --work data/magma_work --magma-results data/magma.json \
+    --libs openssl php poppler sqlite3                                  # wide list (held-out libraries)
+
+# ARVO (OSS-Fuzz bugs): put arvo.db from https://github.com/n132/ARVO-Meta (releases) in data/
+python3 benchmarks/arvo_select_a.py data/arvo.db data/arvo_a_bugs.json
+python3 benchmarks/arvo_benchmark.py --candidates data/arvo_a_bugs.json --repos data/arvo_repos \
+    --out data/arvo_a.json
+# set B: arvo_select_b.py, then arvo_benchmark.py with --per-project 2
+
+# DARPA CGC (needs unifdef)
+git clone https://github.com/trailofbits/cb-multios data/cb-multios
+python3 benchmarks/cgc_benchmark.py --src data/cb-multios/challenges --work data/cgc_work \
+    --out data/cgc.json
+
+# Juliet (synthetic test cases; precise rules only, not used as evidence)
+git clone https://github.com/arichardson/juliet-test-suite-c data/juliet-test-suite-c
+python3 benchmarks/juliet_benchmark.py --juliet data/juliet-test-suite-c --split final \
+    --out data/juliet.json
+```
+
+Each script's header explains how it scores. `benchmarks/results/` holds the runs behind the
+table above. `*_frozen.json` files are the clean-test runs and `*_final.json` files are after
+the fixes. `magma_precise.json` holds the Magma bug locations and the precise-entry scoring,
+`magma_wide_*.json` the wide-list scoring, and `juliet.json` the Juliet run.
+
+---|---|---|
 | Juliet (precise rules only) | `git clone https://github.com/arichardson/juliet-test-suite-c` | `python3 benchmarks/juliet_benchmark.py --juliet juliet-test-suite-c --split final --out juliet.json` |
 | Magma | `git clone https://github.com/HexHive/magma` (needs `unifdef`) | `python3 benchmarks/magma_benchmark.py --magma magma --src src --work work --keep-work --out magma.json`, then `python3 benchmarks/magma_wide_eval.py --work work --magma-results magma.json --libs openssl php poppler sqlite3` |
 | ARVO | `arvo.db` from [ARVO-Meta](https://github.com/n132/ARVO-Meta) | `python3 benchmarks/arvo_select_a.py arvo.db cand_a.json && python3 benchmarks/arvo_benchmark.py --candidates cand_a.json --repos repos --out arvo_a.json` (set B: `arvo_select_b.py`, `--per-project 2`) |
@@ -240,7 +274,7 @@ static_analysis/
 ├── tests/toy/              # 6 tiny C files with known bugs, for a quick check
 ├── results/                # example outputs: mxml-v2.12/, toy/
 ├── benchmarks/             # benchmark scripts + results/
-└── PLAN.md                 # design notes, experiments, full results
+└── data/                   # (yours, not committed) downloads and scan outputs
 ```
 
 ## Rules for changing this stage
@@ -256,8 +290,8 @@ static_analysis/
 
 - **`the codeql CLI is not installed`**: install it (see Setup) or pass `--backend semgrep`.
 - **CodeQL is slow the first time on macOS.** Pass `--codeql-db DIR` so later runs reuse the
-  database. More CodeQL notes are in [PLAN.md](PLAN.md#codeql-backend-codeql_backendpy-codeql).
+  database.
 - **`[!] semgrep crashed on FILE`**: that file was skipped and is listed in `crashed_files`.
   Everything else was still scanned.
-- **The target can live anywhere**, including inside this repo or a git-ignored folder. Files are
-  passed to Semgrep one by one, so Semgrep's own ignore rules can't silently drop any.
+- **The target can live anywhere**, including inside this repo or the git-ignored `data/` folder.
+  Files are passed to Semgrep one by one, so Semgrep's own ignore rules can't silently drop any.

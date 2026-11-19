@@ -418,9 +418,14 @@ def normalize(raw, target_root, spans=None):
         if key not in seen:
             seen.add(key)
             results.append(r)
+    # order by the path inside the library: Semgrep reports paths as the target was typed
+    # (relative or absolute), CodeQL always absolute -- raw paths would make the F-numbers
+    # depend on how the target was named
+    root = os.path.abspath(target_root) if os.path.isdir(target_root) else None
     results.sort(key=lambda r: (
         SEVERITY_ORDER.get((r.get("extra", {}).get("severity") or "").lower(), 3),
-        r.get("path", ""), r.get("start", {}).get("line", 0)))
+        os.path.relpath(os.path.abspath(r.get("path", "")), root) if root else r.get("path", ""),
+        r.get("start", {}).get("line", 0)))
 
     findings = []
     for i, r in enumerate(results, 1):
@@ -607,6 +612,7 @@ def main():
         # one entry per function with risky memory operations, ranked (W001 = read first)
         "findings": findings + hotspots,
     }
+    os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w") as f:
         json.dump(out, f, indent=2)
     print(f"[+] {len(findings)} precise findings + {len(hotspots)} wide-net hotspot functions "
