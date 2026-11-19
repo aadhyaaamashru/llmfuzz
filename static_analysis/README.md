@@ -56,7 +56,7 @@ tool (see [Benchmarks](#benchmarks-optional-only-to-re-check-the-numbers-above))
 | option | what it does |
 |---|---|
 | `--target PATH_OR_URL` | library to scan (required). A git URL scans the default branch; to scan a tag, clone it and pass the folder |
-| `--out FILE` | where to write the JSON (default `findings.json`) |
+| `--out FILE` | where to write the JSON (default `data/findings.json` in this folder) |
 | `--backend semgrep\|codeql\|both` | analyzers to run (default `both` when CodeQL is installed) |
 | `--codeql-db DIR` | keep the CodeQL database here and reuse it on the next run (saves most of CodeQL's time) |
 | `--exclude NAME …` | folders / file patterns to skip. Default: test, tests, examples, docs, fuzz, bench and test-program files like `test*.c`. `--exclude` with nothing after it scans everything |
@@ -168,8 +168,9 @@ Other top-level fields: `target`, `analyzer`, `config` (rule files), `codeql_que
 
 ## Example: mxml v2.12 (the team's target)
 
-Output: [`results/mxml-v2.12/findings.json`](results/mxml-v2.12/findings.json). Every memory bug
-that was fixed in mxml after v2.12 is on the list, at its exact line:
+To get the output, run the mxml commands under [Run](#run) (about a minute, writes
+`data/mxml.json`). Every memory bug that was fixed in mxml after v2.12 is on the list, at its
+exact line:
 
 | known bug (fixed upstream in v3.0) | precise entries | wide list |
 |---|---|---|
@@ -251,11 +252,8 @@ python3 benchmarks/juliet_benchmark.py --juliet data/juliet-test-suite-c --split
     --out data/juliet.json
 ```
 
-Each script prints a summary at the end, and its header explains the scoring in detail.
-`benchmarks/results/` holds the runs behind the table above. `*_frozen.json` files are the
-clean-test runs and `*_final.json` files are after the fixes. `magma_precise.json` holds the
-Magma bug locations and the precise-entry scoring, `magma_wide_*.json` the wide-list scoring, and
-`juliet.json` the Juliet run.
+Each script prints a summary at the end, and its header explains the scoring in detail. The
+outputs aren't committed: the commands above write them to `data/`.
 
 ---
 
@@ -273,8 +271,7 @@ static_analysis/
 │   └── wide_net*.yaml      # wide-net Semgrep rules (all files matching this are loaded)
 ├── codeql/                 # CodeQL query pack (use-after-free, double free, NULL deref, …)
 ├── tests/toy/              # 6 tiny C files with known bugs, for a quick check
-├── results/                # example outputs: mxml-v2.12/, toy/
-├── benchmarks/             # optional: tests of the tool on known real bugs + results/
+├── benchmarks/             # optional: tests of the tool on known real bugs
 └── data/                   # (yours, not committed) downloads and scan outputs
 ```
 

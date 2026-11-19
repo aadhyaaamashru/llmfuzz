@@ -7,9 +7,9 @@ CodeQL for data flow across functions), and emits normalized findings JSON for t
 downstream LLM stage. Each finding says which analyzer produced it.
 
 Usage:
-    python3 static_analyzer.py --target tests/toy --out findings.json
-    python3 static_analyzer.py --target https://github.com/randy408/libspng --out findings.json
-    python3 static_analyzer.py --target tests/toy --config p/c --out findings.json   # stock rules
+    python3 static_analyzer.py --target tests/toy                  # -> data/findings.json
+    python3 static_analyzer.py --target https://github.com/randy408/libspng --out data/libspng.json
+    python3 static_analyzer.py --target tests/toy --config p/c     # stock rules
     python3 static_analyzer.py --target ../zlib --compile-commands ../zlib/build/compile_commands.json
 
 Files Semgrep can't parse (project macros, split #if blocks) are re-scanned through a
@@ -500,7 +500,8 @@ def main():
     ap.add_argument("--no-wide-net", dest="wide_net", action="store_false",
                     help="skip the wide-net tier (every risky memory operation, grouped and "
                          "ranked per function; see wide_net.py)")
-    ap.add_argument("--out", default="findings.json")
+    ap.add_argument("--out", default=os.path.join(HERE, "data", "findings.json"),
+                    help="output JSON (default: data/findings.json in this folder, which git ignores)")
     args = ap.parse_args()
     if args.backend != "semgrep" and not codeql_backend.available():
         ap.error("the codeql CLI is not installed (brew install --cask codeql)")
