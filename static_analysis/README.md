@@ -50,6 +50,9 @@ Progress is printed to the terminal, and the last line says what was written. Th
 doesn't need to be built or configured first. `data/` is just a suggestion: git ignores it, so
 your downloads and outputs never get committed by accident. The target can be anywhere.
 
+That's all you need to scan a library. Everything under `benchmarks/` is only for testing the
+tool (see [Benchmarks](#benchmarks-optional-only-to-re-check-the-numbers-above)).
+
 | option | what it does |
 |---|---|
 | `--target PATH_OR_URL` | library to scan (required). A git URL scans the default branch; to scan a tag, clone it and pass the folder |
@@ -204,14 +207,22 @@ evidence.**
 
 ---
 
-## Reproducing the benchmarks
+## Benchmarks (optional: only to re-check the numbers above)
 
-The benchmark data isn't in the repo because it's several GB. You download it into `data/`.
-The scripts in `benchmarks/` turn a download into a score. For each known bug they rebuild the
-vulnerable version (apply Magma's bug patches, check out the commit before an OSS-Fuzz fix, strip
-CGC's `#ifdef PATCHED` fixes), run the analyzer on it, and check whether the bug's location is on
-the list. Running the analyzer on a benchmark by hand would give a list, but no way to tell
-how many real bugs it caught.
+**You don't need any of this to scan a library.** The scripts in `benchmarks/` are the tool's
+tests. Each one takes a set of real bugs whose location is already known, rebuilds the buggy
+version of the code, runs `static_analyzer.py` on it, and checks whether the bug made the list.
+That's how the table above was produced.
+
+| script | what it tests on |
+|---|---|
+| `magma_benchmark.py`, then `magma_wide_eval.py` | **Magma**: 138 real CVEs re-inserted into 9 libraries (libpng, openssl, sqlite, …). The first script scores the precise entries, the second the wide list |
+| `arvo_select_a.py` / `arvo_select_b.py`, then `arvo_benchmark.py` | **ARVO**: real bugs found by Google's OSS-Fuzz, each with the commit that fixed it. The select scripts pick the bugs (fixed rule, chosen before scoring) |
+| `cgc_benchmark.py` | **DARPA Cyber Grand Challenge**: 241 small programs whose bugs are marked `#ifdef PATCHED` |
+| `juliet_benchmark.py` | **Juliet**: NIST's synthetic test cases (precise rules only, not used as evidence) |
+
+The benchmark data isn't in the repo because it's several GB. Download it into `data/`, which
+git ignores:
 
 ```bash
 cd static_analysis && mkdir -p data
@@ -219,11 +230,11 @@ cd static_analysis && mkdir -p data
 # Magma (needs unifdef)
 git clone https://github.com/HexHive/magma data/magma
 python3 benchmarks/magma_benchmark.py --magma data/magma --src data/magma_src \
-    --work data/magma_work --keep-work --out data/magma.json          # precise entries
+    --work data/magma_work --keep-work --out data/magma.json
 python3 benchmarks/magma_wide_eval.py --work data/magma_work --magma-results data/magma.json \
-    --libs openssl php poppler sqlite3                                  # wide list (held-out libraries)
+    --libs openssl php poppler sqlite3
 
-# ARVO (OSS-Fuzz bugs): put arvo.db from https://github.com/n132/ARVO-Meta (releases) in data/
+# ARVO: put arvo.db from https://github.com/n132/ARVO-Meta (releases) in data/
 python3 benchmarks/arvo_select_a.py data/arvo.db data/arvo_a_bugs.json
 python3 benchmarks/arvo_benchmark.py --candidates data/arvo_a_bugs.json --repos data/arvo_repos \
     --out data/arvo_a.json
@@ -234,26 +245,16 @@ git clone https://github.com/trailofbits/cb-multios data/cb-multios
 python3 benchmarks/cgc_benchmark.py --src data/cb-multios/challenges --work data/cgc_work \
     --out data/cgc.json
 
-# Juliet (synthetic test cases; precise rules only, not used as evidence)
+# Juliet
 git clone https://github.com/arichardson/juliet-test-suite-c data/juliet-test-suite-c
 python3 benchmarks/juliet_benchmark.py --juliet data/juliet-test-suite-c --split final \
     --out data/juliet.json
 ```
 
-Each script's header explains how it scores. `benchmarks/results/` holds the runs behind the
-table above. `*_frozen.json` files are the clean-test runs and `*_final.json` files are after
-the fixes. `magma_precise.json` holds the Magma bug locations and the precise-entry scoring,
-`magma_wide_*.json` the wide-list scoring, and `juliet.json` the Juliet run.
-
----|---|---|
-| Juliet (precise rules only) | `git clone https://github.com/arichardson/juliet-test-suite-c` | `python3 benchmarks/juliet_benchmark.py --juliet juliet-test-suite-c --split final --out juliet.json` |
-| Magma | `git clone https://github.com/HexHive/magma` (needs `unifdef`) | `python3 benchmarks/magma_benchmark.py --magma magma --src src --work work --keep-work --out magma.json`, then `python3 benchmarks/magma_wide_eval.py --work work --magma-results magma.json --libs openssl php poppler sqlite3` |
-| ARVO | `arvo.db` from [ARVO-Meta](https://github.com/n132/ARVO-Meta) | `python3 benchmarks/arvo_select_a.py arvo.db cand_a.json && python3 benchmarks/arvo_benchmark.py --candidates cand_a.json --repos repos --out arvo_a.json` (set B: `arvo_select_b.py`, `--per-project 2`) |
-| DARPA CGC | `git clone https://github.com/trailofbits/cb-multios` (needs `unifdef`) | `python3 benchmarks/cgc_benchmark.py --src cb-multios/challenges --work cgc_work --out cgc.json` |
-
-Each script's header explains its scoring. In `benchmarks/results/`, `*_frozen.json` files are
-the clean-test runs and `*_final.json` files are after the fixes. `magma_precise.json` holds the
-Magma bug locations and the precise-tier scoring, `magma_wide_*.json` the wide-list scoring, and
+Each script prints a summary at the end, and its header explains the scoring in detail.
+`benchmarks/results/` holds the runs behind the table above. `*_frozen.json` files are the
+clean-test runs and `*_final.json` files are after the fixes. `magma_precise.json` holds the
+Magma bug locations and the precise-entry scoring, `magma_wide_*.json` the wide-list scoring, and
 `juliet.json` the Juliet run.
 
 ---
@@ -273,7 +274,7 @@ static_analysis/
 ├── codeql/                 # CodeQL query pack (use-after-free, double free, NULL deref, …)
 ├── tests/toy/              # 6 tiny C files with known bugs, for a quick check
 ├── results/                # example outputs: mxml-v2.12/, toy/
-├── benchmarks/             # benchmark scripts + results/
+├── benchmarks/             # optional: tests of the tool on known real bugs + results/
 └── data/                   # (yours, not committed) downloads and scan outputs
 ```
 
