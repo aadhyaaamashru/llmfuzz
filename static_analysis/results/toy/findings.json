@@ -35,7 +35,7 @@
     "compile_commands": null,
     "defines": []
   },
-  "generated_at": "2026-11-19T14:07:57.905704+00:00",
+  "generated_at": "2026-11-19T14:22:24.493843+00:00",
   "summary": {
     "total": 6,
     "by_cwe": {
@@ -127,24 +127,6 @@
     },
     {
       "id": "F005",
-      "rule_id": "sa/unchecked-alloc-deref",
-      "cwe": "CWE-690",
-      "bug_class": null,
-      "severity": "warning",
-      "file": "memcpy_bug.c",
-      "line": 7,
-      "function": "clone",
-      "message": "This pointer comes from [malloc](1), which can return NULL, and is dereferenced without a check.",
-      "code_context": "#include <stdlib.h>\n\nchar *clone(const char *src, unsigned long n) {\n    char *dst = malloc(32);\n    memcpy(dst, src, n);   /* BUG: n not validated against 32 */\n    return dst;\n}",
-      "analyzer": "codeql",
-      "preprocessed": false,
-      "also_reported_by": [
-        "semgrep"
-      ],
-      "tier": "precise"
-    },
-    {
-      "id": "F006",
       "rule_id": "memory-copy-size-unverified",
       "cwe": "CWE-120",
       "bug_class": "buffer-overflow",
@@ -156,6 +138,24 @@
       "code_context": "#include <stdlib.h>\n\nchar *clone(const char *src, unsigned long n) {\n    char *dst = malloc(32);\n    memcpy(dst, src, n);   /* BUG: n not validated against 32 */\n    return dst;\n}",
       "analyzer": "semgrep",
       "preprocessed": false,
+      "tier": "precise"
+    },
+    {
+      "id": "F006",
+      "rule_id": "unchecked-alloc-result-deref",
+      "cwe": "CWE-690",
+      "bug_class": "null-deref",
+      "severity": "warning",
+      "file": "memcpy_bug.c",
+      "line": 7,
+      "function": "clone",
+      "message": "dst can be NULL here: it comes from an allocation / open call that can fail and is used without a NULL check.",
+      "code_context": "#include <stdlib.h>\n\nchar *clone(const char *src, unsigned long n) {\n    char *dst = malloc(32);\n    memcpy(dst, src, n);   /* BUG: n not validated against 32 */\n    return dst;\n}",
+      "analyzer": "semgrep",
+      "preprocessed": false,
+      "also_reported_by": [
+        "codeql"
+      ],
       "tier": "precise"
     },
     {
