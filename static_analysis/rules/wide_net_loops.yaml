@@ -1,0 +1,52 @@
+# Wide-net tier, part 6: pointer walks, count-down loops, bounded scans and indirect calls.
+#  - a loop that advances a pointer/index (`dataptr++` in `do { ... } while (--len)`) walks off
+#    the end when the count is wrong; a count-down `do ... while (--n)` runs ~4 billion times
+#    when n starts at 0
+#  - memchr-style scans read `n` bytes whether or not the buffer has them
+#  - calling through a function pointer read from a struct reads past a shorter (older-version
+#    or wrong-type) struct, or calls NULL
+rules:
+  - id: wide-countdown-loop
+    languages: [c, cpp]
+    severity: INFO
+    message: count-down loop that underflows when the count starts at 0
+    metadata: {cwe: ["CWE-191"], wide: loop}
+    pattern-either:
+      - pattern: do { ... } while (--$N);
+      - pattern: do { ... } while ($N--);
+
+  - id: wide-loop-advance
+    languages: [c, cpp]
+    severity: INFO
+    message: pointer/index advanced inside a loop (walks past the end if the bound is wrong)
+    metadata: {cwe: ["CWE-125"], wide: loop}
+    patterns:
+      - pattern-either:
+          - pattern-inside: while ($C) { ... }
+          - pattern-inside: do { ... } while ($C);
+          - pattern-inside: for ($A; $B; $D) { ... }
+      - pattern-either:
+          - pattern: $P++;
+          - pattern: ++$P;
+          - pattern: $P += $N;
+
+  - id: wide-scan-variable-size
+    languages: [c, cpp]
+    severity: INFO
+    message: $F() scans a caller-given length (over-reads a shorter buffer)
+    metadata: {cwe: ["CWE-125"], wide: copy}
+    patterns:
+      - pattern: $F($B, $C, $N)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(memchr|memrchr|memmem|strnlen|strnstr|rawmemchr)$
+
+  - id: wide-indirect-call
+    languages: [c]
+    severity: INFO
+    message: call through a function pointer read from a struct
+    metadata: {cwe: ["CWE-822"], wide: call}
+    pattern-either:
+      - pattern: $S->$F(...)
+      - pattern: (*$FP)(...)
+      - pattern: (*$S->$F)(...)

@@ -1,0 +1,5 @@
+name: sa-stage/memory-safety
+version: 0.1.0
+dependencies:
+  codeql/cpp-all: "*"
+  codeql/cpp-queries: "*"

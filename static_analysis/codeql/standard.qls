@@ -1,0 +1,3 @@
+# CodeQL's own security queries (baseline to compare against)
+- import: codeql-suites/cpp-security-extended.qls
+  from: codeql/cpp-queries

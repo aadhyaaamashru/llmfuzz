@@ -1,0 +1,34 @@
+# Wide-net tier, part 5: fixed offsets into a pointer whose length the code doesn't control --
+# one returned by a call (`kv = g_strsplit(...); kv[1]`, `p = parse(...); p[4]`) or passed in
+# (`int parse(const uint8_t *buf, ...) { ... buf[4] ... }`). Out of bounds when the returned
+# vector / input is shorter. Index 0 is left out (too common).
+rules:
+  - id: wide-call-result-fixed-offset
+    languages: [c, cpp]
+    severity: INFO
+    message: pointer returned by $F() read at a fixed offset (out of bounds if it is shorter)
+    metadata: {cwe: ["CWE-125"], wide: read}
+    patterns:
+      - pattern-inside: |
+          $P = $F(...);
+          ...
+      - pattern: $P[$N]
+      - metavariable-regex:
+          metavariable: $N
+          regex: ^(0[xX][0-9a-fA-F]*[1-9a-fA-F][0-9a-fA-F]*|[1-9][0-9]*)[uUlL]*$
+
+  - id: wide-param-fixed-offset
+    languages: [c, cpp]
+    severity: INFO
+    message: pointer parameter $P read at a fixed offset (out of bounds on short input)
+    metadata: {cwe: ["CWE-125"], wide: read}
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              $RET $FN(..., $T *$P, ...) { ... }
+          - pattern-inside: |
+              $RET $FN(..., $T $P[], ...) { ... }
+      - pattern: $P[$N]
+      - metavariable-regex:
+          metavariable: $N
+          regex: ^(0[xX][0-9a-fA-F]*[1-9a-fA-F][0-9a-fA-F]*|[1-9][0-9]*)[uUlL]*$

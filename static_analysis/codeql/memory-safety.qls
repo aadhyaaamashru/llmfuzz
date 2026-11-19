@@ -1,0 +1,10 @@
+# Queries the static-analysis stage runs (static_analyzer.py --backend codeql|both).
+#
+# Our cross-function queries (queries/) plus the one standard CodeQL query that earned a place
+# on the tuning data. The other 42 standard memory-safety queries (standard-memory.qls) caught
+# no Juliet case that Semgrep + our queries miss, and no real Magma bug on the tuning
+# libraries, while adding false alarms (cpp/missing-null-test alone: 320 on Juliet).
+- queries: queries
+# integer overflow in an allocation size (found libxml2 CVE-2017-5130 on the tuning libraries)
+- query: experimental/Security/CWE/CWE-190/AllocMultiplicationOverflow.ql
+  from: codeql/cpp-queries

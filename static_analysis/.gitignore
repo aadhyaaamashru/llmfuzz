@@ -1,0 +1,4 @@
+__pycache__/
+.DS_Store
+# your scan outputs and downloaded benchmark data go here (not committed)
+data/

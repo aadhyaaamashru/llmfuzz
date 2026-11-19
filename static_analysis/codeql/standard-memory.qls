@@ -1,0 +1,47 @@
+# Every standard / experimental CodeQL query aimed at the memory-safety bug classes we
+# benchmark (the second baseline: what CodeQL can do out of the box, before our own queries).
+- queries: .
+  from: codeql/cpp-queries
+- include:
+    id:
+      - cpp/double-free
+      - cpp/experimental-double-free
+      - cpp/use-after-free
+      - cpp/missing-null-test
+      - cpp/inconsistent-nullness-testing
+      - cpp/deref-null-result
+      - cpp/inconsistent-null-check
+      - cpp/overflow-buffer
+      - cpp/overrun-write
+      - cpp/badly-bounded-write
+      - cpp/overrunning-write
+      - cpp/overrunning-write-with-float
+      - cpp/unbounded-write
+      - cpp/very-likely-overrunning-write
+      - cpp/static-buffer-overflow
+      - cpp/overflow-destination
+      - cpp/overflow-calculated
+      - cpp/potential-buffer-overflow
+      - cpp/uncontrolled-allocation-size
+      - cpp/integer-overflow-tainted
+      - cpp/multiplication-overflow-in-alloc
+      - cpp/invalid-pointer-deref
+      - cpp/non-constant-format
+      - cpp/tainted-format-string
+      - cpp/return-stack-allocated-memory
+      - cpp/stack-address-escape
+      - cpp/using-expired-stack-address
+      - cpp/new-free-mismatch
+      - cpp/improper-null-termination
+      - cpp/unsafe-strncat
+      - cpp/unsafe-strcat
+      - cpp/bad-strncpy-size
+      - cpp/suspicious-sizeof
+      - cpp/access-memory-location-after-end-buffer-strlen
+      - cpp/dangerous-function-overflow
+      - cpp/pointer-overflow-check
+      - cpp/use-of-string-after-lifetime-ends
+      - cpp/use-after-expired-lifetime
+      - cpp/network-to-host-function-as-array-bound
+      - cpp/return-stack-allocated-object
+      - cpp/incorrect-allocation-error-handling

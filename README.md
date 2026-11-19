@@ -5,7 +5,7 @@
 
 **Project Name:** _TBD_ — `FLAG` (Fuzzing with LLM-Aided Guidance)
 
-**Course:** CS453 <!-- TODO: term / year -->
+**Course:** CS453 | FALL 2026
 **Team:** Aadhyaaa Mashru · Madhav Malik · Mikkel Hebel · Nikhil Kanade · Shivum Varshney
 
 ---
@@ -51,7 +51,11 @@ in that script, not a separate tool you run by hand.
 
 ## Repository layout
 
- _TBD_
+| folder | what it is |
+|---|---|
+| [`static_analysis/`](static_analysis/) | Stage 1, the static analyzer (Semgrep + CodeQL): library ──► `findings.json`. How to run it and read its output: [static_analysis/README.md](static_analysis/README.md) |
+
+ _Other stages: TBD_
 
 ## Requirements
 
@@ -64,8 +68,10 @@ in that script, not a separate tool you run by hand.
 ## Configuration
 
  _TBD_
-                                             |
+
 ## Usage
 
- _TBD_
-
+_Stage 1:_
+1. `cd static_analysis`
+2. Download the library: `git clone https://github.com/michaelrsweet/mxml data/mxml && git -C data/mxml checkout v2.12`
+3. Scan it: `python3 static_analyzer.py --target data/mxml --out data/mxml.json` (~1 min)

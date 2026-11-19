@@ -1,0 +1,15 @@
+# Wide-net tier, part 2: library calls that read until a terminator ('\0') or parse unbounded
+# input. On a buffer that isn't guaranteed to be terminated (data straight from a file or
+# packet) they read past its end. Kept in its own file so benchmarks can add it incrementally;
+# the stage loads every rules/wide_net*.yaml.
+rules:
+  - id: wide-terminator-read
+    languages: [c, cpp]
+    severity: INFO
+    message: $F() reads until a terminator; over-reads if the buffer isn't terminated
+    metadata: {cwe: ["CWE-125"], wide: strread}
+    patterns:
+      - pattern: $F($X, ...)
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^(strcmp|strcasecmp|stricmp|_stricmp|strcoll|strspn|strcspn|strpbrk|strtok|strtok_r|atoi|atol|atoll|atof|strtol|strtoul|strtoll|strtoull|strtod|strtof|sscanf|wcslen|wcscmp|wcschr|wcsstr|xmlStrcmp|xmlStrlen)$
