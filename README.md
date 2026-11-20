@@ -84,9 +84,14 @@ and skip anything already done.
 ./setup.sh --target <git url>                  # another library, latest version
 ./setup.sh --target <git url> --ref <tag>      # another library, specific version
 ./setup.sh --rerun                             # scan again even if findings.json exists
+./setup.sh --clean-build                       # delete everything and build from scratch (see below)
 ./setup.sh --sa                                # static analysis only
 ./setup.sh --llm                               # LLM stage only (not implemented yet)
 ./setup.sh --fuzz                              # fuzzing only (not implemented yet)
 ```
 
 With no stage flag, every stage runs. Stages always run inside Docker.
+
+`--clean-build` deletes the `llmfuzz` image and its containers, the `llmfuzz-codeql` volume
+(CodeQL databases for every library), and the `results/` and `targets/` folders. It then
+rebuilds the image without cache and runs as usual. It can be combined with the other flags.

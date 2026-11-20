@@ -8,6 +8,7 @@ import time
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SA = os.path.join(ROOT, "static_analysis")
 IMAGE = "llmfuzz"
+VOLUME = "llmfuzz-codeql"
 MXML = "https://github.com/michaelrsweet/mxml"
 
 
@@ -44,7 +45,19 @@ def docker_hint():
     return "docker isn't running. Start Docker Desktop"
 
 
-def in_docker():
+def clean():
+    print("[*] clean build: removing the image, CodeQL volume, results/ and targets/", flush=True)
+    ids = subprocess.run(["docker", "ps", "-aq", "--filter", f"ancestor={IMAGE}"],
+                         capture_output=True, text=True).stdout.split()
+    if ids:
+        run(["docker", "rm", "-f", *ids])
+    subprocess.run(["docker", "rmi", "-f", IMAGE], capture_output=True)
+    subprocess.run(["docker", "volume", "rm", "-f", VOLUME], capture_output=True)
+    for d in ("results", "targets"):
+        shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)
+
+
+def in_docker(clean_build):
     if not shutil.which("docker"):
         if is_wsl():
             sys.exit("docker not found in WSL. Start Docker Desktop on Windows and turn on WSL integration for this distro\n"
@@ -59,9 +72,11 @@ def in_docker():
                 time.sleep(2)
     if not docker_up():
         sys.exit(docker_hint() + "\nthen run ./setup.sh again")
-    run(["docker", "build", "-t", IMAGE, ROOT])
+    if clean_build:
+        clean()
+    run(["docker", "build", *(["--no-cache", "--pull"] if clean_build else []), "-t", IMAGE, ROOT])
     user = ["--user", f"{os.getuid()}:{os.getgid()}"] if hasattr(os, "getuid") else []
-    cmd = ["docker", "run", "--rm", "-v", f"{ROOT}:/llmfuzz", "-v", "llmfuzz-codeql:/codeql", *user, IMAGE, "python3", "main.py", *sys.argv[1:]]
+    cmd = ["docker", "run", "--rm", "-v", f"{ROOT}:/llmfuzz", "-v", f"{VOLUME}:/codeql", *user, IMAGE, "python3", "main.py", *sys.argv[1:]]
     print("$", " ".join(cmd), flush=True)
     sys.exit(subprocess.run(cmd).returncode)
 
@@ -94,6 +109,8 @@ def main():
     ap.add_argument("--target")
     ap.add_argument("--ref")
     ap.add_argument("--rerun", action="store_true")
+    ap.add_argument("--clean-build", action="store_true",
+                    help="delete the image, CodeQL volume, results/ and targets/, then build everything from scratch")
     ap.add_argument("--sa", action="store_true", help="static analysis only")
     ap.add_argument("--llm", action="store_true", help="LLM stage only (not implemented yet)")
     ap.add_argument("--fuzz", action="store_true", help="fuzzing only (not implemented yet)")
@@ -104,7 +121,7 @@ def main():
         args.sa = args.llm = args.fuzz = True
 
     if not os.environ.get("LLMFUZZ_CONTAINER"):
-        in_docker()
+        in_docker(args.clean_build)
     name, path = get_target(args.target, args.ref)
     if args.sa:
         static_analysis(name, path, args.rerun)
