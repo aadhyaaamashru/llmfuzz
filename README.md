@@ -59,11 +59,19 @@ in that script, not a separate tool you run by hand.
 
 ## Requirements
 
- _TBD_
+- Docker
+- Python 3.9+
 
 ## Setup
 
- _TBD_
+```bash
+./setup.sh
+```
+
+This builds a Docker image with everything installed (Semgrep, CodeQL, clang), clones the
+target library into `targets/`, and runs the pipeline inside the container. Output goes to
+`results/<library>-<version>/findings.json`. The first run takes a few minutes; later runs reuse the image
+and skip anything already done.
 
 ## Configuration
 
@@ -71,7 +79,19 @@ in that script, not a separate tool you run by hand.
 
 ## Usage
 
-_Stage 1:_
-1. `cd static_analysis`
-2. Download the library: `git clone https://github.com/michaelrsweet/mxml data/mxml && git -C data/mxml checkout v2.12`
-3. Scan it: `python3 static_analyzer.py --target data/mxml --out data/mxml.json` (~1 min)
+```bash
+./setup.sh                                     # default: mxml v2.12
+./setup.sh --target <git url>                  # another library, latest version
+./setup.sh --target <git url> --ref <tag>      # another library, specific version
+./setup.sh --rerun                             # scan again even if findings.json exists
+./setup.sh --clean-build                       # delete everything and build from scratch (see below)
+./setup.sh --sa                                # static analysis only
+./setup.sh --llm                               # LLM stage only (not implemented yet)
+./setup.sh --fuzz                              # fuzzing only (not implemented yet)
+```
+
+With no stage flag, every stage runs. Stages always run inside Docker.
+
+`--clean-build` deletes the `llmfuzz` image and its containers, the `llmfuzz-codeql` volume
+(CodeQL databases for every library), and the `results/` and `targets/` folders. It then
+rebuilds the image without cache and runs as usual. It can be combined with the other flags.

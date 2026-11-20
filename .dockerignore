@@ -1,0 +1,3 @@
+*
+!static_analysis/codeql/qlpack.yml
+!static_analysis/codeql/codeql-pack.lock.yml
